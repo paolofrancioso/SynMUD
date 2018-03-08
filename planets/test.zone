@@ -1,0 +1,14 @@
+#PLANET
+Name         test~
+Filename     test.zone~
+X            0
+Y            0
+Z            0
+Sector       0
+Type    	   0
+BaseValue    0
+PopSupport   0
+Starsystem   Fake~
+End
+
+#END

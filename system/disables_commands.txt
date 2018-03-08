@@ -1,0 +1,264 @@
+#COMMAND
+Name        showplanet~
+Code        do_showplanet
+Position    0
+Level       0
+Log         0
+End
+
+#COMMAND
+Name        makeplanet~
+Code        do_makeplanet
+Position    0
+Level       35
+Log         0
+End
+
+#COMMAND
+Name        planets~
+Code        do_planets
+Position    0
+Level       1
+Log         0
+End
+
+#COMMAND
+Name        setplanet~
+Code        do_setplanet
+Position    0
+Level       35
+Log         0
+End
+
+#COMMAND
+Name        makestarsystem~
+Code        do_makestarsystem
+Position    0
+Level       33
+Log         1
+End
+
+
+#COMMAND
+Name        setstarsystem~
+Code        do_setstarsystem
+Position    0
+Level       33
+Log         1
+End
+
+#COMMAND
+Name        showstarsystem~
+Code        do_showstarsystem
+Position    0
+Level       32
+Log         0
+End
+
+#COMMAND
+Name        starsystems~
+Code        do_starsystems
+Position    0
+Level       1
+Log         0
+End
+
+#COMMAND
+Name        leaveship~
+Code        do_leaveship
+Position    8
+Level       0
+Log         0
+End
+
+#COMMAND
+Name        makeship~
+Code        do_makeship
+Position    0
+Level       36
+Log         1
+End
+
+#COMMAND
+Name        makemobship~
+Code        do_makemobship
+Position    0
+Level       35
+Log         0
+End
+
+#COMMAND
+Name        monir~
+Code        do_pluogus
+Position    0
+Level       1
+Log         0
+End
+
+#COMMAND
+Name        resetship~
+Code        do_resetship
+Position    0
+Level       33
+Log         3
+End
+
+#COMMAND
+Name        remship~
+Code        do_removeship
+Position    0
+Level       33
+Log         0
+End
+
+#COMMAND
+Name        sellship~
+Code        do_salvage
+Position    5
+Level       0
+Log         0
+End
+
+#COMMAND
+Name        setship~
+Code        do_setship
+Position    0
+Level       33
+Log         1
+End
+
+#COMMAND
+Name        ships~
+Code        do_ships
+Position    0
+Level       0
+Log         0
+End
+
+#COMMAND
+Name        showship~
+Code        do_showship
+Position    0
+Level       32
+Log         0
+End
+
+#COMMAND
+Name        shiptalk~
+Code        do_shiptalk
+Position    0
+Level       1
+Log         0
+End
+
+#COMMAND
+Name        shiplock~
+Code        do_shiplock
+Position    0
+Level       0
+Log         0
+End
+
+#COMMAND
+Name        shipstat~
+Code        do_shipstat
+Position    0
+Level       1
+Log         0
+End
+
+#COMMAND
+Name        sol~
+Code        do_pluogus
+Position    0
+Level       1
+Log         0
+End
+
+#COMMAND
+Name        serin~
+Code        do_pluogus
+Position    0
+Level       1
+Log         0
+End
+
+#COMMAND
+Name        shiplist~
+Code        do_shiplist
+Position    0
+Level       1
+Log         0
+End
+
+#COMMAND
+Name        transship~
+Code        do_transship
+Position    0
+Level       32
+Log         1
+End
+
+#COMMAND
+Name        transshipss~
+Code        do_transshipss
+Position    0
+Level       36
+Log         0
+End
+
+#COMMAND
+Name        allships~
+Code        do_allships
+Position    5
+Level       31
+Log         0
+End
+
+#COMMAND
+Name        buyship~
+Code        do_ordership
+Position    5
+Level       1
+Log         0
+End
+
+#COMMAND
+Name        buymobship~
+Code        do_buymobship
+Position    0
+Level       36
+Log         1
+End
+
+#COMMAND
+Name        clanbuyship~
+Code        do_orderclanship
+Position    5
+Level       0
+Log         1
+End
+
+#COMMAND
+Name        clangiveship~
+Code        do_clangiveship
+Position    0
+Level       1
+Log         0
+End
+
+#COMMAND
+Name        freeships~
+Code        do_freeship
+Position    0
+Level       0
+Log         0
+End
+
+#COMMAND
+Name        giveship~
+Code        do_giveship
+Position    0
+Level       1
+Log         1
+End
