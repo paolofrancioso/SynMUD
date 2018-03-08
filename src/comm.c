@@ -360,6 +360,7 @@ static void SegVio()
 }
 */
 
+
 /*
  * LAG alarm!							-Thoric
  */
@@ -460,9 +461,9 @@ void game_loop( void )
 
    signal( SIGPIPE, SIG_IGN );
    signal( SIGALRM, caught_alarm );
-   /*
-    * signal( SIGSEGV, SegVio ); 
-    */
+ 
+   //signal( SIGSEGV, SegVio ); 
+	
    gettimeofday( &last_time, NULL );
    current_time = ( time_t ) last_time.tv_sec;
 
@@ -1475,6 +1476,7 @@ void nanny_get_name( DESCRIPTOR_DATA *d, char *argument )
    CHAR_DATA *ch = d->character;
    BAN_DATA *pban;
    bool fOld;
+   int chk;
 
    if( argument[0] == '\0' )
    {
@@ -1575,11 +1577,12 @@ void nanny_get_name( DESCRIPTOR_DATA *d, char *argument )
       close_socket( d, FALSE );
       return;
    }
-
-   if( check_reconnect( d, argument, FALSE ) == BERR )
+   
+   chk = check_reconnect( d, argument, FALSE );
+   if( chk == BERR )
       return;
 
-   if( check_reconnect( d, argument, FALSE ) )
+   if( chk )
    {
       fOld = TRUE;
    }
@@ -1625,6 +1628,7 @@ void nanny_get_old_password( DESCRIPTOR_DATA * d, char *argument )
 {
    char buf[MAX_STRING_LENGTH];
    CHAR_DATA *ch = d->character;
+   int chk;
 
    write_to_buffer( d, "\r\n", 2 );
 
@@ -1642,22 +1646,25 @@ void nanny_get_old_password( DESCRIPTOR_DATA * d, char *argument )
    }
    
    write_to_buffer( d, (const char *)echo_on_str, 0 );
-   				   bug(" 1 %s", ch->name);
+   
    if( check_playing( d, ch->name, TRUE ) )
       return;
-   				   bug(" 2 %s", ch->name);
-   if( check_reconnect( d, ch->name, TRUE ) == BERR )
+	  
+   chk = check_reconnect( d, ch->name, TRUE );
+   
+   //if( check_reconnect( d, ch->name, TRUE ) == BERR )
+   if ( chk == BERR )
    {
       if( d->character && d->character->desc )
          d->character->desc = NULL;
       close_socket( d, FALSE );
       return;
    }
-    bug(" 3 %s", ch->name);
-   if( check_reconnect( d, ch->name, TRUE ) == TRUE )
-      return;
+
+   //if( check_reconnect( d, ch->name, TRUE ) == TRUE )
+    if ( chk == TRUE )
+     return;
    
-    bug(" 4 %s", ch->name);
    if( check_multi( d, ch->name ) )
    {
       close_socket( d, FALSE );
@@ -2603,7 +2610,7 @@ int check_reconnect( DESCRIPTOR_DATA * d, const char *name, bool fConn )
              */
             d->character->desc = NULL; 
             free_char( d->character );			
-            d->character = ch; 			
+            d->character = ch; 	
             ch->desc = d;
             ch->timer = 0;
             send_to_char( "Reconnecting.\r\n", ch );
@@ -2611,6 +2618,7 @@ int check_reconnect( DESCRIPTOR_DATA * d, const char *name, bool fConn )
             sprintf( log_buf, "%s (%s) reconnected.", ch->name, d->host );
             log_string_plus( log_buf, LOG_COMM, UMAX( sysdata.log_level, ch->top_level ) );
             d->connected = CON_PLAYING;
+			do_look(ch, "auto");
          }
 
          return TRUE;

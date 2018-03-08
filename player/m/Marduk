@@ -10,7 +10,7 @@ Languages    1 1
 Toplevel     1
 Pheight      0
 Build        0
-Played       1294
+Played       1504
 Ship            ~
 ShipNum         0
 Room         115
@@ -40,7 +40,7 @@ Armor        10
 Rppoints   0
 Mentalstate  0
 Password     cdd18f062189ecb68e29ca888baa9e0a249f78361ddba9aeed15afa67f8be463~
-Lastplayed   1520507575
+Lastplayed   1520540556
 Title         Marduk the Italian~
 AuthedBy     Grotans~
 Addiction    0 0 0 0 0 0 0 0 0 0
@@ -50,7 +50,7 @@ MKills       0
 MDeaths      0
 AttrPerm     10 12 13 7 11 7 12
 AttrMod      0 0 0 0 0 0 0
-Condition    0 37 42 10
+Condition    0 36 40 10
 Site         local-host
 Tongue       100 'basic'
 Tongue       100 'italian'
