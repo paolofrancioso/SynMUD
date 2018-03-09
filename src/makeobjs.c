@@ -156,9 +156,10 @@ OBJ_DATA *make_corpse( CHAR_DATA *ch, char *killer )
    OBJ_DATA *obj;
    OBJ_DATA *obj_next;
    char *name;
-
-   if( !IS_NPC( ch ) && ch->top_level < 10 )
-      return NULL;
+   
+   //NO! Even Newbie should be looted. Only the bravest...
+   //if( !IS_NPC( ch ) && ch->top_level < 10 )
+   //   return NULL;
 
    if( IS_NPC( ch ) )
    {
@@ -222,16 +223,19 @@ OBJ_DATA *make_corpse( CHAR_DATA *ch, char *killer )
    {
       obj_next = obj->next_content;
       obj_from_char( obj );
-      if( IS_OBJ_STAT( obj, ITEM_INVENTORY ) || IS_OBJ_STAT( obj, ITEM_DEATHROT ) )
+      if( IS_OBJ_STAT( obj, ITEM_INVENTORY ) || IS_OBJ_STAT( obj, ITEM_DEATHROT ) ) {
          extract_obj( obj );
+	  }
 	  else if ( obj->item_type != ITEM_CYBER_EYE
 			 && obj->item_type != ITEM_CYBER_BRAIN
 			 && obj->item_type != ITEM_CYBER_ARMS
 			 && obj->item_type != ITEM_CYBER_LEGS
 			 && obj->item_type != ITEM_CYBER_BODY
-			 && obj->item_type != ITEM_CYBER_EPIDERMIS )
-         obj_to_obj( obj, corpse );
+			 && obj->item_type != ITEM_CYBER_EPIDERMIS ){
+			 obj_to_obj( obj, corpse );
+	  }
    }
+   
    return obj_to_room( corpse, ch->in_room );
 }
 

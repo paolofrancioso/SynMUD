@@ -1647,6 +1647,7 @@ ch_ret damage( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt )
       stop_fighting( victim, TRUE );
    }
 
+   /*
    if( victim->hit <= 0 && !IS_NPC( victim ) )
    {
       OBJ_DATA *obj;
@@ -1692,6 +1693,7 @@ ch_ret damage( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt )
             obj = obj_to_room( obj, victim->in_room );
          }
       }
+	   
 
       if( IS_NPC( ch ) && !IS_NPC( victim ) )
       {
@@ -1704,6 +1706,7 @@ ch_ret damage( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt )
       add_timer( victim, TIMER_RECENTFIGHT, 100, NULL, 0 );
 
    }
+   */
 
    /*
     * Payoff for killing things.
@@ -1712,6 +1715,18 @@ ch_ret damage( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt )
    {
       CHAR_DATA *gch;
       OBJ_DATA *new_corpse;
+	  
+      //Marduk XP Loss Management Moved 
+	  if( IS_NPC( ch ) && !IS_NPC( victim ) )
+      {
+         long lose_exp;
+         lose_exp = UMAX( ( victim->experience[COMMANDO_ABILITY] - exp_level( victim->skill_level[COMMANDO_ABILITY] ) ), 0 );
+         ch_printf( victim, "You lose %ld experience.\r\n", lose_exp );
+         victim->experience[COMMANDO_ABILITY] -= lose_exp;
+      }
+
+      add_timer( victim, TIMER_RECENTFIGHT, 100, NULL, 0 );
+	  //End of XP Loss Management
 
       group_gain( ch, victim );
 
@@ -1980,7 +1995,7 @@ void update_pos( CHAR_DATA * victim )
       return;
    }
 
-   if( IS_NPC( victim ) || victim->hit <= -500 )
+   if( IS_NPC( victim ) || victim->hit <= -10 )
    {
       if( victim->mount )
       {
@@ -1992,9 +2007,9 @@ void update_pos( CHAR_DATA * victim )
       return;
    }
 
-   if( victim->hit <= -400 )
+   if( victim->hit <= -8 )
       victim->position = POS_MORTAL;
-   else if( victim->hit <= -200 )
+   else if( victim->hit <= -2 )
       victim->position = POS_INCAP;
    else
       victim->position = POS_STUNNED;
@@ -2206,9 +2221,11 @@ OBJ_DATA *raw_kill( CHAR_DATA * ch, CHAR_DATA * victim )
    if( char_died( victim ) )
       return NULL;
 
-
-   if( !IS_NPC( victim ) || ( !IS_SET( victim->act, ACT_NOKILL ) && !IS_SET( victim->act, ACT_NOCORPSE ) ) )
-      corpse_to_return = make_corpse( victim, IS_NPC( ch ) ? ch->short_descr : ch->name );
+   
+   if( !IS_NPC( victim ) || ( !IS_SET( victim->act, ACT_NOKILL ) && !IS_SET( victim->act, ACT_NOCORPSE ) ) ) {
+	   corpse_to_return = make_corpse( victim, IS_NPC( ch ) ? ch->short_descr : ch->name );
+   }
+     
    else
    {
       for( obj = victim->last_carrying; obj; obj = obj_next )
@@ -2230,16 +2247,15 @@ OBJ_DATA *raw_kill( CHAR_DATA * ch, CHAR_DATA * victim )
    set_char_color( AT_DIEMSG, victim );
    do_help( victim, "_DIEMSG_" );
 
-
+   fix_char(victim);
   
-
+/*
    if( !victim )
    {
       DESCRIPTOR_DATA *d;
 
-      /*
-       * Make sure they aren't halfway logged in. 
-       */
+      
+	  // Make sure they aren't halfway logged in. 
       for( d = first_descriptor; d; d = d->next )
          if( ( victim = d->character ) && !IS_NPC( victim ) )
             break;
@@ -2262,16 +2278,16 @@ OBJ_DATA *raw_kill( CHAR_DATA * ch, CHAR_DATA * victim )
    sprintf( buf, "%s%c/%s", PLAYER_DIR, tolower( arg[0] ), capitalize( arg ) );
    sprintf( buf2, "%s%c/%s", BACKUP_DIR, tolower( arg[0] ), capitalize( arg ) );
 
-   rename( buf, buf2 );
+   rename( buf, buf2 ); */
 
-   sprintf( buf, "%s%c/%s.clone", PLAYER_DIR, tolower( arg[0] ), capitalize( arg ) );
-   sprintf( buf2, "%s%c/%s", PLAYER_DIR, tolower( arg[0] ), capitalize( arg ) );
+   //sprintf( buf, "%s%c/%s.clone", PLAYER_DIR, tolower( arg[0] ), capitalize( arg ) );
+   //sprintf( buf2, "%s%c/%s", PLAYER_DIR, tolower( arg[0] ), capitalize( arg ) );
 
-   rename( buf, buf2 );
+   //rename( buf, buf2 );
 
    /* Profile Deletion. */
-   sprintf( buf, "%s%s.htm", PROFILE_DIR, capitalize( arg ) );
-   remove( buf );
+   //sprintf( buf, "%s%s.htm", PROFILE_DIR, capitalize( arg ) );
+   //remove( buf );
 
    return corpse_to_return;
 }

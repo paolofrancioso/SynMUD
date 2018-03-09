@@ -3315,7 +3315,7 @@ void fix_char( CHAR_DATA * ch )
    ch->affected_by = race_table[ch->race].affected;
    ch->mental_state = -10;
    ch->hit = UMAX( 1, ch->hit );
-   ch->mana = UMAX( 1, ch->mana );
+   ch->mana = UMAX( 0, ch->mana );
    ch->move = UMAX( 1, ch->move );
    ch->armor = 10;
    ch->mod_str = 0;

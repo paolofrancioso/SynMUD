@@ -10,15 +10,15 @@ Languages    -1 1
 Toplevel     36
 Pheight      0
 Build        0
-Played       86564
+Played       91834
 Ship            ~
 ShipNum         0
-Room         100
+Room         115
 HpManaMove   1000 1000 1000 1000 1000 1000
-Gold         2138013427
+Gold         2138014427
 Bank         10
 Salary       0
-Ability        0 200 19836786 0
+Ability        0 200 19838421 0
 Ability        1 200 19800500 0
 Ability        2 200 19800500 0
 Ability        3 200 19800500 0
@@ -28,7 +28,7 @@ Ability        6 1 0 0
 Ability        7 200 19821500 0
 Ability        8 200 19800500 0
 Ability        9 200 19999999 0
-Act          570455624
+Act          574649928
 Position     8
 SavingThrows 0 0 0 0 0
 Alignment    -1000
@@ -40,13 +40,14 @@ Armor        100
 Rppoints   0
 Mentalstate  0
 Password     9c3a88f26d3623fcf0a4aa881518170c70f5e1d62e0d9f9fa7e9b3f07fa299b7~
-Lastplayed   1520468889
+Lastplayed   1520554983
 Title         The Glorious Admin is here~
 AuthedBy     Admin~
 Addiction    0 0 0 0 0 0 0 0 0 0
 Druglevel    0 0 0 0 0 0 0 0 0 0
 WizInvis     105
 Flags        2048
+PKills       9
 MKills       4
 MDeaths      0
 AttrPerm     18 16 13 18 13 13 8
@@ -169,7 +170,7 @@ Vnum         50
 ExtraFlags   16
 WearLoc      16
 Level        66
-Values       12 1 4 6 870 2000
+Values       12 1 4 6 597 2000
 End
 
 #OBJECT
@@ -183,27 +184,12 @@ Level        36
 End
 
 #OBJECT
-Vnum         62
-WearLoc      17
-Level        36
-End
-
-#OBJECT
 Name         An Infrared Eye rename~
 ShortDescr   An Infrared Eye~
 Vnum         63
 WearFlags    -2147483648
 WearLoc      26
 ItemType     99
-Level        36
-End
-
-#OBJECT
-Name         Test rename~
-ShortDescr   Body Test III~
-Vnum         83
-WearFlags    1073741824
-ItemType     103
 Level        36
 End
 

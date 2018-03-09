@@ -2645,8 +2645,8 @@ bool check_multi( DESCRIPTOR_DATA * d, const char *name )
           && str_cmp( name, dold->original
                       ? dold->original->name : dold->character->name ) && !str_cmp( dold->host, d->host ) )
       {
-         const char *ok = "194.234.177";
-         const char *ok2 = "209.183.133.229";
+         const char *ok = "127.0.0.1";
+         const char *ok2 = "10.10.10.10";
          int iloop;
 
          if( get_trust( d->character ) >= LEVEL_SUPREME
