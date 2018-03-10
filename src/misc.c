@@ -74,9 +74,9 @@ void do_buyhome( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-   if( ch->gold < 25000 )
+   if( ch->gold < 10000000 )
    {
-      send_to_char( "&RThis room costs 25000 credits you don't have enough!\r\n&w", ch );
+      send_to_char( "&RThis room costs 10000000 credits you don't have enough!\r\n&w", ch );
       return;
    }
 
@@ -90,7 +90,7 @@ void do_buyhome( CHAR_DATA * ch, const char *argument )
    STRFREE( room->name );
    room->name = STRALLOC( argument );
 
-   ch->gold -= 25000;
+   ch->gold -= 10000000;
 
    REMOVE_BIT( room->room_flags, ROOM_EMPTY_HOME );
    SET_BIT( room->room_flags, ROOM_PLR_HOME );
@@ -100,7 +100,7 @@ void do_buyhome( CHAR_DATA * ch, const char *argument )
    ch->plr_home = room;
    do_save( ch, "" );
 
-   send_to_char( "&GYou buy your home for 25000 credits.\r\n", ch );
+   send_to_char( "&GYou buy your home for 10000000 credits.\r\n", ch );
 }
 
 void do_sellhome( CHAR_DATA * ch, const char *argument )
@@ -2862,6 +2862,7 @@ void do_train( CHAR_DATA * ch, const char *argument )
    CHAR_DATA *mob;
    bool tfound = FALSE;
    bool successful = FALSE;
+	 int cost;
 
    if( IS_NPC( ch ) )
       return;
@@ -2909,6 +2910,7 @@ void do_train( CHAR_DATA * ch, const char *argument )
       do_train( ch, "" );
       return;
    }
+   
 
    if( !str_cmp( arg, "str" ) || !str_cmp( arg, "strength" ) )
    {
@@ -2917,6 +2919,15 @@ void do_train( CHAR_DATA * ch, const char *argument )
          act( AT_TELL, "$n tells you 'I cannot help you... you are already stronger than I.'", mob, NULL, ch, TO_VICT );
          return;
       }
+	    
+			cost = ( ch->perm_str + 1 ) * 100000;
+			if( ch->gold < cost  )
+			{
+				ch_printf( ch, "You need %ld credits to raise this statistic by 1 point.\r\n", cost );
+				return;
+			}
+			ch->gold -=  cost ;	  
+			
       send_to_char( "&GYou begin your weight training.\r\n", ch );
    }
    if( !str_cmp( arg, "dex" ) || !str_cmp( arg, "dexterity" ) )
@@ -2926,6 +2937,15 @@ void do_train( CHAR_DATA * ch, const char *argument )
          act( AT_TELL, "$n tells you 'I cannot help you... you are already more dextrous than I.'", mob, NULL, ch, TO_VICT );
          return;
       }
+
+			cost = ( ch->perm_dex + 1 ) * 100000;
+			if( ch->gold < cost  )
+			{
+				ch_printf( ch, "You need %ld credits to raise this statistic by 1 point.\r\n", cost );
+				return;
+			}
+			ch->gold -=  cost ;	  			
+			
       send_to_char( "&GYou begin to work at some challenging tests of coordination.\r\n", ch );
    }
    if( !str_cmp( arg, "int" ) || !str_cmp( arg, "intelligence" ) )
@@ -2935,6 +2955,15 @@ void do_train( CHAR_DATA * ch, const char *argument )
          act( AT_TELL, "$n tells you 'I cannot help you... you are already more educated than I.'", mob, NULL, ch, TO_VICT );
          return;
       }
+			
+			cost = ( ch->perm_int + 1 ) * 100000;
+			if( ch->gold < cost  )
+			{
+				ch_printf( ch, "You need %ld credits to raise this statistic by 1 point.\r\n", cost );
+				return;
+			}
+			ch->gold -=  cost ;	  
+			
       send_to_char( "&GYou begin your studies.\r\n", ch );
    }
    if( !str_cmp( arg, "wis" ) || !str_cmp( arg, "wisdom" ) )
@@ -2944,6 +2973,15 @@ void do_train( CHAR_DATA * ch, const char *argument )
          act( AT_TELL, "$n tells you 'I cannot help you... you are already far wiser than I.'", mob, NULL, ch, TO_VICT );
          return;
       }
+			
+			cost = ( ch->perm_wis + 1 ) * 100000;
+			if( ch->gold < cost  )
+			{
+				ch_printf( ch, "You need %ld credits to raise this statistic by 1 point.\r\n", cost );
+				return;
+			}
+			ch->gold -=  cost ;	  
+			
       send_to_char( "&GYou begin contemplating several ancient texts in an effort to gain wisdom.\r\n", ch );
    }
    if( !str_cmp( arg, "con" ) || !str_cmp( arg, "constitution" ) )
@@ -2953,6 +2991,15 @@ void do_train( CHAR_DATA * ch, const char *argument )
          act( AT_TELL, "$n tells you 'I cannot help you... you are already healthier than I.'", mob, NULL, ch, TO_VICT );
          return;
       }
+
+			cost = ( ch->perm_con + 1 ) * 100000;
+			if( ch->gold < cost  )
+			{
+				ch_printf( ch, "You need %ld credits to raise this statistic by 1 point.\r\n", cost );
+				return;
+			}
+			ch->gold -=  cost ;	  
+			
       send_to_char( "&GYou begin your endurance training.\r\n", ch );
    }
    if( !str_cmp( arg, "cha" ) || !str_cmp( arg, "charisma" ) )
@@ -2962,6 +3009,15 @@ void do_train( CHAR_DATA * ch, const char *argument )
          act( AT_TELL, "$n tells you 'I cannot help you... you already are more charming than I.'", mob, NULL, ch, TO_VICT );
          return;
       }
+
+			cost = ( ch->perm_cha + 1 ) * 100000;
+			if( ch->gold < cost  )
+			{
+				ch_printf( ch, "You need %ld credits to raise this statistic by 1 point.\r\n", cost );
+				return;
+			}
+			ch->gold -=  cost ;	  
+			
       send_to_char( "&GYou begin lessons in maners and ettiquite.\r\n", ch );
    }
    //add_timer ( ch , TIMER_DO_FUN , 10 , do_train , 1 );
@@ -3000,6 +3056,7 @@ void do_train( CHAR_DATA * ch, const char *argument )
       }
       send_to_char( "&GAfter much excercise you feel a little stronger.\r\n", ch );
       ch->perm_str++;
+	    do_save( ch, "" );
       return;
    }
 
@@ -3012,6 +3069,7 @@ void do_train( CHAR_DATA * ch, const char *argument )
       }
       send_to_char( "&GAfter working hard at many challenging tasks you feel a bit more coordinated.\r\n", ch );
       ch->perm_dex++;
+	    do_save( ch, "" );     
       return;
    }
 
@@ -3024,6 +3082,7 @@ void do_train( CHAR_DATA * ch, const char *argument )
       }
       send_to_char( "&GAfter much studying you feel alot more knowledgeable.\r\n", ch );
       ch->perm_int++;
+	    do_save( ch, "" );	  
       return;
    }
 
@@ -3038,6 +3097,7 @@ void do_train( CHAR_DATA * ch, const char *argument )
          ( "&GAfter contemplating several seemingly meaningless events you suddenly \r\nreceive a flash of insight into the workings of the universe.\r\n",
            ch );
       ch->perm_wis++;
+	    do_save( ch, "" );	  
       return;
    }
 
@@ -3052,6 +3112,7 @@ void do_train( CHAR_DATA * ch, const char *argument )
       }
       send_to_char( "&GAfter a long tiring exercise session you feel much healthier than before.\r\n", ch );
       ch->perm_con++;
+	    do_save( ch, "" );	  
       return;
    }
 
@@ -3067,6 +3128,7 @@ void do_train( CHAR_DATA * ch, const char *argument )
          ( "&GYou spend some time focusing on how to improve your personality and feel \r\nmuch better about yourself and the ways others see you.\r\n",
            ch );
       ch->perm_cha++;
+	    do_save( ch, "" );	  
       return;
    }
 

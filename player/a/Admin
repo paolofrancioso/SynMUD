@@ -10,15 +10,15 @@ Languages    -1 1
 Toplevel     36
 Pheight      0
 Build        0
-Played       92811
+Played       94642
 Ship            ~
 ShipNum         0
-Room         115
+Room         162
 HpManaMove   1000 1000 1000 1000 1000 1000
-Gold         2138014427
+Gold         2134114427
 Bank         10
 Salary       0
-Ability        0 200 19839569 0
+Ability        0 200 19840460 0
 Ability        1 200 19800500 0
 Ability        2 200 19800500 0
 Ability        3 200 19800500 0
@@ -40,17 +40,17 @@ Armor        100
 Rppoints   0
 Mentalstate  0
 Password     9c3a88f26d3623fcf0a4aa881518170c70f5e1d62e0d9f9fa7e9b3f07fa299b7~
-Lastplayed   1520556750
+Lastplayed   1520641631
 Title         The Glorious Admin is here~
 AuthedBy     Admin~
 Addiction    0 0 0 0 0 0 0 0 0 0
 Druglevel    0 0 0 0 0 0 0 0 0 0
 WizInvis     105
 Flags        2048
-PKills       15
+PKills       17
 MKills       4
 MDeaths      0
-AttrPerm     18 16 13 18 13 13 8
+AttrPerm     20 16 13 18 13 13 8
 AttrMod      0 0 0 0 0 0 0
 Condition    0 48 48 46
 Site         local-host
@@ -162,7 +162,7 @@ Killed       251 1
 Killed       7806 2
 Killed       28 1
 MaxColors    115
-Colors       0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 25 7 7 12 10 14 15 7 7 11 7 7 7 12 7 7 2 6 14 7 12 7 7 7 9 7 12 13 7 7 11 7 7 3 12 9 7 7 10 2 2 7 7 9 7 2 9 12 9 6 11 13 2 13 15 12 12 12 10 7 10 10 11 8 10 13 2 6 9 15 12 2 6 1 9 2 10 10 10 10 10 2 6 9 15 12 2 6 1 9 2 10 7 10 15 0 11 14 8 
+Colors       0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 25 7 7 12 10 14 15 7 7 11 7 7 7 12 7 7 7 11 14 15 12 7 7 7 9 7 12 13 7 7 11 7 7 3 12 9 7 7 10 2 7 7 7 9 7 2 9 12 9 6 11 13 2 13 15 12 12 12 10 7 10 10 11 8 10 13 2 6 9 15 12 2 6 1 9 2 10 10 10 10 10 2 6 9 15 12 2 6 1 9 2 10 7 10 15 0 11 14 8 
 End
 
 #OBJECT
@@ -170,7 +170,7 @@ Vnum         50
 ExtraFlags   16
 WearLoc      16
 Level        66
-Values       12 1 4 6 507 2000
+Values       12 1 4 6 441 2000
 End
 
 #OBJECT

@@ -3013,6 +3013,9 @@ void do_oset( CHAR_DATA * ch, const char *argument )
          send_to_char( "Toolkit     Durasteel  Oven       Mirror      Circuit\r\n", ch );
          send_to_char( "Potion      Salve      Pill       Device      Spacecraft\r\n", ch );
          send_to_char( "Bolt        Chemical\r\n", ch );
+		 send_to_char( "Cyberware Types (change both type and wear):\r\n", ch );
+         send_to_char( "cyber_eye	cyber_brain		cyber_arms		cyber_legs\r\n", ch );
+		 send_to_char( "cyber_body	cyber_epidermis\r\n", ch );
          return;
       }
       value = get_otype( argument );
@@ -3069,6 +3072,9 @@ void do_oset( CHAR_DATA * ch, const char *argument )
          send_to_char( "take   finger   neck    body    head   legs\r\n", ch );
          send_to_char( "feet   hands    arms    shield  about  waist\r\n", ch );
          send_to_char( "wrist  wield    hold    ears    eyes   bothwrists\r\n", ch );
+		 send_to_char( "Cyberware Wear (change both type and wear):\r\n", ch );
+         send_to_char( "cyber_eye	cyber_brain		cyber_arms		cyber_legs\r\n", ch );
+		 send_to_char( "cyber_body	cyber_epidermis\r\n", ch );
          return;
       }
       while( argument[0] != '\0' )

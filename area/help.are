@@ -2031,6 +2031,18 @@ Fields: save - saves the control panel settings
         guild_advisor - name of the Advisor to Guilds
 ~
 
+36 CYBERWARE~
+Cyberware is a permanent modification of your character
+that will add some bonus (or in rare cases also malus)
+to your character. It can be implanted in your body only
+by specific mobs (biotech surgers).
+You cannot un-equip your cyberware at will. If you want
+to change your cyberware you have to go to a surger and
+buy a new one. Your previous cyberware in the slot will
+be removed and lost for ever.
+Cyberware is not lost when you die.
+~
+
 1 D~
 .              WEARING AND SELLING EQUIPMENT
               -------------------------------
@@ -2086,13 +2098,12 @@ drain           change       illusion
 ~
 
 0 DEATH~
-Death is now permanent unless you have made a clone. 
-&R
-   Note : You lose all possestions upon dying even
-          if you have a clone. This includes ships 
-          homes and bank accounts
-&g
-See Help Clone.
+Death is not permanent in this mud. When you die you
+will respawn in a specific area. Your equipment will
+remain in your corpse (that you will have to recover
+in order to get your equipment back).
+Cyberware is not considered equipment and won't be
+lost when you die.
 ~
 
 -1 DEBUG DEBUGGING BUGS THORIC CODING SOURCE CODE DEVELOPMENT~
@@ -7912,10 +7923,9 @@ Syntax :  Train (stat)
  
 Training is the only way to perminatly improve a characters
 starting stats. Train can only be done with a few mobs
-around the mud and is only about 20% effective.
-There is no cost for training, just the long time it takes.
-If you input ANY commands during training the training will
-be aborted.
+around the mud. Training costs 100000 credits multiplied by
+the stat value you are going to reach. For example if you
+have 17 Strength you will have to pay 1800000 credits.
 ~
 
 1 TRANCE~

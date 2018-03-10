@@ -720,7 +720,11 @@ void show_char_to_char_1( CHAR_DATA * victim, CHAR_DATA * ch )
    found = FALSE;
    for( iWear = 0; iWear < MAX_WEAR; iWear++ )
    {
-      if( ( obj = get_eq_char( victim, iWear ) ) != NULL && can_see_obj( ch, obj ) )
+      if( ( obj = get_eq_char( victim, iWear ) ) != NULL && can_see_obj( ch, obj ) 
+	         && obj->wear_loc != WEAR_CYBER_EYE
+		     && obj->wear_loc != WEAR_CYBER_BRAIN && obj->wear_loc != WEAR_CYBER_ARMS
+             && obj->wear_loc != WEAR_CYBER_LEGS && obj->wear_loc != WEAR_CYBER_BODY
+			 && obj->wear_loc !=WEAR_CYBER_EPIDERMIS)
       {
          if( !found )
          {

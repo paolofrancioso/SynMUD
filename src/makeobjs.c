@@ -222,9 +222,10 @@ OBJ_DATA *make_corpse( CHAR_DATA *ch, char *killer )
    for( obj = ch->first_carrying; obj; obj = obj_next )
    {
       obj_next = obj->next_content;
-      obj_from_char( obj );
+      
       if( IS_OBJ_STAT( obj, ITEM_INVENTORY ) || IS_OBJ_STAT( obj, ITEM_DEATHROT ) ) {
-         extract_obj( obj );
+          obj_from_char( obj );
+		  extract_obj( obj );
 	  }
 	  else if ( obj->item_type != ITEM_CYBER_EYE
 			 && obj->item_type != ITEM_CYBER_BRAIN
@@ -232,7 +233,8 @@ OBJ_DATA *make_corpse( CHAR_DATA *ch, char *killer )
 			 && obj->item_type != ITEM_CYBER_LEGS
 			 && obj->item_type != ITEM_CYBER_BODY
 			 && obj->item_type != ITEM_CYBER_EPIDERMIS ){
-			 obj_to_obj( obj, corpse );
+		obj_from_char( obj );
+		obj_to_obj( obj, corpse );
 	  }
    }
    
