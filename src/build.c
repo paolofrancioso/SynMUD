@@ -154,7 +154,9 @@ const char *const a_types[] = {
    "steal", "sneak", "hide", "palm", "detrap", "dodge", "peek", "scan", "gouge",
    "search", "mount", "disarm", "kick", "parry", "bash", "stun", "punch", "climb",
    "grip", "scribe", "cover_trail", "wearspell", "removespell", "emotion", "mentalstate",
-   "stripsn", "remove", "dig", "full", "thirst", "drunk", "blood"
+   "stripsn", "remove", "dig", "full", "thirst", "drunk", "blood", "res_blunt", "res_pierce", 
+	 "res_slash", "res_fire", "res_cold", "res_energy", "res_drain", "res_shock", 
+	 "res_poison", "res_acid" 
 };
 
 const char *const a_flags[] = {
@@ -205,7 +207,7 @@ const char *const wear_locs[] = {
 };
 
 const char *const ris_flags[] = {
-   "fire", "cold", "electricity", "energy", "blunt", "pierce", "slash", "acid",
+   "fire", "cold", "shock", "energy", "blunt", "pierce", "slash", "acid",
    "poison", "drain", "sleep", "charm", "hold", "nonmagic", "plus1", "plus2",
    "plus3", "plus4", "plus5", "plus6", "magic", "paralysis", "r1", "r2", "r3",
    "r4", "r5", "r6", "r7", "r8", "r9", "r10"

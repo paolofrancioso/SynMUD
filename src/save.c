@@ -494,6 +494,11 @@ void fwrite_char( CHAR_DATA * ch, FILE * fp )
       fprintf( fp, "AttrMod      %d %d %d %d %d %d %d\n",
                ch->mod_str, ch->mod_int, ch->mod_wis, ch->mod_dex, ch->mod_con, ch->mod_cha, ch->mod_lck );
 
+      /* New Res Profile */
+      fprintf( fp, "ResiMod      %d %d %d %d %d %d %d %d %d %d\n",
+            ch->mod_blunt, ch->mod_pierce, ch->mod_slash, ch->mod_fire, ch->mod_cold, ch->mod_acid, 
+            ch->mod_elect, ch->mod_energy, ch->mod_drain, ch->mod_poison );
+						
       fprintf( fp, "Condition    %d %d %d %d\n",
                ch->pcdata->condition[0], ch->pcdata->condition[1], ch->pcdata->condition[2], ch->pcdata->condition[3] );
       if( ch->desc && ch->desc->host )
@@ -1420,6 +1425,27 @@ void fread_char( CHAR_DATA * ch, FILE * fp, bool preload, bool hotboot )
             KEY( "Restore_time", ch->pcdata->restore_time, fread_number( fp ) );
             KEY( "Rppoints", ch->rppoints, fread_number( fp ) );
 
+            /* New Res System */
+            if( !strcmp( word, "ResiMod" ) )
+            {
+               line = fread_line( fp );
+               int z1, z2, z3, z4, z5, z6, z7, z8, z9, z10;
+               z1 = z2 = z3 = z4 = z5 = z6 = z7 = z8 = z9 = z10 = 0;
+               sscanf( line, "%d %d %d %d %d %d %d %d %d %d", &z1, &z2, &z3, &z4, &z5, &z6, &z7, &z8, &z9, &z10 );
+               ch->mod_blunt = z1;
+               ch->mod_pierce = z2;
+               ch->mod_slash = z3;
+               ch->mod_fire = z4;
+               ch->mod_cold = z5;
+               ch->mod_acid = z6;
+               ch->mod_elect = z7;
+               ch->mod_energy = z8;
+               ch->mod_drain = z9;
+               ch->mod_poison = z10;
+               fMatch = TRUE;
+               break;
+            }
+						
             if( !str_cmp( word, "Room" ) )
             {
                ch->in_room = get_room_index( fread_number( fp ) );

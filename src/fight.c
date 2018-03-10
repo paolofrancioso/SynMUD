@@ -1213,24 +1213,60 @@ ch_ret one_hit( CHAR_DATA * ch, CHAR_DATA * victim, int dt )
 
 /*
  * Calculate damage based on resistances, immunities and suceptibilities
- *					-Thoric
+ *					-Marduk
  */
 short ris_damage( CHAR_DATA * ch, short dam, int ris )
 {
    short modifier;
 
-   modifier = 10;
+   modifier = 100;
    if( IS_SET( ch->immune, ris ) )
-      modifier -= 10;
-   if( IS_SET( ch->resistant, ris ) )
-      modifier -= 2;
-   if( IS_SET( ch->susceptible, ris ) )
-      modifier += 2;
-   if( modifier <= 0 )
       return -1;
-   if( modifier == 10 )
-      return dam;
-   return ( dam * modifier ) / 10;
+	
+   //Resistant means max! 50% reduction	
+	 if( IS_SET( ch->resistant, ris ) )
+      return dam / 2; 
+			
+   //Susceptible means max! 50% amplification
+	 if( IS_SET( ch->resistant, ris ) )
+      return dam * 1.5; 
+			
+
+   switch ( ris ) {
+   case RIS_FIRE:
+	   return ( dam * ( modifier - URANGE( -50, ch->mod_fire, 50) ) ) / 100;
+	   break;
+   case RIS_COLD:
+	   return ( dam * ( modifier - URANGE( -50, ch->mod_cold, 50) ) ) / 100;
+   	   break;
+   case RIS_ACID:
+	   return ( dam * ( modifier - URANGE( -50, ch->mod_acid, 50) ) ) / 100;
+   	   break;
+   case RIS_ELECTRICITY:
+	   return ( dam * ( modifier - URANGE( -50, ch->mod_elect, 50) ) ) / 100;
+   	   break;
+   case RIS_ENERGY:
+	   return ( dam * ( modifier - URANGE( -50, ch->mod_energy, 50) ) ) / 100;
+   	   break;
+   case RIS_DRAIN:
+	   return ( dam * ( modifier - URANGE( -50, ch->mod_drain, 50) ) ) / 100;
+   	   break;
+   case RIS_POISON:
+	   return ( dam * ( modifier - URANGE( -50, ch->mod_poison, 50) ) ) / 100;
+   	   break;
+   case RIS_BLUNT:
+	   return ( dam * ( modifier - URANGE( -50, ch->mod_blunt, 50) ) ) / 100;
+   	   break;
+   case RIS_SLASH:
+	   return ( dam * ( modifier - URANGE( -50, ch->mod_slash, 50) ) ) / 100;
+   	   break;
+   case RIS_PIERCE:
+	   return ( dam * ( modifier - URANGE( -50, ch->mod_pierce, 50) ) ) / 100;
+   	   break;
+   }
+
+   return dam;
+	 
 }
 
 
@@ -2152,8 +2188,7 @@ OBJ_DATA *raw_kill( CHAR_DATA * ch, CHAR_DATA * victim )
    CHAR_DATA *victmp;
    OBJ_DATA *corpse_to_return = NULL;
    OBJ_DATA *obj, *obj_next;
-   char buf[MAX_STRING_LENGTH];
-   char buf2[MAX_STRING_LENGTH];
+
    char arg[MAX_STRING_LENGTH];
    long kexp;
 

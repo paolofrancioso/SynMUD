@@ -640,6 +640,39 @@ void affect_modify( CHAR_DATA * ch, AFFECT_DATA * paf, bool fAdd )
       case APPLY_LCK:
          ch->mod_lck += mod;
          break;
+				 
+      /* New Res System */
+      case APPLY_BLUNT:
+         ch->mod_blunt += mod;
+         break;
+      case APPLY_PIERCE:
+         ch->mod_pierce += mod;
+         break;
+      case APPLY_SLASH:
+         ch->mod_slash += mod;
+         break;
+      case APPLY_FIRE:
+         ch->mod_fire += mod;
+         break;
+      case APPLY_COLD:
+         ch->mod_cold += mod;
+         break;
+      case APPLY_ACID:
+         ch->mod_acid += mod;
+         break;
+      case APPLY_ELECT:
+         ch->mod_elect += mod;
+         break;
+      case APPLY_ENERGY:
+         ch->mod_energy += mod;
+         break;
+      case APPLY_DRAIN:
+         ch->mod_drain += mod;
+         break;
+      case APPLY_POISON:
+         ch->mod_poison += mod;
+         break;				 
+				 
       case APPLY_SEX:
          ch->sex = ( ch->sex + mod ) % 3;
          if( ch->sex < 0 )
@@ -2640,6 +2673,29 @@ const char *affect_loc_name( int location )
          return "charisma";
       case APPLY_LCK:
          return "luck";
+				 
+			/* New Res System */
+      case APPLY_BLUNT:
+         return "res_blunt";
+      case APPLY_PIERCE:
+         return "res_pierce";
+      case APPLY_SLASH:
+         return "res_slash";
+      case APPLY_FIRE:
+         return "res_fire";
+      case APPLY_COLD:
+         return "res_cold";
+      case APPLY_ACID:
+         return "res_acid";
+      case APPLY_ELECT:
+         return "res_shock";
+      case APPLY_ENERGY:
+         return "res_energy";
+      case APPLY_DRAIN:
+         return "res_drain";
+      case APPLY_POISON:
+         return "res_poison";
+				 
       case APPLY_SEX:
          return "sex";
       case APPLY_LEVEL:
@@ -3333,6 +3389,16 @@ void fix_char( CHAR_DATA * ch )
    ch->saving_para_petri = 0;
    ch->saving_spell_staff = 0;
    ch->saving_poison_death = 0;
+   ch->mod_blunt  = 0;   /* New Res System */
+   ch->mod_pierce = 0;   /* New Res System */
+   ch->mod_slash = 0;    /* New Res System */
+   ch->mod_fire = 0;     /* New Res System */
+   ch->mod_cold = 0;     /* New Res System */
+   ch->mod_acid = 0;     /* New Res System */
+   ch->mod_elect = 0;    /* New Res System */
+   ch->mod_energy = 0;   /* New Res System */
+   ch->mod_drain = 0;    /* New Res System */
+   ch->mod_poison = 0;   /* New Res System */	 
 
    for( aff = ch->first_affect; aff; aff = aff->next )
       affect_modify( ch, aff, TRUE );
@@ -3351,6 +3417,43 @@ void fix_char( CHAR_DATA * ch )
    re_equip_char( ch );
 }
 
+/* New Res System */
+short get_curr_blunt( CHAR_DATA * ch )
+{
+   return URANGE( -50, ch->mod_blunt, 50 );
+}
+short get_curr_pierce( CHAR_DATA * ch )
+{
+   return URANGE( -50, ch->mod_pierce, 50 );
+}
+short get_curr_slash( CHAR_DATA * ch )
+{
+   return URANGE( -50, ch->mod_slash, 50 );
+}
+short get_curr_fire( CHAR_DATA * ch )
+{
+   return URANGE( -50, ch->mod_fire, 50 );
+}
+short get_curr_cold( CHAR_DATA * ch )
+{
+   return URANGE( -50, ch->mod_cold, 50 );
+}
+short get_curr_acid( CHAR_DATA * ch )
+{
+   return URANGE( -50, ch->mod_acid, 50 );
+}
+short get_curr_elect( CHAR_DATA * ch )
+{
+   return URANGE( -50, ch->mod_elect, 50 );
+}
+short get_curr_energy( CHAR_DATA * ch )
+{
+   return URANGE( -50, ch->mod_energy, 50 );
+}
+short get_curr_poison( CHAR_DATA * ch )
+{
+   return URANGE( -50, ch->mod_poison, 50 );
+}
 
 /*
  * Show an affect verbosely to a character			-Thoric

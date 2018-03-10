@@ -49,7 +49,6 @@ void do_gold( CHAR_DATA * ch, const char *argument )
    return;
 }
 
-
 char *drawlife( int min, int max )
 {
    static char buf[MAX_STRING_LENGTH];
@@ -60,29 +59,29 @@ char *drawlife( int min, int max )
    if( per > 100 )
       per = 100;
    if( per == 100 )
-      sprintf( buf, "&G&W[&R|||||&Y||||&G||||&W]" );
+      sprintf( buf, "&z[&R|||||&Y||||&G||||&z]" );
    else if( per >= 90 && per < 100 )
-      sprintf( buf, "&G&W[&R|||||&Y||||&G|||&G-&W]" );
+      sprintf( buf, "&z[&R|||||&Y||||&G|||&G-&z]" );
    else if( per >= 80 && per < 90 )
-      sprintf( buf, "&G&W[&R|||||&Y||||&G||&G--&W]" );
+      sprintf( buf, "&z[&R|||||&Y||||&G||&G--&z]" );
    else if( per >= 70 && per < 80 )
-      sprintf( buf, "&G&W[&R|||||&Y||||&G|&G---&W]" );
+      sprintf( buf, "&z[&R|||||&Y||||&G|&G---&z]" );
    else if( per >= 60 && per < 70 )
-      sprintf( buf, "&G&W[&R|||||&Y|||&G&G-----&W]" );
+      sprintf( buf, "&z[&R|||||&Y|||&G&G-----&z]" );
    else if( per >= 50 && per < 60 )
-      sprintf( buf, "&G&W[&R|||||&Y||&G&G------&W]" );
+      sprintf( buf, "&z[&R|||||&Y||&G&G------&z]" );
    else if( per >= 40 && per < 50 )
-      sprintf( buf, "&G&W[&R|||||&Y|&G&G-------&W]" );
+      sprintf( buf, "&z[&R|||||&Y|&G&G-------&z]" );
    else if( per >= 30 && per < 40 )
-      sprintf( buf, "&G&W[&R|||||&Y&G&G--------&W]" );
+      sprintf( buf, "&z[&R|||||&Y&G&G--------&z]" );
    else if( per >= 30 && per < 40 )
-      sprintf( buf, "&G&W[&R||||&Y&G&G---------&W]" );
+      sprintf( buf, "&z[&R||||&Y&G&G---------&z]" );
    else if( per >= 20 && per < 40 )
-      sprintf( buf, "&G&W[&R|||&Y&G&G----------&W]" );
+      sprintf( buf, "&z[&R|||&Y&G&G----------&z]" );
    else if( per >= 10 && per < 40 )
-      sprintf( buf, "&G&W[&R||&Y&G&G-----------&W]" );
+      sprintf( buf, "&z[&R||&Y&G&G-----------&z]" );
    else if( per >= 0 && per < 10 )
-      sprintf( buf, "&G&W[&R&Y&G&G-------------&W]" );
+      sprintf( buf, "&z[&R&Y&G&G-------------&z]" );
    //else sprintf(buf, "&G&W[&R&W]");
    return buf;
 }
@@ -122,41 +121,41 @@ char *drawmove( int min, int max )
 char *drawalign( int align )
 {
    static char buf[MAX_STRING_LENGTH];
-   if( align >= 100 )
-      sprintf( buf, "&W[&C============&W|&W]" );
-   else if( align >= 90 && align < 100 )
-      sprintf( buf, "&W[&C===========&W|&C=&W]" );
-   else if( align >= 60 && align < 90 )
-      sprintf( buf, "&W[&C==========&W|&C==&W]" );
-   else if( align >= 40 && align < 60 )
-      sprintf( buf, "&W[&C=========&W|&C===&W]" );
-   else if( align >= 20 && align < 40 )
-      sprintf( buf, "&W[&C========&W|&C====&W]" );
-   else if( align >= 10 && align < 20 )
-      sprintf( buf, "&W[&C=======&W|&C=====&W]" );
-   else if( align >= 0 && align < 10 )
-      sprintf( buf, "&W[&C======&W|&C======&W]" );
-   else if( align <= -1 && align > -20 )
-      sprintf( buf, "&W[&C=====&W|&C=======&W]" );
-   else if( align <= -20 && align > -40 )
-      sprintf( buf, "&W[&C====&W|&C========&W]" );
-   else if( align <= -60 && align > -80 )
-      sprintf( buf, "&W[&C===&W|&C=========&W]" );
-   else if( align <= -80 && align > -100 )
-      sprintf( buf, "&W[&C==&W|&C==========&W]" );
-   else if( align <= -100 )
-      sprintf( buf, "&W[&W|&C============&W]" );
+   if( align >= 900 )
+      sprintf( buf, "&z[==========&W|&z]" );
+   else if( align >= 800 && align < 900 )
+      sprintf( buf, "&z[=========&W|&z=]" );
+   else if( align >= 600 && align < 800 )
+      sprintf( buf, "&z[========&W|&z==]" );
+   else if( align >= 400 && align < 600 )
+      sprintf( buf, "&z[=======&W|&z===]" );
+   else if( align >= 200 && align < 400 )
+      sprintf( buf, "&z[======&W|&z====]" );
+   else if( align < 200 && align < -200  )
+      sprintf( buf, "&z[=====&W|&z=====]" );
+   else if( align <= -200 && align > -400 )
+      sprintf( buf, "&z[====&W|&z======]" );
+   else if( align <= -400 && align > -600 )
+      sprintf( buf, "&z[===&W|&z=======]" );
+   else if( align <= -600 && align > -800 )
+      sprintf( buf, "&z[==&W|&z========]" );
+   else if( align <= -800 && align > -900 )
+      sprintf( buf, "&z[=&W|&z=========]" );
+   else if( align <= -900 )
+      sprintf( buf, "&z[&z|&z==========]" );			
 
    return buf;
 }
 
 /* 
-  New Score by Goku
+  New Score by Marduk
 */
 void do_score( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
+	 char buf[MAX_STRING_LENGTH];
    int ability;
+	 
    if( !argument || argument[0] == '\0' )
       victim = ch;
    else if( IS_IMMORTAL( ch ) )
@@ -179,8 +178,192 @@ void do_score( CHAR_DATA * ch, const char *argument )
       do_oldscore( ch, argument );
       return;
    }
+	 
+		//New
+	send_to_pager(
+			"&z+-------------------------+-------&C=Score=&z-------+-------------------------+\r\n",
+			ch);
+			
+	pager_printf(ch,
+				"| Name : &W%-16.16s&z | Race : &W%-10.10s&z   | Played : &W%-4ld&z hours     |\r\n",
+				victim->name, capitalize(get_race(victim)), (long int) GET_TIME_PLAYED(victim) );
 
-   send_to_char( "&z.----------------------------------------------------------.&W\r\n", ch );
+	pager_printf(ch,
+			   	"| Years: &W%-6d&z           | Sex  : &W%-1.1s&z            | Bank   : &W%-10d&z     |\r\n",
+				get_age( victim ), victim->sex == SEX_MALE ? "M" : victim->sex == SEX_FEMALE ? "F" : "N",
+						victim->pcdata->bank );
+
+	if (victim->alignment > 900)
+			snprintf(buf, MAX_STRING_LENGTH, "%s", "Devout");
+		else if (victim->alignment > 700)
+			snprintf(buf, MAX_STRING_LENGTH, "%s", "Noble");
+		else if (victim->alignment > 350)
+			snprintf(buf, MAX_STRING_LENGTH, "%s", "Honorable");
+		else if (victim->alignment > 100)
+			snprintf(buf, MAX_STRING_LENGTH, "%s", "Worthy");
+		else if (victim->alignment > -100)
+			snprintf(buf, MAX_STRING_LENGTH, "%s", "Neutral");
+		else if (victim->alignment > -350)
+			snprintf(buf, MAX_STRING_LENGTH, "%s", "Base");
+		else if (victim->alignment > -700)
+			snprintf(buf, MAX_STRING_LENGTH, "%s", "Evil");
+		else if (victim->alignment > -900)
+			snprintf(buf, MAX_STRING_LENGTH, "%s", "Ignoble");
+		else
+			snprintf(buf, MAX_STRING_LENGTH, "%s", "Fiendish");
+
+	pager_printf(ch,
+			   	"| Glory: &W%-5d&z of &W%5d&z   | Align: &W%-12s&z | Credits: &W%-11d&z    |\r\n",
+				victim->pcdata->quest_curr,victim->pcdata->quest_accum, buf, victim->gold );
+	pager_printf(ch,
+			"+--------------&C-==Stats==-&z+----------+----------+&C-==Resistences==-&z--------+\r\n" );
+	pager_printf(ch,
+			   	"| Strength:     [ &W%2.2d&z/&W%2.2d&z ] [%-8.20s] | Blunt:  [&W%3d&z ] [%-17.40s] |\r\n",
+				get_curr_str(victim), victim->perm_str, get_stat_rating(get_curr_str(victim)), URANGE(-50, victim->mod_blunt, 50),  get_resi_rating(victim->mod_blunt) );
+	pager_printf(ch,
+			   	"| Dexterity:    [ &W%2.2d&z/&W%2.2d&z ] [%-8.20s] | Slash:  [&W%3d&z ] [%-17.40s] |\r\n",
+				get_curr_dex(victim), victim->perm_dex, get_stat_rating(get_curr_dex(victim)), URANGE(-50, victim->mod_slash, 50),  get_resi_rating(victim->mod_slash) );
+	pager_printf(ch,
+			   	"| Costitution:  [ &W%2.2d&z/&W%2.2d&z ] [%-8.20s] | Pierce: [&W%3d&z ] [%-17.40s] |\r\n",
+				get_curr_con(victim), victim->perm_con, get_stat_rating(get_curr_con(victim)), URANGE(-50, victim->mod_pierce, 50),  get_resi_rating(victim->mod_pierce) );
+	pager_printf(ch,
+			   	"| Intelligence: [ &W%2.2d&z/&W%2.2d&z ] [%-8.20s] | Fire:   [&W%3d&z ] [%-17.40s] |\r\n",
+				get_curr_int(victim), victim->perm_int, get_stat_rating(get_curr_int(victim)), URANGE(-50, victim->mod_fire, 50),  get_resi_rating(victim->mod_fire) );
+	pager_printf(ch,
+			   	"| Wisdom:       [ &W%2.2d&z/&W%2.2d&z ] [%-8.20s] | Cold:   [&W%3d&z ] [%-17.40s] |\r\n",
+				get_curr_wis(victim), victim->perm_wis, get_stat_rating(get_curr_wis(victim)), URANGE(-50, victim->mod_cold, 50),  get_resi_rating(victim->mod_cold) );
+	pager_printf(ch,
+			   	"| Charisma:     [ &W%2.2d&z/&W%2.2d&z ] [%-8.20s] | Acid:   [&W%3d&z ] [%-17.40s] |\r\n",
+				get_curr_cha(victim), victim->perm_cha, get_stat_rating(get_curr_cha(victim)), URANGE(-50, victim->mod_acid, 50),  get_resi_rating(victim->mod_acid) );
+	pager_printf(ch,
+			   	"|                                    | Shock:  [&W%3d&z ] [%-17.40s] |\r\n",
+				 URANGE(-50, victim->mod_elect, 50),  get_resi_rating(victim->mod_elect) );
+	pager_printf(ch,
+			  	"| HP:          [&R%4d&z/&R%-4d&z]           | Drain:  [&W%3d&z ] [%-17.40s] |\r\n",
+			    victim->hit, victim->max_hit, URANGE(-50, victim->mod_drain, 50),  get_resi_rating(victim->mod_drain) );
+	pager_printf(ch,
+			  	"| Shield:      [&C%4d&z/&C%-4d&z]           | Energy: [&W%3d&z ] [%-17.40s] |\r\n",
+				victim->mana, victim->max_mana, URANGE(-50, victim->mod_energy, 50),  get_resi_rating(victim->mod_energy) );
+	pager_printf(ch,
+			  	"| Move:        [&G%4d&z/&G%-4d&z]           | Poison: [&W%3d&z ] [%-17.40s] |\r\n",
+				victim->move, victim->max_move, URANGE(-50, victim->mod_poison, 50),  get_resi_rating(victim->mod_poison) );
+	pager_printf(ch,
+				"|                                    |                                    |\r\n" );
+	pager_printf(ch,
+				 "| DamRoll:     [&W%4d&z]                | Armor:  [&W%4d&z]                     |\r\n",
+				 GET_DAMROLL(victim), GET_AC( victim ) );
+	pager_printf(ch,
+			  	"| HitRoll:     [&W%4d&z]                |                                    |\r\n",
+				GET_HITROLL(victim) );
+	pager_printf(ch,
+			"+------------------------------&C-==Classes==-&z------------------------------+\r\n" );
+   for( ability = 0; ability < MAX_ABILITY; ability++ )
+      if( ability != FORCE_ABILITY )
+         pager_printf(ch, "|  &W%s&z%-15s     Level: &W%-3d   &zof  &W%-3d          &zExp: &W%-10ld&z     |\r\n",
+                    victim->main_ability == ability ? "+" : victim->secondary_ability == ability ? "-" : " ",
+                    ability_name[ability], victim->skill_level[ability], max_level( victim, ability ),
+                    victim->experience[ability] );
+	send_to_pager(
+			"+-------------------------------------------------------------------------+\r\n",
+			ch);
+   pager_printf(ch, "|              &W+&z = Primary Ability, &W-&z = Secondary Ability                 |\r\n" );
+	send_to_pager(
+			"+-------------------------------------------------------------------------+\r\n",
+			ch);
+
+	/*switch (ch->style) {
+	case STYLE_EVASIVE:
+		snprintf(buf, MAX_STRING_LENGTH, "%s", "Evasive");
+		break;
+	case STYLE_DEFENSIVE:
+		snprintf(buf, MAX_STRING_LENGTH, "%s", "Defensive");
+		break;
+	case STYLE_AGGRESSIVE:
+		snprintf(buf, MAX_STRING_LENGTH, "%s", "Aggressive");
+		break;
+	case STYLE_BERSERK:
+		snprintf(buf, MAX_STRING_LENGTH, "%s", "Berserk");
+		break;
+	default:
+		snprintf(buf, MAX_STRING_LENGTH, "%s", "Standard");
+		break;
+	}*/
+
+	pager_printf(ch,
+				"| Comm Freq.:  &W%-10s&z            | Items:  %s            |\r\n",
+				victim->comfreq, drawlife( victim->carry_number, can_carry_n( victim ) ) );
+
+	switch (victim->position) {
+		case POS_DEAD:
+			snprintf(buf, MAX_STRING_LENGTH, "%s", "Slowly decomposing");
+			break;
+		case POS_MORTAL:
+			snprintf(buf, MAX_STRING_LENGTH, "%s", "Mortally wounded");
+			break;
+		case POS_INCAP:
+			snprintf(buf, MAX_STRING_LENGTH, "%s", "Incapacitated");
+			break;
+		case POS_STUNNED:
+			snprintf(buf, MAX_STRING_LENGTH, "%s", "Stunned");
+			break;
+		case POS_SLEEPING:
+			snprintf(buf, MAX_STRING_LENGTH, "%s", "Sleeping");
+			break;
+		case POS_RESTING:
+			snprintf(buf, MAX_STRING_LENGTH, "%s", "Resting");
+			break;
+		case POS_STANDING:
+			snprintf(buf, MAX_STRING_LENGTH, "%s", "Standing");
+			break;
+		case POS_FIGHTING:
+			snprintf(buf, MAX_STRING_LENGTH, "%s", "Fighting");
+			break;
+		/*case POS_EVASIVE:
+			snprintf(buf, MAX_STRING_LENGTH, "%s", "Fighting (evasive)");
+			break;
+		case POS_DEFENSIVE:
+			snprintf(buf, MAX_STRING_LENGTH, "%s", "Fighting (defensive)");
+			break;
+		case POS_AGGRESSIVE:
+			snprintf(buf, MAX_STRING_LENGTH, "%s", "Fighting (aggressive)");
+			break;
+		case POS_BERSERK:
+			snprintf(buf, MAX_STRING_LENGTH, "%s", "Fighting (berserk)");
+			break;*/
+		case POS_MOUNTED:
+			snprintf(buf, MAX_STRING_LENGTH, "%s", "Mounted");
+			break;
+		case POS_SITTING:
+			snprintf(buf, MAX_STRING_LENGTH, "%s", "Sitting");
+			break;
+		}
+
+	pager_printf(ch,
+				"| Position  : &W%-22s&z | Weight: %s            |\r\n",
+				buf, drawlife( victim->carry_weight, can_carry_w( victim ) ) );
+	send_to_pager(
+			"+------------------------------------+------------------------------------+\r\n",
+			ch);
+			
+/*	pager_printf(ch,
+				"| Mdeaths: &W%-5d&z                     | Pager:    (&W%1s&z)  &W%3d&z                 |\r\n",
+				ch->pcdata->mdeaths, IS_SET( ch->pcdata->flags, PCFLAG_PAGERON ) ? "X" : " ", ch->pcdata->pagerlen );
+	pager_printf(ch,
+				"| MKills:  &W%-5d&z                     | AutoExit: (&W%1s&z)                      |\r\n",
+				ch->pcdata->mkills, IS_SET( ch->act, PLR_AUTOEXIT ) ? "X" : " " );
+	pager_printf(ch,
+				"| PDeaths: &W%-5d&z                     | AutoLoot: (&W%1s&z)                      |\r\n",
+				ch->pcdata->pdeaths, IS_SET( ch->act, PLR_AUTOLOOT ) ? "X" : " " );
+	pager_printf(ch,
+				"| PKills:  &W%-5d&z                     | AutoSac:  (&W%1s&z)                      |\r\n",
+				ch->pcdata->pkills, IS_SET( ch->act, PLR_AUTOSAC ) ? "X" : " " );
+	send_to_pager(
+			"+------------------------------------+------------------------------------+\r\n",
+			ch); 
+*/	 
+	 
+
+/*   send_to_char( "&z.----------------------------------------------------------.&W\r\n", ch );
    send_to_char( "&z|  &cImperial DataSheet                                      &z|&W\r\n", ch );
    send_to_char( "&z|                                                          |&W\r\n", ch );
    send_to_char( "&z|  &cData File: 19049-SWtESB-3940305                         &z|&W\r\n", ch );
@@ -218,7 +401,66 @@ void do_score( CHAR_DATA * ch, const char *argument )
    send_to_char( "&z|----------------------------------------------------------|&W\r\n", ch );
    send_to_char( "&z|  &cFor more Information see lang, aff, group               &z|\r\n", ch );
    send_to_char( "&z+----------------------------------------------------------+&W\r\n", ch );
+*/
+}
 
+// Marduk - Resi Rating
+const char *get_resi_rating(int resi) {
+	if ( resi <= -45 )
+	  return ("&r*&z----------------");
+	if ( resi <= -40 )
+	  return ("&r**&z---------------");
+	if ( resi <= -35 )
+	  return ("&r***&z--------------");
+	if ( resi <= -30 )
+	  return ("&r***&R*&z-------------");
+	if ( resi <= -25 )
+	  return ("&r***&R**&z------------");
+	if ( resi <= -20 )
+	  return ("&r***&R***&z-----------");
+	if ( resi <= -15 )
+	  return ("&r***&R***&Y*&z----------");
+	if ( resi <= -10 )
+	  return ("&r***&R***&Y**&z---------");
+	if ( resi <= 10 )
+	  return ("&r***&R***&Y***&z--------");
+	if ( resi <= 15 )
+	  return ("&r***&R***&Y****&z-------");
+	if ( resi <= 20 )
+	  return ("&r***&R***&Y*****&z------");
+	if ( resi <= 25 )
+	  return ("&r***&R***&Y*****&G*&z-----");
+	if ( resi <= 30 )
+	  return ("&r***&R***&Y*****&G**&z----");
+	if ( resi <= 35 )
+	  return ("&r***&R***&Y*****&G***&z---");
+	if ( resi <= 40 )
+	  return ("&r***&R***&Y*****&G***&g*&z--");
+	if ( resi <= 45 )
+      return ("&r***&R***&Y*****&G***&g**&z-");
+	else
+	  return ("&r***&R***&Y*****&G***&g***&z");
+	
+}	
+
+// Marduk - Stat Rating
+const char *get_stat_rating(int stat) {
+	if ( stat <= 5 )
+	  return ("&r*&z-------");
+	if ( stat <= 8 )
+	  return ("&r*&R*&z------");
+	if ( stat <= 11 )
+	  return ("&r*&R**&z-----");
+	if ( stat <= 14 )
+	  return ("&r*&R**&Y*&z----");
+	if ( stat <= 17 )
+	  return ("&r*&R**&Y**&z---");
+	if ( stat <= 20 )
+	  return ("&r*&R**&Y**&G*&z--");
+	if ( stat <= 23 )
+	  return ("&r*&R**&Y**&G**&z-");
+	else
+	  return ("&r*&R**&Y**&G**&g*&z");
 }
 
 /*
@@ -360,6 +602,29 @@ const char *tiny_affect_loc_name( int location )
          return " DRUNK ";
       case APPLY_BLOOD:
          return " BLOOD ";
+
+		/* New Res System */
+			case APPLY_BLUNT:
+				return " BLUNT";
+			case APPLY_PIERCE:
+				return " PIERCE";
+			case APPLY_SLASH:
+				return " SLASH";
+			case APPLY_FIRE:
+				return " FIRE";
+			case APPLY_COLD:
+				return " COLD";
+			case APPLY_ACID:
+				return " ACID";
+			case APPLY_ELECT:
+				return " ELECTRICITY";
+			case APPLY_ENERGY:
+				return " ENERGY";
+			case APPLY_DRAIN:
+				return " DRAIN";
+			case APPLY_POISON:
+				return " POISON";
+				 
    }
 
    bug( "Affect_location_name: unknown location %d.", location );
@@ -741,9 +1006,9 @@ void do_equipment( CHAR_DATA * ch, const char *argument )
    {
       for( obj = ch->first_carrying; obj; obj = obj->next_content )
          if( obj->wear_loc == iWear && obj->wear_loc != WEAR_CYBER_EYE
-		     && obj->wear_loc != WEAR_CYBER_BRAIN && obj->wear_loc != WEAR_CYBER_ARMS
+		         && obj->wear_loc != WEAR_CYBER_BRAIN && obj->wear_loc != WEAR_CYBER_ARMS
              && obj->wear_loc != WEAR_CYBER_LEGS && obj->wear_loc != WEAR_CYBER_BODY
-			 && obj->wear_loc !=WEAR_CYBER_EPIDERMIS )
+			       && obj->wear_loc !=WEAR_CYBER_EPIDERMIS )
          {
             send_to_char( where_name[iWear], ch );
             if( can_see_obj( ch, obj ) )

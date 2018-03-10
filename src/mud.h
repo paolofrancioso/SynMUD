@@ -78,6 +78,8 @@ void load_hall_of_fame( void );
 #define BERR 255
 #endif
 
+#define args( list )			list
+
 #ifndef __cplusplus
 typedef unsigned char bool;
 #endif
@@ -1975,7 +1977,11 @@ typedef enum
    APPLY_KICK, APPLY_PARRY, APPLY_BASH, APPLY_STUN, APPLY_PUNCH, APPLY_CLIMB,
    APPLY_GRIP, APPLY_SCRIBE, APPLY_COVER_TRAIL, APPLY_WEARSPELL, APPLY_REMOVESPELL,
    APPLY_EMOTION, APPLY_MENTALSTATE, APPLY_STRIPSN, APPLY_REMOVE, APPLY_DIG,
-   APPLY_FULL, APPLY_THIRST, APPLY_DRUNK, APPLY_BLOOD, MAX_APPLY_TYPE
+   APPLY_FULL, APPLY_THIRST, APPLY_DRUNK, APPLY_BLOOD,
+   APPLY_BLUNT, APPLY_PIERCE, APPLY_SLASH,
+   APPLY_FIRE, APPLY_COLD, APPLY_ENERGY, APPLY_DRAIN, APPLY_ELECT,
+   APPLY_POISON, APPLY_ACID,
+   MAX_APPLY_TYPE
 } apply_types;
 
 #define REVERSE_APPLY		   1000
@@ -2524,6 +2530,16 @@ struct char_data
    short mod_con;
    short mod_cha;
    short mod_lck;
+	 short mod_blunt;   /* New Res System */
+   short mod_pierce;  /* New Res System */
+   short mod_slash;   /* New Res System */
+   short mod_fire;    /* New Res System */
+   short mod_cold;    /* New Res System */
+   short mod_acid;    /* New Res System */
+   short mod_elect;   /* New Res System */
+   short mod_energy;  /* New Res System */
+   short mod_drain;   /* New Res System */
+   short mod_poison;  /* New Res System */
    short mental_state;  /* simplified */
    short emotional_state;  /* simplified */
    int retran;
@@ -5012,6 +5028,8 @@ void mpsleep_update( void );
 /* player.c */
 void set_title( CHAR_DATA * ch, const char *title );
 void show_cyber( CHAR_DATA * ch );
+const char *get_stat_rating args( ( int stat ) );
+const char *get_resi_rating args( ( int resi ) );
 
 /* skills.c */
 bool check_skill( CHAR_DATA * ch, const char *command, const char *argument );
@@ -5430,3 +5448,5 @@ bool is_valid_vnum( int vnum, short type );
 #define IS_CMD_MPROG(cmd)          (IS_SET( (cmd)->flags, CMD_MUDPROG) )
 #define IS_CMDFLAG( cmd, flag )    ( IS_SET( (cmd)->flags, (flag) ) )
 extern bool DONT_UPPER;
+
+#define GET_TIME_PLAYED(ch)     (((ch)->played + (current_time - (ch)->logon)) / 3600)

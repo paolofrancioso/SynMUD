@@ -2732,6 +2732,16 @@ void clear_char( CHAR_DATA * ch )
    ch->mod_cha = 0;
    ch->mod_con = 0;
    ch->mod_lck = 0;
+   ch->mod_blunt  = 0;   /* New Res System */
+   ch->mod_pierce = 0;   /* New Res System */
+   ch->mod_slash = 0;    /* New Res System */
+   ch->mod_fire = 0;     /* New Res System */
+   ch->mod_cold = 0;     /* New Res System */
+   ch->mod_acid = 0;     /* New Res System */
+   ch->mod_elect = 0;    /* New Res System */
+   ch->mod_energy = 0;   /* New Res System */
+   ch->mod_drain = 0;    /* New Res System */
+   ch->mod_poison = 0;   /* New Res System */	 
    ch->plr_home = NULL;
    return;
 }

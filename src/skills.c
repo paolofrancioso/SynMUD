@@ -1218,9 +1218,6 @@ void learn_from_success( CHAR_DATA * ch, int sn )
    if( IS_NPC( ch ) || ch->pcdata->learned[sn] == 0 )
       return;
 
-   if( sn == skill_lookup( "meditate" ) && ch->skill_level[FORCE_ABILITY] < 2 )
-      gain_exp( ch, 25, FORCE_ABILITY );
-
    if( !skill_table[sn] )
       return;
 
@@ -1229,13 +1226,13 @@ void learn_from_success( CHAR_DATA * ch, int sn )
    if( skill_table[sn]->guild < 0 || skill_table[sn]->guild >= MAX_ABILITY )
       return;
 
-   adept = 100;
+   adept = 90;
    if( ch->pcdata->learned[sn] >= adept )
       return;
 
    if( sklvl == 0 || sklvl > ch->skill_level[skill_table[sn]->guild] )
       sklvl = ch->skill_level[skill_table[sn]->guild];
-   if( ch->pcdata->learned[sn] < 100 )
+   if( ch->pcdata->learned[sn] < adept )
    {
       schance = ch->pcdata->learned[sn] + ( 5 * skill_table[sn]->difficulty );
       percent = number_percent(  );
@@ -1247,7 +1244,7 @@ void learn_from_success( CHAR_DATA * ch, int sn )
          learn = 1;
       ch->pcdata->learned[sn] = UMIN( adept, ch->pcdata->learned[sn] + learn );
 
-      if( ch->pcdata->learned[sn] == 100 )   /* fully learned! */
+      if( ch->pcdata->learned[sn] == adept )   /* fully learned! */
       {
          gain = 50 * sklvl;
          set_char_color( AT_WHITE, ch );
@@ -1273,9 +1270,6 @@ void learn_from_failure( CHAR_DATA * ch, int sn )
    if( IS_NPC( ch ) || ch->pcdata->learned[sn] == 0 )
       return;
 
-   if( sn == skill_lookup( "meditate" ) && ch->skill_level[FORCE_ABILITY] < 2 )
-      gain_exp( ch, 25, FORCE_ABILITY );
-
    if( !skill_table[sn] )
       return;
 
@@ -1284,7 +1278,7 @@ void learn_from_failure( CHAR_DATA * ch, int sn )
    if( skill_table[sn]->guild < 0 || skill_table[sn]->guild >= MAX_ABILITY )
       return;
 
-   adept = 100;
+   adept = 90;
    if( ch->pcdata->learned[sn] >= adept )
       return;
 

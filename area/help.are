@@ -2090,7 +2090,7 @@ DAMAGE          ACTION       CLASS         POWER       SAVES
 none            none         none          none        none
 fire            create       lunar         minor       poison_death
 cold            destroy      solar         greater     wands
-electricity     resist       travel        major       para_petri
+shock			      resist       travel        major       para_petri
 energy          suscept      summon                    breath
 acid            divinate     life                      power_staff
 poison          obscure      death
@@ -6718,7 +6718,7 @@ will only work provided you are using a rip compatible terminal program.
 Players and mobiles may have resistance, suceptibility or immunity to
 certain types of attack:
 
-FIRE      COLD      ELECTRICITY  ENERGY     BLUNT     PIERCE     SLASH
+FIRE      COLD      SHOCK   	   ENERGY     BLUNT     PIERCE     SLASH
 ACID      POISON    DRAIN        SLEEP      CHARM     HOLD       NONMAGIC
 PLUS1     PLUS2     PLUS3        PLUS4      PLUS5     PLUS6      MAGIC
 PARALYSIS

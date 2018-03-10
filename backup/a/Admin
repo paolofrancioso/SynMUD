@@ -10,10 +10,10 @@ Languages    -1 1
 Toplevel     36
 Pheight      0
 Build        0
-Played       94597
+Played       94962
 Ship            ~
 ShipNum         0
-Room         162
+Room         100
 HpManaMove   1000 1000 1000 1000 1000 1000
 Gold         2134114427
 Bank         10
@@ -40,7 +40,7 @@ Armor        100
 Rppoints   0
 Mentalstate  0
 Password     9c3a88f26d3623fcf0a4aa881518170c70f5e1d62e0d9f9fa7e9b3f07fa299b7~
-Lastplayed   1520641586
+Lastplayed   1520688024
 Title         The Glorious Admin is here~
 AuthedBy     Admin~
 Addiction    0 0 0 0 0 0 0 0 0 0
@@ -52,6 +52,7 @@ MKills       4
 MDeaths      0
 AttrPerm     20 16 13 18 13 13 8
 AttrMod      0 0 0 0 0 0 0
+ResiMod      0 0 0 0 0 0 0 0 0 0
 Condition    0 48 48 46
 Site         local-host
 Skill        100 'acute_accuracy'
@@ -191,6 +192,15 @@ WearFlags    -2147483648
 WearLoc      26
 ItemType     99
 Level        36
+End
+
+#OBJECT
+Vnum         37
+WearFlags    131073
+WearLoc      20
+Level        36
+Values       15 15 0 0 0 0
+Affect       -1 -1 10 67 0
 End
 
 #END
