@@ -1359,22 +1359,6 @@ Log         0
 End
 
 #COMMAND
-Name        wearcyber~
-Code        do_cyber
-Position    0
-Level       34
-Log         1
-End
-
-#COMMAND
-Name        remcyber~
-Code        do_remove_cyber
-Position    0
-Level       34
-Log         1
-End
-
-#COMMAND
 Name        hedit~
 Code        do_hedit
 Position    0
@@ -2651,6 +2635,14 @@ Log         0
 End
 
 #COMMAND
+Name        remcyber~
+Code        do_remove_cyber
+Position    0
+Level       34
+Log         1
+End
+
+#COMMAND
 Name        rempilot~
 Code        do_rempilot
 Position    5
@@ -3763,6 +3755,14 @@ Code        do_wear
 Position    6
 Level       0
 Log         0
+End
+
+#COMMAND
+Name        wearcyber~
+Code        do_cyber
+Position    0
+Level       34
+Log         1
 End
 
 #COMMAND

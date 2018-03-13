@@ -58,6 +58,7 @@ void name_log( const char *str, ... );
  * Local functions.
  */
 void dam_message( CHAR_DATA * ch, CHAR_DATA * victim, int dam, unsigned int dt );
+void dam_shielded( CHAR_DATA * ch, CHAR_DATA * victim, int dam, unsigned int dt );
 void group_gain( CHAR_DATA * ch, CHAR_DATA * victim );
 int xp_compute( CHAR_DATA * gch, CHAR_DATA * victim );
 int align_compute( CHAR_DATA * gch, CHAR_DATA * victim );
@@ -1569,14 +1570,32 @@ ch_ret damage( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt )
          dam += 5;   /* add penalty for bare skin! */
    }
 
-   if( ch != victim )
-      dam_message( ch, victim, dam, dt );
-
    /*
     * Hurt the victim.
     * Inform the victim of his new state.
     */
-   victim->hit -= dam;
+	  //Marduk - Shiedpoints management
+		if ( dam < 0 )
+			dam = 0;
+			
+		int diff;
+		if ( victim->mana >= dam ) {
+		  if ( dam > 0) { 
+			victim->mana -= dam;
+			 if( ch != victim )
+			   dam_shielded( ch, victim, dam, dt );
+         dam = 0;	
+			} else {
+				 dam_message( ch, victim, dam, dt );
+			}
+		} else {
+			 diff = victim->mana - dam;
+			 victim->hit += diff; //diff should be negative at this point.
+			 victim->mana = 0;
+			 if( ch != victim )
+        dam_message( ch, victim, dam, dt );
+			 dam = diff * -1;
+		}
 
    /*
     * Get experience based on % of damage done       -Thoric
@@ -2948,6 +2967,37 @@ void dam_message( CHAR_DATA * ch, CHAR_DATA * victim, int dam, unsigned int dt )
    return;
 }
 
+void dam_shielded( CHAR_DATA * ch, CHAR_DATA * victim, int dam, unsigned int dt )
+{
+   char buf1[256], buf2[256], buf3[256];
+   bool gcflag = FALSE;
+   bool gvflag = FALSE;
+
+   if( !dam )
+      dam = 0;
+		
+	 if( dam == 0 && ( !IS_NPC( ch ) && ( IS_SET( ch->pcdata->flags, PCFLAG_GAG ) ) ) )
+      gcflag = TRUE;
+
+   if( dam == 0 && ( !IS_NPC( victim ) && ( IS_SET( victim->pcdata->flags, PCFLAG_GAG ) ) ) )
+      gvflag = TRUE;
+		
+   sprintf( buf1, "$n's attack is absorbed by $N's shield.");
+	 sprintf( buf2, "Your attack is absorbed by $N's shield.");
+	 sprintf( buf3, "$n's attack is absorbed by your shield.");
+
+   if( ch->skill_level[COMMANDO_ABILITY] >= 15 )
+      sprintf( buf2, "%s You deal to shield %d points of damage.", buf2, dam );
+   if( dt != TYPE_MISSILE )
+   {
+      act( AT_ACTION, buf1, ch, NULL, victim, TO_NOTVICT );
+      if( !gcflag )
+         act( AT_HIT, buf2, ch, NULL, victim, TO_CHAR );
+      if( !gvflag )
+         act( AT_HITME, buf3, ch, NULL, victim, TO_VICT );
+   }
+   return;
+}
 
 void do_kill( CHAR_DATA * ch, const char *argument )
 {
