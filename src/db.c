@@ -2702,12 +2702,12 @@ void clear_char( CHAR_DATA * ch )
    ch->logon = current_time;
    ch->armor = 10;
    ch->position = POS_STANDING;
-   ch->hit = 500;
-   ch->max_hit = 500;
+   ch->hit = 250;
+   ch->max_hit = 250;
    ch->mana = 0;
    ch->max_mana = 0;
-   ch->move = 1000;
-   ch->max_move = 1000;
+   ch->move = 200;
+   ch->max_move = 200;
    ch->height = 72;
    ch->weight = 180;
    ch->xflags = 0;
@@ -2741,7 +2741,10 @@ void clear_char( CHAR_DATA * ch )
    ch->mod_elect = 0;    /* New Res System */
    ch->mod_energy = 0;   /* New Res System */
    ch->mod_drain = 0;    /* New Res System */
-   ch->mod_poison = 0;   /* New Res System */	 
+   ch->mod_poison = 0;   /* New Res System */	
+   ch->hit_regen = 0;
+   ch->mana_regen = 0;
+   ch->move_regen = 0; 
    ch->plr_home = NULL;
    return;
 }

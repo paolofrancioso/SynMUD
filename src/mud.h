@@ -1980,7 +1980,7 @@ typedef enum
    APPLY_FULL, APPLY_THIRST, APPLY_DRUNK, APPLY_BLOOD,
    APPLY_BLUNT, APPLY_PIERCE, APPLY_SLASH,
    APPLY_FIRE, APPLY_COLD, APPLY_ENERGY, APPLY_DRAIN, APPLY_ELECT,
-   APPLY_POISON, APPLY_ACID,
+   APPLY_POISON, APPLY_ACID, APPLY_HIT_REGEN, APPLY_MANA_REGEN, APPLY_MOVE_REGEN,
    MAX_APPLY_TYPE
 } apply_types;
 
@@ -2540,6 +2540,9 @@ struct char_data
    short mod_energy;  /* New Res System */
    short mod_drain;   /* New Res System */
    short mod_poison;  /* New Res System */
+	 short hit_regen;
+	 short mana_regen;
+	 short move_regen;
    short mental_state;  /* simplified */
    short emotional_state;  /* simplified */
    int retran;
@@ -4980,6 +4983,7 @@ bool is_safe_nm( CHAR_DATA * ch, CHAR_DATA * victim );
 bool legal_loot( CHAR_DATA * ch, CHAR_DATA * victim );
 bool check_illegal_pk( CHAR_DATA * ch, CHAR_DATA * victim );
 OBJ_DATA *raw_kill( CHAR_DATA * ch, CHAR_DATA * victim );
+OBJ_DATA *raw_kill_suicide( CHAR_DATA * ch, CHAR_DATA * victim );
 bool in_arena( CHAR_DATA * ch );
 
 /* makeobjs.c */
@@ -5450,3 +5454,5 @@ bool is_valid_vnum( int vnum, short type );
 extern bool DONT_UPPER;
 
 #define GET_TIME_PLAYED(ch)     (((ch)->played + (current_time - (ch)->logon)) / 3600)
+
+int weapon_prof_bonus_check( CHAR_DATA * ch, OBJ_DATA * wield, int *gsn_ptr );

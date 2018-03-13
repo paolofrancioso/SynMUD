@@ -2618,7 +2618,7 @@ void do_balzhur( CHAR_DATA * ch, const char *argument )
    }
    victim->max_hit = 500;
    victim->max_mana = 0;
-   victim->max_move = 1000;
+   victim->max_move = 200;
    for( sn = 0; sn < top_sn; sn++ )
       victim->pcdata->learned[sn] = 0;
    victim->hit = victim->max_hit;

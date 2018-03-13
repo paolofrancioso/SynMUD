@@ -3220,7 +3220,7 @@ void do_suicide( CHAR_DATA * ch, const char *argument )
    log_string( logbuf );
 
    set_cur_char( ch );
-   raw_kill( ch, ch );
+   raw_kill_suicide( ch, ch );
 
 }
 

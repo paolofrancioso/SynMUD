@@ -147,7 +147,7 @@ const char *const o_types[] = {
 
 const char *const a_types[] = {
    "none", "strength", "dexterity", "intelligence", "wisdom", "constitution",
-   "sex", "null", "level", "age", "height", "weight", "force", "hit", "move",
+   "sex", "null", "level", "age", "height", "weight", "shieldpoints", "hit", "move",
    "credits", "experience", "armor", "hitroll", "damroll", "save_poison", "save_rod",
    "save_para", "save_breath", "save_spell", "charisma", "affected", "resistant",
    "immune", "susceptible", "weaponspell", "luck", "backstab", "pick", "track",
@@ -156,7 +156,7 @@ const char *const a_types[] = {
    "grip", "scribe", "cover_trail", "wearspell", "removespell", "emotion", "mentalstate",
    "stripsn", "remove", "dig", "full", "thirst", "drunk", "blood", "res_blunt", "res_pierce", 
 	 "res_slash", "res_fire", "res_cold", "res_energy", "res_drain", "res_shock", 
-	 "res_poison", "res_acid" 
+	 "res_poison", "res_acid", "hpreg", "spreg", "mvreg" 
 };
 
 const char *const a_flags[] = {
@@ -3256,15 +3256,20 @@ void do_oset( CHAR_DATA * ch, const char *argument )
          send_to_char( "Usage: oset <object> affect <field> <value>\r\n", ch );
          send_to_char( "Affect Fields:\r\n", ch );
          send_to_char( "none        strength    dexterity   intelligence  wisdom       constitution\r\n", ch );
-         send_to_char( "sex         level       age         height        weight       force\r\n", ch );
+         send_to_char( "sex         level       age         height        weight       shieldpoints\r\n", ch );
          send_to_char( "hit         move        credits     experience    armor        hitroll\r\n", ch );
          send_to_char( "damroll     save_para   save_rod    save_poison   save_breath  save_power\r\n", ch );
          send_to_char( "charisma    resistant   immune      susceptible   affected     luck\r\n", ch );
          send_to_char( "backstab    pick        track       steal         sneak        hide\r\n", ch );
          send_to_char( "detrap      dodge       peek        scan          gouge        search\r\n", ch );
          send_to_char( "mount       disarm      kick        parry         bash         stun\r\n", ch );
-         send_to_char( "punch       climb       grip        scribe        brew\r\n", ch );
-         return;
+				 send_to_char( "punch       climb       grip        scribe        brew\r\n", ch );
+         send_to_char( "New Affect Fields:\r\n", ch );
+				 send_to_char( "res_blunt   res_pierce  res_slash   res_fire      res_cold     res_energy\r\n", ch );
+				 send_to_char( "res_drain   res_shock   res_poison  res_acid      hpreg        spreg\r\n", ch );
+				 send_to_char( "mvreg\r\n", ch );
+				 return;
+
       }
       loc = get_atype( arg2 );
       if( loc < 1 )

@@ -3223,9 +3223,9 @@ char *default_prompt( CHAR_DATA * ch )
 //  strcat(buf, "&BHealth:&C%h&B/%H  &BMovement:&C%v&B/%V  &w%e");
 //  strcat(buf, "&C >&w");
 
-   strcat( buf, "&G[&cHp:&w%h&G/&w%H&G] [&cSp:&w%m&G/&w%M&G] [&cMv:&w%v&G/&w%V&G] &G(&cAlign:&w%a&G) &w" );
+   strcat( buf, "&C[&cHp:&w%h&C/&w%H&C] [&cSp:&w%m&C/&w%M&C] [&cMv:&w%v&C/&w%V&C] &w" );
    if( ch->position == POS_FIGHTING )
-      strcat( buf, "&C&G[%e&C&G] &w" );
+      strcat( buf, "&C[%e&C] &w" );
    return buf;
 }
 

@@ -498,6 +498,9 @@ void fwrite_char( CHAR_DATA * ch, FILE * fp )
       fprintf( fp, "ResiMod      %d %d %d %d %d %d %d %d %d %d\n",
             ch->mod_blunt, ch->mod_pierce, ch->mod_slash, ch->mod_fire, ch->mod_cold, ch->mod_acid, 
             ch->mod_elect, ch->mod_energy, ch->mod_drain, ch->mod_poison );
+      /* New Regen Profile */
+      fprintf( fp, "Regens      %d %d %d\n",
+            ch->hit_regen, ch->mana_regen, ch->move_regen );						
 						
       fprintf( fp, "Condition    %d %d %d %d\n",
                ch->pcdata->condition[0], ch->pcdata->condition[1], ch->pcdata->condition[2], ch->pcdata->condition[3] );
@@ -1295,8 +1298,8 @@ void fread_char( CHAR_DATA * ch, FILE * fp, bool preload, bool hotboot )
                sscanf( line, "%d %d %d %d %d %d", &x1, &x2, &x3, &x4, &x5, &x6 );
                ch->hit = x1;
                ch->max_hit = x2;
-			   ch->mana = x3;
-			   ch->max_mana = x4;
+							 ch->mana = x3;
+							 ch->max_mana = x4;
                ch->move = x5;
                ch->max_move = x6;
                fMatch = TRUE;
@@ -1442,6 +1445,20 @@ void fread_char( CHAR_DATA * ch, FILE * fp, bool preload, bool hotboot )
                ch->mod_energy = z8;
                ch->mod_drain = z9;
                ch->mod_poison = z10;
+               fMatch = TRUE;
+               break;
+            }
+
+            /* New Regeneration System */
+            if( !strcmp( word, "Regens" ) )
+            {
+               line = fread_line( fp );
+               int z1, z2, z3;
+               z1 = z2 = z3 = 0;
+               sscanf( line, "%d %d %d", &z1, &z2, &z3 );
+               ch->hit_regen = z1;
+               ch->mana_regen = z2;
+               ch->move_regen = z3;
                fMatch = TRUE;
                break;
             }

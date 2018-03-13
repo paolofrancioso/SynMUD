@@ -10,11 +10,11 @@ Languages    -1 1
 Toplevel     36
 Pheight      0
 Build        0
-Played       98882
+Played       107989
 Ship            ~
 ShipNum         0
-Room         100
-HpManaMove   1000 1000 1000 1000 1000 1000
+Room         131
+HpManaMove   1000 1000 1022 1000 981 1000
 Gold         2134114427
 Bank         10
 Salary       0
@@ -28,19 +28,19 @@ Ability        6 1 0 0
 Ability        7 200 19821500 0
 Ability        8 200 19800500 0
 Ability        9 200 19999999 0
-Act          574649928
+Act          574641736
 Position     8
 SavingThrows 0 0 0 0 0
 Alignment    -1000
 Glory        0
 MGlory       0
 Hitroll      0
-Damroll      65
-Armor        100
+Damroll      0
+Armor        10
 Rppoints   0
 Mentalstate  0
 Password     9c3a88f26d3623fcf0a4aa881518170c70f5e1d62e0d9f9fa7e9b3f07fa299b7~
-Lastplayed   1520693289
+Lastplayed   1520900645
 Title         The Glorious Admin is here~
 AuthedBy     Admin~
 Addiction    0 0 0 0 0 0 0 0 0 0
@@ -53,7 +53,8 @@ MDeaths      0
 AttrPerm     20 16 13 18 13 13 8
 AttrMod      0 0 0 0 0 0 0
 ResiMod      0 0 0 0 0 0 0 0 0 0
-Condition    0 48 48 46
+Regens      0 0 0
+Condition    0 48 40 46
 Site         local-host
 Skill        100 'acute_accuracy'
 Skill        100 'acute_awarness'
@@ -163,7 +164,7 @@ Killed       251 1
 Killed       7806 2
 Killed       28 1
 MaxColors    115
-Colors       0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 25 7 7 12 10 14 15 7 7 11 7 7 7 12 7 7 7 11 14 15 12 7 7 7 9 7 12 13 7 7 11 7 7 3 12 9 7 7 10 2 7 7 7 9 7 2 9 12 9 6 11 13 2 13 15 12 12 12 10 7 10 10 11 8 10 13 2 6 9 15 12 2 6 1 9 2 10 10 10 10 10 2 6 9 15 12 2 6 1 9 2 10 7 10 15 0 11 14 8 
+Colors       0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 25 7 7 12 10 14 15 7 7 11 7 7 7 12 7 7 7 11 14 15 12 7 7 7 9 7 12 13 7 7 11 7 7 3 12 9 7 7 10 2 7 7 7 9 7 2 9 15 9 6 11 13 2 13 15 12 11 12 10 7 10 10 11 8 10 13 2 6 9 15 12 2 6 1 9 2 10 10 10 10 10 2 6 9 15 12 2 6 1 9 2 10 7 10 15 0 11 14 8 
 End
 
 #OBJECT
@@ -172,6 +173,7 @@ ExtraFlags   16
 WearLoc      16
 Level        66
 Values       12 1 4 6 441 2000
+Affect       -1 -1 10 77 0
 End
 
 #OBJECT
@@ -197,10 +199,21 @@ End
 #OBJECT
 Vnum         37
 WearFlags    131073
-WearLoc      20
 Level        36
 Values       15 15 0 0 0 0
 Affect       -1 -1 10 67 0
+End
+
+#OBJECT
+Vnum         50
+WearLoc      18
+Level        36
+Values       12 1 4 6 2000 2000
+Affect       -1 -1 10 12 0
+Affect       -1 -1 12 12 0
+Affect       -1 -1 10 77 0
+Affect       -1 -1 10 78 0
+Affect       -1 -1 10 79 0
 End
 
 #END

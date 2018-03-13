@@ -1486,6 +1486,11 @@ a little bit cooler but still very nice. The corridor continues east and
 west.
 ~
 #EXIT
+Direction north~
+ToRoom    121
+#ENDEXIT
+
+#EXIT
 Direction east~
 ToRoom    120
 #ENDEXIT
@@ -1579,6 +1584,11 @@ Flags    indoors~
 Stats    0 0 3720
 Desc     Unused
 ~
+#EXIT
+Direction south~
+ToRoom    117
+#ENDEXIT
+
 #ENDROOM
 
 #ROOM

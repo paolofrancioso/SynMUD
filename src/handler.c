@@ -671,7 +671,16 @@ void affect_modify( CHAR_DATA * ch, AFFECT_DATA * paf, bool fAdd )
          break;
       case APPLY_POISON:
          ch->mod_poison += mod;
-         break;				 
+         break;
+      case APPLY_HIT_REGEN:
+         ch->hit_regen += mod;
+         break;	
+      case APPLY_MANA_REGEN:
+         ch->mana_regen += mod;
+         break;	
+      case APPLY_MOVE_REGEN:
+         ch->move_regen += mod;
+         break;					 
 				 
       case APPLY_SEX:
          ch->sex = ( ch->sex + mod ) % 3;
@@ -2676,25 +2685,31 @@ const char *affect_loc_name( int location )
 				 
 			/* New Res System */
       case APPLY_BLUNT:
-         return "res_blunt";
+         return "blunt resistence";
       case APPLY_PIERCE:
-         return "res_pierce";
+         return "pierce resistence";
       case APPLY_SLASH:
-         return "res_slash";
+         return "slash resistence";
       case APPLY_FIRE:
-         return "res_fire";
+         return "fire resistence";
       case APPLY_COLD:
-         return "res_cold";
+         return "cold resistence";
       case APPLY_ACID:
-         return "res_acid";
+         return "acid resistence";
       case APPLY_ELECT:
-         return "res_shock";
+         return "shock resistence";
       case APPLY_ENERGY:
-         return "res_energy";
+         return "energy resistence";
       case APPLY_DRAIN:
-         return "res_drain";
+         return "drain resistence";
       case APPLY_POISON:
-         return "res_poison";
+         return "poison resistence";
+      case APPLY_HIT_REGEN:
+         return "hp regeneration";
+      case APPLY_MANA_REGEN:
+         return "sp regeneration";
+      case APPLY_MOVE_REGEN:
+         return "mv regeneration";				 
 				 
       case APPLY_SEX:
          return "sex";
@@ -2703,11 +2718,11 @@ const char *affect_loc_name( int location )
       case APPLY_AGE:
          return "age";
       case APPLY_MANA:
-         return "mana";
+         return "sp";
       case APPLY_HIT:
          return "hp";
       case APPLY_MOVE:
-         return "moves";
+         return "mv";
       case APPLY_GOLD:
          return "gold";
       case APPLY_EXP:
@@ -3399,6 +3414,9 @@ void fix_char( CHAR_DATA * ch )
    ch->mod_energy = 0;   /* New Res System */
    ch->mod_drain = 0;    /* New Res System */
    ch->mod_poison = 0;   /* New Res System */	 
+	 ch->hit_regen = 0;
+	 ch->mana_regen = 0;
+	 ch->move_regen = 0;
 
    for( aff = ch->first_affect; aff; aff = aff->next )
       affect_modify( ch, aff, TRUE );

@@ -206,6 +206,7 @@ void advance_level( CHAR_DATA * ch, int ability )
    {
       ch->top_level = URANGE( 1, ch->skill_level[ability], 30 );
    }
+	 save_char_obj( ch );
    return;
 }
 
@@ -283,7 +284,7 @@ int hit_gain( CHAR_DATA * ch )
    }
    else
    {
-      gain = UMIN( 5, ch->top_level );
+      gain = 5 + ch->hit_regen;;
 
       switch ( ch->position )
       {
@@ -333,7 +334,7 @@ int mana_gain( CHAR_DATA * ch )
    }
    else
    {
-      gain = 5;
+      gain = 5 + ch->mana_regen;
 
       if( ch->position < POS_SLEEPING )
          return 0;
@@ -373,7 +374,7 @@ int move_gain( CHAR_DATA * ch )
    }
    else
    {
-      gain = UMAX( 15, 2 * ch->top_level );
+      gain = 5 + ch->move_regen;
 
       switch ( ch->position )
       {
@@ -404,12 +405,6 @@ int move_gain( CHAR_DATA * ch )
    if( IS_AFFECTED( ch, AFF_POISON ) )
       gain /= 4;
 
-   if( get_age( ch ) > 500 )
-      gain /= 10;
-   else if( get_age( ch ) > 300 )
-      gain /= 5;
-   else if( get_age( ch ) > 200 )
-      gain /= 2;
 
    return UMIN( gain, ch->max_move - ch->move );
 }
@@ -435,7 +430,7 @@ void gain_addiction( CHAR_DATA * ch )
                {
                   af.type = gsn_blindness;
                   af.location = APPLY_AC;
-                  af.modifier = 10;
+                  af.modifier = 2;
                   af.duration = ch->pcdata->addiction[drug];
                   af.bitvector = AFF_BLIND;
                   affect_to_char( ch, &af );
@@ -445,7 +440,7 @@ void gain_addiction( CHAR_DATA * ch )
                {
                   af.type = -1;
                   af.location = APPLY_DAMROLL;
-                  af.modifier = -10;
+                  af.modifier = -2;
                   af.duration = ch->pcdata->addiction[drug];
                   af.bitvector = AFF_WEAKEN;
                   affect_to_char( ch, &af );
@@ -1127,6 +1122,13 @@ void weather_update( void )
    return;
 }
 
+
+int calc_new_health ( CHAR_DATA * ch ) {
+	
+	return ( 250 + con_app[ch->perm_con].hitp + ( (ch)->skill_level[DEFENDER_ABILITY] / 3 ) * 10 );
+	
+}
+
 /*
  * Update all chars, including mobs.
  * This function is performance sensitive.
@@ -1137,6 +1139,7 @@ void char_update( void )
    CHAR_DATA *ch_save;
    long amount;
    short save_count = 0;
+	 int new_health = 200;
 
    ch_save = NULL;
    for( ch = last_char; ch; ch = gch_prev )
@@ -1194,6 +1197,15 @@ void char_update( void )
          if( ch->move < ch->max_move )
             ch->move += move_gain( ch );
       }
+			
+			//Update Health Data
+			if (!IS_NPC ( ch ) && ch->top_level < LEVEL_IMMORTAL ) {
+				new_health = calc_new_health ( ch );
+				if ( new_health != ch->max_hit) {
+				  ch->max_hit = new_health;
+					send_to_char( "Your health reached the normality..\r\n", ch );
+				}
+			}
 
       if( ch->position == POS_STUNNED )
          update_pos( ch );

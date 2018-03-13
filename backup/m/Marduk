@@ -10,11 +10,11 @@ Languages    1 1
 Toplevel     1
 Pheight      0
 Build        0
-Played       5020
+Played       5233
 Ship            ~
 ShipNum         0
 Room         115
-HpManaMove   500 500 0 0 1000 1000
+HpManaMove   1 500 1 0 1000 1000
 Gold         0
 Bank         0
 Salary       0
@@ -38,9 +38,8 @@ Hitroll      0
 Damroll      0
 Armor        10
 Rppoints   0
-Mentalstate  0
 Password     cdd18f062189ecb68e29ca888baa9e0a249f78361ddba9aeed15afa67f8be463~
-Lastplayed   1520638241
+Lastplayed   1520891756
 Title         Marduk the Italian~
 Screenname   test~
 AuthedBy     Grotans~
@@ -51,7 +50,9 @@ MKills       0
 MDeaths      0
 AttrPerm     11 6 11 9 17 10 14
 AttrMod      0 0 0 0 0 0 0
-Condition    0 12 6 11
+ResiMod      0 0 0 0 0 0 0 0 0 0
+Regens      0 0 0
+Condition    0 11 5 11
 Site         local-host
 Tongue       100 'basic'
 Tongue       100 'italian'

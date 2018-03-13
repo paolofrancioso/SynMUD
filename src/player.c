@@ -155,6 +155,15 @@ void do_score( CHAR_DATA * ch, const char *argument )
    CHAR_DATA *victim;
 	 char buf[MAX_STRING_LENGTH];
    int ability;
+	 OBJ_DATA *wield;
+	 OBJ_DATA *dual_wield = NULL;
+	 int thac0;
+	 int dual_thac0;
+   int thac0_00;
+   int thac0_32;
+	 int prof_bonus;	 
+	 int prof_dual_bonus;
+	 int prof_gsn;
 	 
    if( !argument || argument[0] == '\0' )
       victim = ch;
@@ -178,6 +187,28 @@ void do_score( CHAR_DATA * ch, const char *argument )
       do_oldscore( ch, argument );
       return;
    }
+	 
+	 if( ( wield = get_eq_char( victim, WEAR_DUAL_WIELD ) ) != NULL ) {
+      wield = get_eq_char( victim, WEAR_WIELD );
+			dual_wield = get_eq_char( victim, WEAR_DUAL_WIELD );
+	 }
+   else
+      wield = get_eq_char( victim, WEAR_WIELD );
+
+   prof_bonus = weapon_prof_bonus_check( victim, wield, &prof_gsn );
+	 
+	 if (dual_wield)
+	   prof_dual_bonus = weapon_prof_bonus_check( victim, dual_wield, &prof_gsn );
+	 
+	 thac0_00 = 20;
+   thac0_32 = 10;
+   thac0 = interpolate( victim->skill_level[COMMANDO_ABILITY], thac0_00, thac0_32 ) - GET_HITROLL( victim );
+   
+   //Weapon proficiency bonus 
+	 if (dual_wield)
+	   dual_thac0 = thac0 - ( prof_dual_bonus / 20 ) + 2; //+2 Malus on secondhand
+	 
+   thac0 -= prof_bonus / 20; 
 	 
 		//New
 	send_to_pager(
@@ -252,9 +283,18 @@ void do_score( CHAR_DATA * ch, const char *argument )
 	pager_printf(ch,
 				 "| DamRoll:     [&W%4d&z]                | Armor:  [&W%4d&z]                     |\r\n",
 				 GET_DAMROLL(victim), GET_AC( victim ) );
-	pager_printf(ch,
-			  	"| HitRoll:     [&W%4d&z]                |                                    |\r\n",
-				GET_HITROLL(victim) );
+	
+	if (dual_wield) {
+			snprintf(buf, MAX_STRING_LENGTH, "%d/%d", thac0, dual_thac0);
+	    pager_printf(ch, "| THAC0:       [&W%7s&z]             |                                    |\r\n", buf );
+	}
+	else {
+		  snprintf(buf, MAX_STRING_LENGTH, "%d", thac0);
+			pager_printf(ch, "| THAC0:       [&W%4s&z]                |                                    |\r\n", buf );
+	}
+	
+
+	
 	pager_printf(ch,
 			"+------------------------------&C-==Classes==-&z------------------------------+\r\n" );
    for( ability = 0; ability < MAX_ABILITY; ability++ )
@@ -268,7 +308,7 @@ void do_score( CHAR_DATA * ch, const char *argument )
 			ch);
    pager_printf(ch, "|              &W+&z = Primary Ability, &W-&z = Secondary Ability                 |\r\n" );
 	send_to_pager(
-			"+-------------------------------------------------------------------------+\r\n",
+		  "+------------------------------------+------------------------------------+\r\n",
 			ch);
 
 	/*switch (ch->style) {
@@ -410,17 +450,17 @@ const char *get_resi_rating(int resi) {
 	  return ("&r*&z----------------");
 	if ( resi <= -40 )
 	  return ("&r**&z---------------");
-	if ( resi <= -35 )
-	  return ("&r***&z--------------");
 	if ( resi <= -30 )
-	  return ("&r***&R*&z-------------");
-	if ( resi <= -25 )
-	  return ("&r***&R**&z------------");
+	  return ("&r***&z--------------");
 	if ( resi <= -20 )
-	  return ("&r***&R***&z-----------");
-	if ( resi <= -15 )
-	  return ("&r***&R***&Y*&z----------");
+	  return ("&r***&R*&z-------------");
 	if ( resi <= -10 )
+	  return ("&r***&R**&z------------");
+	if ( resi <= -5 )
+	  return ("&r***&R***&z-----------");
+	if ( resi <= 0 )
+	  return ("&r***&R***&Y*&z----------");
+	if ( resi <= 5 )
 	  return ("&r***&R***&Y**&z---------");
 	if ( resi <= 10 )
 	  return ("&r***&R***&Y***&z--------");
@@ -806,27 +846,27 @@ void do_oldscore( CHAR_DATA * ch, const char *argument )
       ch_printf( ch, "AC: %d.  ", GET_AC( ch ) );
 
    send_to_char( "You are ", ch );
-   if( GET_AC( ch ) >= 101 )
+   if( GET_AC( ch ) >= 10 )
       send_to_char( "WORSE than naked!\r\n", ch );
-   else if( GET_AC( ch ) >= 80 )
+   else if( GET_AC( ch ) >= 8 )
       send_to_char( "naked.\r\n", ch );
-   else if( GET_AC( ch ) >= 60 )
+   else if( GET_AC( ch ) >= 6 )
       send_to_char( "wearing clothes.\r\n", ch );
-   else if( GET_AC( ch ) >= 40 )
+   else if( GET_AC( ch ) >= 4 )
       send_to_char( "slightly armored.\r\n", ch );
-   else if( GET_AC( ch ) >= 20 )
+   else if( GET_AC( ch ) >= 2 )
       send_to_char( "somewhat armored.\r\n", ch );
    else if( GET_AC( ch ) >= 0 )
       send_to_char( "armored.\r\n", ch );
-   else if( GET_AC( ch ) >= -20 )
+   else if( GET_AC( ch ) >= -2 )
       send_to_char( "well armored.\r\n", ch );
-   else if( GET_AC( ch ) >= -40 )
+   else if( GET_AC( ch ) >= -4 )
       send_to_char( "strongly armored.\r\n", ch );
-   else if( GET_AC( ch ) >= -60 )
+   else if( GET_AC( ch ) >= -6 )
       send_to_char( "heavily armored.\r\n", ch );
-   else if( GET_AC( ch ) >= -80 )
+   else if( GET_AC( ch ) >= -8 )
       send_to_char( "superbly armored.\r\n", ch );
-   else if( GET_AC( ch ) >= -100 )
+   else if( GET_AC( ch ) >= -10 )
       send_to_char( "divinely armored.\r\n", ch );
    else
       send_to_char( "invincible!\r\n", ch );

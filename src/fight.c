@@ -738,14 +738,19 @@ ch_ret one_hit( CHAR_DATA * ch, CHAR_DATA * victim, int dt )
       {
          dual_flip = TRUE;
          wield = get_eq_char( ch, WEAR_WIELD );
+				 prof_bonus = weapon_prof_bonus_check( ch, wield, &prof_gsn );
       }
-      else
+      else {
          dual_flip = FALSE;
+				 prof_bonus = weapon_prof_bonus_check( ch, wield, &prof_gsn ) + 2; //+2 Malus on second hand
+			}
    }
-   else
+   else {
       wield = get_eq_char( ch, WEAR_WIELD );
+			prof_bonus = weapon_prof_bonus_check( ch, wield, &prof_gsn );
+	 }
 
-   prof_bonus = weapon_prof_bonus_check( ch, wield, &prof_gsn );
+   
 
    if( ch->fighting  /* make sure fight is already started */
        && dt == TYPE_UNDEFINED && IS_NPC( ch ) && ch->attacks != 0 )
@@ -2178,6 +2183,68 @@ void stop_fighting( CHAR_DATA * ch, bool fBoth )
    return;
 }
 
+void fix_char_death( CHAR_DATA * ch )
+{
+   AFFECT_DATA *aff;
+   OBJ_DATA *obj;
+
+   de_equip_char( ch );
+
+   for( aff = ch->first_affect; aff; aff = aff->next )
+      affect_modify( ch, aff, FALSE );
+
+   ch->affected_by = race_table[ch->race].affected;
+   ch->mental_state = -10;
+   ch->hit = 1;
+   ch->mana = 1;
+   ch->move = UMAX( 1, ch->move );
+   ch->armor = 10;
+   ch->mod_str = 0;
+   ch->mod_dex = 0;
+   ch->mod_wis = 0;
+   ch->mod_int = 0;
+   ch->mod_con = 0;
+   ch->mod_cha = 0;
+   ch->mod_lck = 0;
+   ch->damroll = 0;
+   ch->hitroll = 0;
+   ch->alignment = URANGE( -1000, ch->alignment, 1000 );
+   ch->saving_breath = 0;
+   ch->saving_wand = 0;
+   ch->saving_para_petri = 0;
+   ch->saving_spell_staff = 0;
+   ch->saving_poison_death = 0;
+   ch->mod_blunt  = 0;   /* New Res System */
+   ch->mod_pierce = 0;   /* New Res System */
+   ch->mod_slash = 0;    /* New Res System */
+   ch->mod_fire = 0;     /* New Res System */
+   ch->mod_cold = 0;     /* New Res System */
+   ch->mod_acid = 0;     /* New Res System */
+   ch->mod_elect = 0;    /* New Res System */
+   ch->mod_energy = 0;   /* New Res System */
+   ch->mod_drain = 0;    /* New Res System */
+   ch->mod_poison = 0;   /* New Res System */	 
+	 ch->hit_regen = 0;
+	 ch->mana_regen = 0;
+	 ch->move_regen = 0;
+
+   for( aff = ch->first_affect; aff; aff = aff->next )
+      affect_modify( ch, aff, TRUE );
+
+   ch->carry_weight = 0;
+   ch->carry_number = 0;
+
+   for( obj = ch->first_carrying; obj; obj = obj->next_content )
+   {
+      if( obj->wear_loc == WEAR_NONE )
+         ch->carry_number += get_obj_number( obj );
+      if( !IS_SET( obj->extra_flags, ITEM_MAGIC ) )
+         ch->carry_weight += get_obj_weight( obj );
+   }
+
+   re_equip_char( ch );
+}
+
 void death_cry( CHAR_DATA * ch )
 {
    return;
@@ -2282,7 +2349,7 @@ OBJ_DATA *raw_kill( CHAR_DATA * ch, CHAR_DATA * victim )
    set_char_color( AT_DIEMSG, victim );
    do_help( victim, "_DIEMSG_" );
 
-   fix_char(victim);
+   fix_char_death(victim);
   
 /*
    if( !victim )
@@ -2323,6 +2390,152 @@ OBJ_DATA *raw_kill( CHAR_DATA * ch, CHAR_DATA * victim )
    /* Profile Deletion. */
    //sprintf( buf, "%s%s.htm", PROFILE_DIR, capitalize( arg ) );
    //remove( buf );
+
+   return corpse_to_return;
+}
+
+OBJ_DATA *raw_kill_suicide( CHAR_DATA * ch, CHAR_DATA * victim )
+{
+   CHAR_DATA *victmp;
+   OBJ_DATA *corpse_to_return = NULL;
+   OBJ_DATA *obj, *obj_next;
+	 char buf[MAX_STRING_LENGTH];
+   char buf2[MAX_STRING_LENGTH];
+	 
+   char arg[MAX_STRING_LENGTH];
+   long kexp;
+
+   if( !victim )
+   {
+      bug( "%s: null victim!", __FUNCTION__ );
+      return NULL;
+   }
+
+   strcpy( arg, victim->name );
+
+   stop_fighting( victim, TRUE );
+
+   if( ch && !IS_NPC( ch ) && !IS_NPC( victim ) )
+   {
+      CONTRACT_DATA *contract;
+      CONTRACT_DATA *scontract = NULL;
+      claim_disintegration( ch, victim );
+
+      for( contract = ch->first_contract; contract; contract = contract->next_in_contract )
+      {
+         if( !str_cmp( contract->target, victim->name ) )
+         {
+            scontract = contract;
+            break;
+         }
+      }
+
+      if( scontract != NULL )
+      {
+         ch_printf( ch, "&w&RYou have claimed your contract on %s, and collect your reward of %d credits.\r\n",
+                    scontract->target, scontract->amount );
+         ch->gold += scontract->amount;
+         kexp = ( exp_level( ch->skill_level[ASSASSIN_ABILITY] + 1 ) - exp_level( ch->skill_level[ASSASSIN_ABILITY] ) );
+         gain_exp( ch, kexp, ASSASSIN_ABILITY );
+
+         STRFREE( scontract->target );
+         UNLINK( scontract, ch->first_contract, ch->last_contract, next_in_contract, prev_in_contract );
+         DISPOSE( scontract );
+      }
+   }
+
+   /* Take care of polymorphed chars */
+   if( IS_NPC( victim ) && IS_SET( victim->act, ACT_POLYMORPHED ) )
+   {
+      char_from_room( victim->desc->original );
+      char_to_room( victim->desc->original, victim->in_room );
+      victmp = victim->desc->original;
+      do_revert( victim, "" );
+      return raw_kill( ch, victmp );
+   }
+
+   if( victim->in_room && IS_NPC( victim ) && victim->vip_flags != 0 && victim->in_room->area
+       && victim->in_room->area->planet )
+   {
+      victim->in_room->area->planet->population--;
+      victim->in_room->area->planet->population = UMAX( victim->in_room->area->planet->population, 0 );
+      victim->in_room->area->planet->pop_support -= ( float )( 1 + 1 / ( victim->in_room->area->planet->population + 1 ) );
+      if( victim->in_room->area->planet->pop_support < -100 )
+         victim->in_room->area->planet->pop_support = -100;
+   }
+
+   if( !IS_NPC( victim ) || !IS_SET( victim->act, ACT_NOKILL ) )
+      mprog_death_trigger( ch, victim );
+   if( char_died( victim ) )
+      return NULL;
+
+   
+   if( !IS_NPC( victim ) || ( !IS_SET( victim->act, ACT_NOKILL ) && !IS_SET( victim->act, ACT_NOCORPSE ) ) ) {
+	   corpse_to_return = make_corpse( victim, IS_NPC( ch ) ? ch->short_descr : ch->name );
+   }
+     
+   else
+   {
+      for( obj = victim->last_carrying; obj; obj = obj_next )
+      {
+         obj_next = obj->prev_content;
+         obj_from_char( obj );
+         extract_obj( obj );
+      }
+   }
+
+   if( IS_NPC( victim ) )
+   {
+      victim->pIndexData->killed++;
+      extract_char( victim, TRUE );
+      victim = NULL;
+      return corpse_to_return;
+   }
+
+   set_char_color( AT_DIEMSG, victim );
+   do_help( victim, "_DIEMSG_" );
+
+   fix_char_death(victim);
+  
+
+   if( !victim )
+   {
+      DESCRIPTOR_DATA *d;
+
+      
+	  // Make sure they aren't halfway logged in. 
+      for( d = first_descriptor; d; d = d->next )
+         if( ( victim = d->character ) && !IS_NPC( victim ) )
+            break;
+      if( d )
+         close_socket( d, TRUE );
+   }
+   else
+   {
+      int x, y;
+
+      quitting_char = victim;
+      save_char_obj( victim );
+      saving_char = NULL;
+      extract_char( victim, TRUE );
+      for( x = 0; x < MAX_WEAR; x++ )
+         for( y = 0; y < MAX_LAYERS; y++ )
+            save_equipment[x][y] = NULL;
+   }
+
+   sprintf( buf, "%s%c/%s", PLAYER_DIR, tolower( arg[0] ), capitalize( arg ) );
+   sprintf( buf2, "%s%c/%s", BACKUP_DIR, tolower( arg[0] ), capitalize( arg ) );
+
+   rename( buf, buf2 ); 
+
+   //sprintf( buf, "%s%c/%s.clone", PLAYER_DIR, tolower( arg[0] ), capitalize( arg ) );
+	 //sprintf( buf2, "%s%c/%s", PLAYER_DIR, tolower( arg[0] ), capitalize( arg ) );
+
+   //rename( buf, buf2 );
+
+   /* Profile Deletion. */
+   sprintf( buf, "%s%s.htm", PROFILE_DIR, capitalize( arg ) );
+   remove( buf );
 
    return corpse_to_return;
 }

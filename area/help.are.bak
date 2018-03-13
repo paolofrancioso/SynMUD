@@ -325,6 +325,13 @@ See BESTOWAREA
  
 ~
 
+36 AC ARMOR~
+AC (Armor Class) represents the change to avoid an incoming hit.
+The lower it is, the best it is.
+AC is calculated as:
+Armor - 1 every 3 Defender levels - dexterity bonus.
+~
+
 31 ACTFLAGS~
 sentinel       Mobile always stays at its post.
 scavenger      Mobile picks up items of value.
@@ -457,7 +464,7 @@ See also: OSET AFFECTTYPES
 
 31 AFFECTTYPES APPLYTYPES~
 none        strength    dexterity   intelligence  wisdom       constitution
-sex         level       age         height        weight       mana     
+sex         level       age         height        weight       shieldpoints 
 hit         move        gold        experience    armor        hitroll
 damroll     save_para   save_rod    save_poison   save_breath  save_power
 charisma    resistant   immune      susceptible   affected     luck
@@ -622,13 +629,6 @@ Syntax : Arm (device)
 Used for arming of various devices around the mud.
  
 See also help grenade.
-~
-
-0 ARMOR~
-Syntax: feel armor <character>
-
-This power decreases (improves) the armor class of the target character
-by 20 points.
 ~
 
 31 ASET~
@@ -2031,6 +2031,18 @@ Fields: save - saves the control panel settings
         guild_advisor - name of the Advisor to Guilds
 ~
 
+36 CYBERWARE~
+Cyberware is a permanent modification of your character
+that will add some bonus (or in rare cases also malus)
+to your character. It can be implanted in your body only
+by specific mobs (biotech surgers).
+You cannot un-equip your cyberware at will. If you want
+to change your cyberware you have to go to a surger and
+buy a new one. Your previous cyberware in the slot will
+be removed and lost for ever.
+Cyberware is not lost when you die.
+~
+
 1 D~
 .              WEARING AND SELLING EQUIPMENT
               -------------------------------
@@ -2078,7 +2090,7 @@ DAMAGE          ACTION       CLASS         POWER       SAVES
 none            none         none          none        none
 fire            create       lunar         minor       poison_death
 cold            destroy      solar         greater     wands
-electricity     resist       travel        major       para_petri
+shock			      resist       travel        major       para_petri
 energy          suscept      summon                    breath
 acid            divinate     life                      power_staff
 poison          obscure      death
@@ -2414,6 +2426,7 @@ Examples:
 31 'DUAL WIELD'~
 This skill allows you to wield two weapons simultaneously.
 This is an automatic skill.
+A +2 penalty is applied to the secondary weapon TACH0.
 ~
 
 1 DUINUOGWUIN~
@@ -6706,7 +6719,7 @@ will only work provided you are using a rip compatible terminal program.
 Players and mobiles may have resistance, suceptibility or immunity to
 certain types of attack:
 
-FIRE      COLD      ELECTRICITY  ENERGY     BLUNT     PIERCE     SLASH
+FIRE      COLD      SHOCK   	   ENERGY     BLUNT     PIERCE     SLASH
 ACID      POISON    DRAIN        SLEEP      CHARM     HOLD       NONMAGIC
 PLUS1     PLUS2     PLUS3        PLUS4      PLUS5     PLUS6      MAGIC
 PARALYSIS
@@ -7700,6 +7713,14 @@ RETURN returns you to your original body.
 1 SYSTEMTALK~
 Syntax : systemtalk <message>
 Sends message to all ships in current starsystem.
+~
+
+36 TACH0~
+TACH0 (To Hit Armor Class 0) represents the chance to hit a character.
+The lower it is, the best it is.
+TACH0 is calculated as:
+20 - 1 every 3 commando levels - HitRoll - (Weapon Proficiency/20).
+Dual wielding gives a +2 penalty on secondary weapon.
 ~
 
 1 TAKEDRUG DRUG DRUGS SPICE RHYLL~
