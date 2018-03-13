@@ -10,7 +10,7 @@ Languages    -1 1
 Toplevel     36
 Pheight      0
 Build        0
-Played       138407
+Played       138556
 Ship            ~
 ShipNum         0
 Room         100
@@ -29,7 +29,7 @@ Ability        7 200 19821500 0
 Ability        8 200 19800500 0
 Ability        9 200 19999999 0
 Act          574641736
-Position     5
+Position     8
 SavingThrows 0 0 0 0 0
 Alignment    -1000
 Glory        0
@@ -40,7 +40,7 @@ Armor        10
 Rppoints   0
 Mentalstate  0
 Password     9c3a88f26d3623fcf0a4aa881518170c70f5e1d62e0d9f9fa7e9b3f07fa299b7~
-Lastplayed   1520979114
+Lastplayed   1520979604
 Title         The Glorious Admin is here~
 AuthedBy     Admin~
 Addiction    0 0 0 0 0 0 0 0 0 0
@@ -170,7 +170,7 @@ End
 #OBJECT
 Vnum         50
 ExtraFlags   16
-WearLoc      16
+WearLoc      18
 Level        66
 Values       12 1 4 6 441 2000
 Affect       -1 -1 10 77 0
@@ -198,7 +198,7 @@ End
 
 #OBJECT
 Vnum         50
-WearLoc      18
+WearLoc      16
 Level        36
 Values       12 1 4 6 2000 2000
 Affect       -1 -1 10 12 0

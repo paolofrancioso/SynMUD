@@ -270,14 +270,14 @@ void do_score( CHAR_DATA * ch, const char *argument )
 			   	"|                                    | Shock:  [&W%3d&z ] [%-17.40s] |\r\n",
 				 URANGE(-50, victim->mod_elect, 50),  get_resi_rating(victim->mod_elect) );
 	pager_printf(ch,
-			  	"| HP:          [&R%4d&z/&R%-4d&z]           | Drain:  [&W%3d&z ] [%-17.40s] |\r\n",
-			    victim->hit, victim->max_hit, URANGE(-50, victim->mod_drain, 50),  get_resi_rating(victim->mod_drain) );
+			  	"| HP:          [&R%4d&z/&R%-4d&z] (&R+%3d&z)    | Drain:  [&W%3d&z ] [%-17.40s] |\r\n",
+			    victim->hit, victim->max_hit, victim->hit_regen, URANGE(-50, victim->mod_drain, 50),  get_resi_rating(victim->mod_drain) );
 	pager_printf(ch,
-			  	"| Shield:      [&C%4d&z/&C%-4d&z]           | Energy: [&W%3d&z ] [%-17.40s] |\r\n",
-				victim->mana, victim->max_mana, URANGE(-50, victim->mod_energy, 50),  get_resi_rating(victim->mod_energy) );
+			  	"| Shield:      [&C%4d&z/&C%-4d&z] (&C+%3d&z)    | Energy: [&W%3d&z ] [%-17.40s] |\r\n",
+				victim->mana, victim->max_mana, victim->mana_regen, URANGE(-50, victim->mod_energy, 50),  get_resi_rating(victim->mod_energy) );
 	pager_printf(ch,
-			  	"| Move:        [&G%4d&z/&G%-4d&z]           | Poison: [&W%3d&z ] [%-17.40s] |\r\n",
-				victim->move, victim->max_move, URANGE(-50, victim->mod_poison, 50),  get_resi_rating(victim->mod_poison) );
+			  	"| Move:        [&G%4d&z/&G%-4d&z] (&G+%3d&z)    | Poison: [&W%3d&z ] [%-17.40s] |\r\n",
+				victim->move, victim->max_move, victim->move_regen, URANGE(-50, victim->mod_poison, 50),  get_resi_rating(victim->mod_poison) );
 	pager_printf(ch,
 				"|                                    |                                    |\r\n" );
 	pager_printf(ch,
