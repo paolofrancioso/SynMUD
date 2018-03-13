@@ -10,12 +10,12 @@ Languages    -1 1
 Toplevel     36
 Pheight      0
 Build        0
-Played       139166
+Played       139896
 Ship            ~
 ShipNum         0
-Room         128
-HpManaMove   26 1000 15 1000 966 1000
-Gold         2132574427
+Room         100
+HpManaMove   1000 1000 1022 1000 1000 1000
+Gold         2085574427
 Bank         10
 Salary       0
 Ability        0 200 19843446 0
@@ -38,9 +38,9 @@ Hitroll      0
 Damroll      0
 Armor        10
 Rppoints   0
-Mentalstate  -2
+Mentalstate  -9
 Password     9c3a88f26d3623fcf0a4aa881518170c70f5e1d62e0d9f9fa7e9b3f07fa299b7~
-Lastplayed   1520982758
+Lastplayed   1520984276
 Title         The Glorious Admin is here~
 AuthedBy     Admin~
 Addiction    0 0 0 0 0 0 0 0 0 0
@@ -50,7 +50,7 @@ Flags        2048
 PKills       17
 MKills       4
 MDeaths      0
-AttrPerm     20 16 13 18 13 13 8
+AttrPerm     25 25 25 25 25 25 25
 AttrMod      0 0 0 0 0 0 0
 ResiMod      0 0 0 0 0 0 0 0 0 0
 Regens      0 0 0

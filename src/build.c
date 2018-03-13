@@ -1107,7 +1107,7 @@ void do_mset( CHAR_DATA * ch, const char *argument )
    else
    {
       minattr = 3;
-      maxattr = 18;
+      maxattr = 25;
    }
 
    if( !str_cmp( arg2, "on" ) )
