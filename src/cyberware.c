@@ -171,7 +171,6 @@ void wear_cyber( CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace, short wear_bit )
 
 }
 
-//This is only for test purposes
 void do_cyber( CHAR_DATA * ch, const char *argument )
 {
 
@@ -182,8 +181,6 @@ void do_cyber( CHAR_DATA * ch, const char *argument )
 
    argument = one_argument( argument, arg1 );
    argument = one_argument( argument, arg2 );
-   if( ( !str_cmp( arg2, "on" ) || !str_cmp( arg2, "upon" ) || !str_cmp( arg2, "around" ) ) && argument[0] != '\0' )
-      argument = one_argument( argument, arg2 );
 
    if( arg1[0] == '\0' )
    {
@@ -245,7 +242,7 @@ void do_remove_cyber( CHAR_DATA * ch, const char *argument )
 
    if( IS_NPC( ch ) )
    {
-      send_to_char( "Mob's can't mset\r\n", ch );
+      send_to_char( "Mob's can't remove cyberware\r\n", ch );
       return;
    }
 
@@ -319,4 +316,87 @@ void do_remove_cyber( CHAR_DATA * ch, const char *argument )
    }
    remove_obj( victim, obj->wear_loc, TRUE );
    return;
+}
+
+void do_implant( CHAR_DATA * ch, const char *argument ) {
+
+   CHAR_DATA *mob;
+   bool tfound = FALSE;
+	 char arg1[MAX_INPUT_LENGTH];
+	 OBJ_DATA *obj;
+	 OBJ_DATA *obj2, *obj_next;
+	 int cost;
+
+   if( IS_NPC( ch ) )
+      return;
+			
+  if( !IS_AWAKE( ch ) )
+   {
+      send_to_char( "In your dreams, or what?\r\n", ch );
+      return;
+   }
+
+   for( mob = ch->in_room->first_person; mob; mob = mob->next_in_room )
+      if( IS_NPC( mob ) && IS_SET( mob->act, ACT_CYBERWARE ) )
+      {
+         tfound = TRUE;
+         break;
+      }
+
+   if( ( !mob ) || ( !tfound ) )
+   {
+      send_to_char( "You can't do that here.\r\n", ch );
+      return;
+   }
+	 
+	 argument = one_argument( argument, arg1 );
+	 
+	 if( arg1[0] == '\0' )
+   {
+		 act( AT_TELL, "$n tells you 'What would you like to implant in your body?'", mob, NULL, ch, TO_VICT );
+		 return;
+   }
+
+   if( ( obj = get_obj_carry( ch, arg1 ) ) == NULL )
+   {
+      act( AT_TELL, "$n tells you 'You don't have that with you. Don't waste my time'", mob, NULL, ch, TO_VICT );
+      return;
+   }
+
+	 cost = obj->cost * 100;
+	 if( ch->gold < cost  )
+	 {
+	   ch_printf( ch, "You need %ld credits to implant this cyberware.\r\n", cost );
+		 return;
+	 }
+
+	 
+   for( obj2 = ch->first_carrying; obj2 != NULL; obj2 = obj_next )
+	 {
+         obj_next = obj2->next_content;
+         if( obj2->wear_loc != WEAR_NONE && 
+			       ( obj2->item_type == ITEM_CYBER_EYE 
+             || obj2->item_type == ITEM_CYBER_BRAIN 
+			       || obj2->item_type == ITEM_CYBER_ARMS
+             || obj2->item_type == ITEM_CYBER_LEGS 
+			       || obj2->item_type == ITEM_CYBER_BODY
+			       || obj2->item_type == ITEM_CYBER_EPIDERMIS ) 
+						 && obj2->item_type == obj->item_type )	{			 
+              remove_obj( ch, obj2->wear_loc, TRUE );
+						 }
+	 } 
+	 
+	 ch->gold -=  cost;
+	 
+   do_cyber(ch, arg1);
+	 act( AT_TELL, "$n tells you 'Ok, let's start...", mob, NULL, ch, TO_VICT );
+	 send_to_char( "The surgeon brings a mask close to your face. \r\n", ch );
+	 send_to_char( "Your eyes close slowly.  \r\n", ch );
+	 send_to_char( "Everything becomes dark. \r\n", ch );
+	 send_to_char( "... \r\n", ch );
+	 send_to_char( "You wake up slowly. The procedure is terminated. \r\n", ch );
+	 act( AT_TELL, "$n tells you 'Here you are. If someone asks, you never met me. Bye.", mob, NULL, ch, TO_VICT );
+	 ch_printf( ch, "&YYou pay %d credits.\r\n", cost );
+	 return;
+
 }

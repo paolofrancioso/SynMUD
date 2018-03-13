@@ -1359,7 +1359,7 @@ Log         0
 End
 
 #COMMAND
-Name        cyber~
+Name        wearcyber~
 Code        do_cyber
 Position    0
 Level       34
@@ -1435,6 +1435,14 @@ Name        inventory~
 Code        do_inventory
 Position    0
 Level       0
+Log         0
+End
+
+#COMMAND
+Name        implant~
+Code        do_implant
+Position    0
+Level       1
 Log         0
 End
 

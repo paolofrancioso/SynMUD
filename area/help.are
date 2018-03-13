@@ -2035,11 +2035,12 @@ Fields: save - saves the control panel settings
 Cyberware is a permanent modification of your character
 that will add some bonus (or in rare cases also malus)
 to your character. It can be implanted in your body only
-by specific mobs (biotech surgers).
+by specific mobs (biotech surgeons).
 You cannot un-equip your cyberware at will. If you want
 to change your cyberware you have to go to a surger and
-buy a new one. Your previous cyberware in the slot will
-be removed and lost for ever.
+implant a new one. Your previous cyberware in the same slot
+will be removed and put in your inventory.
+Implanting a cyberware costs 100 * item cost/value.
 Cyberware is not lost when you die.
 ~
 

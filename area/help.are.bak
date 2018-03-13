@@ -2038,8 +2038,9 @@ to your character. It can be implanted in your body only
 by specific mobs (biotech surgers).
 You cannot un-equip your cyberware at will. If you want
 to change your cyberware you have to go to a surger and
-buy a new one. Your previous cyberware in the slot will
-be removed and lost for ever.
+implant a new one. Your previous cyberware in the same slot
+will be removed and put in your inventory.
+Implanting a cyberware costs 100 * item cost/value.
 Cyberware is not lost when you die.
 ~
 
@@ -3568,10 +3569,10 @@ To remove your homepage setting, type 'homepage clear'.
 ~
 
 1 'HP'~
-This is an abbreviation for hit points. Everyone starts with an even
-500.
-And goes back to the dirt with 500, maximum.
- 
+This is an abbreviation for hit points. Everyone starts with 250 hp
+plus 10 hp for every point in constitution beyond 10 and plus 10 hp
+every 3 levels in Defender class.
+
  
 SEE ALSO: STUN, DEATH, CLONING
 ~

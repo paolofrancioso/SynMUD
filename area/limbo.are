@@ -5,6 +5,7 @@ Name         Limbo~
 Author       RoD/Durga~
 Ranges       0 103 0 103
 Economy      0 10831290
+ResetFreq    15
 #ENDAREADATA
 
 #MOBILE
@@ -23,29 +24,13 @@ Stats1     1000 36 20 10 10000 0
 Stats2     7 10 360
 Stats3     3 4 2
 Stats4     0 0 0 7 7
-Attribs    13 13 13 13 13 13 13 0
+Attribs    13 13 13 13 13 13 13
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
 Immune     sleep charm nonmagic magic paralysis~
 Attacks    claws~
 Defenses   parry dodge~
-#MUDPROG
-Progtype  speech_prog~
-Arglist   test~
-Comlist   say triggered by (name):	$n
-say triggered by (name&title): 	$N
-say triggerer is (he,she,it):	$e
-say triggerer is (him,her,it):	$m
-say triggerer is (his,hers,its):$s
-say random char (name):		$r
-say random char (name&title or short): 	$R
-say random char  (he,she,it):	$J
-say random char (him,her,it):	$L
-say random char (his,hers,its):	$K
-~
-#ENDPROG
-
 #MUDPROG
 Progtype  speech_prog~
 Arglist   test2~
@@ -59,6 +44,22 @@ say short_desc/title of victim:	$T
 say he/she/it of victim: 	$E
 say him/her/it of victim: 	$M
 say his/hers/its of victim:	$S
+~
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   test~
+Comlist   say triggered by (name):	$n
+say triggered by (name&title): 	$N
+say triggerer is (he,she,it):	$e
+say triggerer is (him,her,it):	$m
+say triggerer is (his,hers,its):$s
+say random char (name):		$r
+say random char (name&title or short): 	$R
+say random char  (he,she,it):	$J
+say random char (him,her,it):	$L
+say random char (his,hers,its):	$K
 ~
 #ENDPROG
 
@@ -83,15 +84,46 @@ Stats1     -1000 50 1 -300 10000 0
 Stats2     5 10 31550
 Stats3     1 2 2
 Stats4     0 0 0 0 0
-Attribs    10 10 10 10 10 10 10 0
+Attribs    10 10 10 10 10 10 10
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
 #MUDPROG
 Progtype  act_prog~
-Arglist   p is dying~
-Comlist   mpforce $n drink
+Arglist   p is DEAD!!~
+Comlist   mptrans $n 6
+~
+#ENDPROG
+
+#MUDPROG
+Progtype  act_prog~
+Arglist   p wields~
+Comlist   c heal $n
 c heal $n
+~
+#ENDPROG
+
+#MUDPROG
+Progtype  act_prog~
+Arglist   p wears~
+Comlist   c heal $n
+c heal $n
+~
+#ENDPROG
+
+#MUDPROG
+Progtype  act_prog~
+Arglist   p shivers and~
+Comlist   cast 'cure poison' $n
+cast heal $n
+~
+#ENDPROG
+
+#MUDPROG
+Progtype  act_prog~
+Arglist   p bashes against~
+Comlist   cast heal $n
+cast heal $n
 ~
 #ENDPROG
 
@@ -107,40 +139,9 @@ cast heal $n
 
 #MUDPROG
 Progtype  act_prog~
-Arglist   p bashes against~
-Comlist   cast heal $n
-cast heal $n
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  act_prog~
-Arglist   p shivers and~
-Comlist   cast 'cure poison' $n
-cast heal $n
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  act_prog~
-Arglist   p wears~
-Comlist   c heal $n
+Arglist   p is dying~
+Comlist   mpforce $n drink
 c heal $n
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  act_prog~
-Arglist   p wields~
-Comlist   c heal $n
-c heal $n
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  act_prog~
-Arglist   p is DEAD!!~
-Comlist   mptrans $n 6
 ~
 #ENDPROG
 
@@ -164,7 +165,7 @@ Stats1     -1000 105 1 -162 10000 0
 Stats2     21 10 1050
 Stats3     10 4 2
 Stats4     0 0 0 21 21
-Attribs    10 10 10 10 10 10 10 0
+Attribs    10 10 10 10 10 10 10
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -192,7 +193,7 @@ Stats1     0 103 0 0 0 0
 Stats2     0 0 0
 Stats3     0 0 0
 Stats4     0 0 0 0 0
-Attribs    10 10 10 10 10 10 10 0
+Attribs    10 10 10 10 10 10 10
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -218,7 +219,7 @@ Stats1     0 1 0 0 0 0
 Stats2     0 0 0
 Stats3     0 0 0
 Stats4     0 0 0 0 0
-Attribs    13 13 13 13 13 13 13 0
+Attribs    13 13 13 13 13 13 13
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -245,7 +246,7 @@ Stats1     0 1 0 0 0 0
 Stats2     0 0 0
 Stats3     0 0 0
 Stats4     0 0 2 0 0
-Attribs    13 13 13 13 13 13 13 0
+Attribs    13 13 13 13 13 13 13
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -272,7 +273,7 @@ Stats1     0 1 0 0 0 0
 Stats2     0 0 0
 Stats3     0 0 0
 Stats4     0 0 2 0 0
-Attribs    13 13 13 13 13 13 13 0
+Attribs    13 13 13 13 13 13 13
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -299,7 +300,7 @@ Stats1     0 1 0 0 0 0
 Stats2     0 0 0
 Stats3     0 0 0
 Stats4     0 0 2 0 0
-Attribs    13 13 13 13 13 13 13 0
+Attribs    13 13 13 13 13 13 13
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -327,7 +328,7 @@ Stats1     0 1 0 0 0 0
 Stats2     0 0 0
 Stats3     0 0 0
 Stats4     0 0 2 0 0
-Attribs    13 13 13 13 13 13 13 0
+Attribs    13 13 13 13 13 13 13
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -354,7 +355,7 @@ Stats1     0 1 0 0 0 0
 Stats2     0 0 0
 Stats3     0 0 0
 Stats4     0 0 2 0 0
-Attribs    13 13 13 13 13 13 13 0
+Attribs    13 13 13 13 13 13 13
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -382,7 +383,7 @@ Stats1     0 1 0 0 0 0
 Stats2     0 0 0
 Stats3     0 0 0
 Stats4     0 0 1 0 0
-Attribs    13 13 13 13 13 13 13 0
+Attribs    13 13 13 13 13 13 13
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -410,7 +411,7 @@ Stats1     0 1 0 0 0 0
 Stats2     0 0 0
 Stats3     0 0 0
 Stats4     0 0 1 0 0
-Attribs    13 13 13 13 13 13 13 0
+Attribs    13 13 13 13 13 13 13
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -432,7 +433,7 @@ Stats1     0 1 0 0 0 0
 Stats2     0 0 0
 Stats3     1 10 0
 Stats4     0 0 0 0 0
-Attribs    13 13 13 13 13 13 13 0
+Attribs    13 13 13 13 13 13 13
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -454,7 +455,7 @@ Stats1     0 1 0 0 0 0
 Stats2     0 0 0
 Stats3     1 10 0
 Stats4     0 0 0 0 0
-Attribs    13 13 13 13 13 13 13 0
+Attribs    13 13 13 13 13 13 13
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -476,7 +477,7 @@ Stats1     0 1 0 0 0 0
 Stats2     0 0 0
 Stats3     1 10 0
 Stats4     0 0 0 0 0
-Attribs    13 13 13 13 13 13 13 0
+Attribs    13 13 13 13 13 13 13
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -498,7 +499,7 @@ Stats1     0 1 0 0 0 0
 Stats2     0 0 0
 Stats3     1 10 0
 Stats4     0 0 0 0 0
-Attribs    13 13 13 13 13 13 13 0
+Attribs    13 13 13 13 13 13 13
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -519,7 +520,7 @@ Stats1     0 1 0 0 0 0
 Stats2     0 0 0
 Stats3     1 10 0
 Stats4     0 0 0 0 0
-Attribs    13 13 13 13 13 13 13 0
+Attribs    13 13 13 13 13 13 13
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -541,7 +542,7 @@ Stats1     0 1 0 0 0 0
 Stats2     0 0 0
 Stats3     1 10 0
 Stats4     0 0 0 0 0
-Attribs    13 13 13 13 13 13 13 0
+Attribs    13 13 13 13 13 13 13
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -563,7 +564,7 @@ Stats1     0 36 0 -300 0 0
 Stats2     80 22 250
 Stats3     30 22 30
 Stats4     0 0 2 40 20
-Attribs    10 10 10 10 10 10 10 0
+Attribs    10 10 10 10 10 10 10
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -588,7 +589,7 @@ Stats1     0 1 0 0 0 0
 Stats2     15 5 0
 Stats3     5 5 0
 Stats4     0 0 2 0 0
-Attribs    10 10 10 10 10 10 10 0
+Attribs    10 10 10 10 10 10 10
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -610,7 +611,7 @@ Stats1     0 33 0 -5 0 0
 Stats2     80 17 250
 Stats3     30 20 15
 Stats4     0 0 3 37 15
-Attribs    10 10 10 10 10 10 10 0
+Attribs    10 10 10 10 10 10 10
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -635,7 +636,7 @@ Stats1     0 36 0 -300 0 0
 Stats2     80 22 250
 Stats3     30 22 30
 Stats4     0 0 2 40 20
-Attribs    10 10 10 10 10 10 10 0
+Attribs    10 10 10 10 10 10 10
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -660,7 +661,7 @@ Stats1     0 1 0 0 0 0
 Stats2     15 5 0
 Stats3     5 5 0
 Stats4     0 0 2 0 0
-Attribs    10 10 10 10 10 10 10 0
+Attribs    10 10 10 10 10 10 10
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -682,7 +683,7 @@ Stats1     0 33 0 -5 0 0
 Stats2     80 17 250
 Stats3     30 20 15
 Stats4     0 0 3 37 15
-Attribs    10 10 10 10 10 10 10 0
+Attribs    10 10 10 10 10 10 10
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -708,7 +709,7 @@ Stats1     0 36 0 -300 0 0
 Stats2     80 22 250
 Stats3     30 22 30
 Stats4     0 0 2 40 20
-Attribs    10 10 10 10 10 10 10 0
+Attribs    10 10 10 10 10 10 10
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -733,7 +734,7 @@ Stats1     0 1 0 0 0 0
 Stats2     15 5 0
 Stats3     5 5 0
 Stats4     0 0 2 0 0
-Attribs    10 10 10 10 10 10 10 0
+Attribs    10 10 10 10 10 10 10
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -755,7 +756,7 @@ Stats1     0 33 0 -5 0 0
 Stats2     80 17 250
 Stats3     30 20 15
 Stats4     0 0 3 6 6
-Attribs    10 10 10 10 10 10 10 0
+Attribs    10 10 10 10 10 10 10
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -779,7 +780,7 @@ Stats1     0 1 0 0 0 0
 Stats2     30 100 0
 Stats3     10 15 0
 Stats4     0 0 0 0 0
-Attribs    10 10 10 10 10 10 10 0
+Attribs    10 10 10 10 10 10 10
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -801,36 +802,19 @@ Stats1     1000 105 0 -162 0 0
 Stats2     21 10 5000
 Stats3     10 4 2
 Stats4     0 0 0 21 21
-Attribs    13 13 13 13 13 13 13 0
+Attribs    13 13 13 13 13 13 13
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
-Resist     fire electricity energy magic~
+Resist     fire energy magic~
 Defenses   parry dodge r2 r8 r11 r13 disarm~
 #MUDPROG
-Progtype  act_prog~
-Arglist   package.~
-Comlist   if ovnuminv(10208) >= 1
-say Thank you.
-mpwithdraw 2500
-give 2500 credits $n
-mpgain $n 5 100000
-else
-say hmm... Thanks, but this isn't adressed to me.
-drop all
-endif
-mpat 10299 drop all
-mpat 10299 mppurge
-~
-#ENDPROG
-
-#MUDPROG
 Progtype  speech_prog~
-Arglist   corusca~
-Comlist   non $n 
-' The corusca is on of the best crytals used to make a lightsaber
-' and for that reason they are very rare
-' I have seen but a few in my day.
+Arglist   shop~
+Comlist   grin $n
+' yes the jedi shop in the space mall , he is the owner of it now.
+' if you seek the corusca crystal he may still have it 
+' i don't believe he had crafted his lightsaber before he left.
 ~
 #ENDPROG
 
@@ -846,11 +830,28 @@ Comlist   chuckle
 
 #MUDPROG
 Progtype  speech_prog~
-Arglist   shop~
-Comlist   grin $n
-' yes the jedi shop in the space mall , he is the owner of it now.
-' if you seek the corusca crystal he may still have it 
-' i don't believe he had crafted his lightsaber before he left.
+Arglist   corusca~
+Comlist   non $n 
+' The corusca is on of the best crytals used to make a lightsaber
+' and for that reason they are very rare
+' I have seen but a few in my day.
+~
+#ENDPROG
+
+#MUDPROG
+Progtype  act_prog~
+Arglist   package.~
+Comlist   if ovnuminv(10208) >= 1
+say Thank you.
+mpwithdraw 2500
+give 2500 credits $n
+mpgain $n 5 100000
+else
+say hmm... Thanks, but this isn't adressed to me.
+drop all
+endif
+mpat 10299 drop all
+mpat 10299 mppurge
 ~
 #ENDPROG
 
@@ -876,7 +877,7 @@ Stats1     0 30 0 25 0 0
 Stats2     6 10 300
 Stats3     3 4 2
 Stats4     0 0 0 0 0
-Attribs    10 10 10 10 10 10 10 0
+Attribs    10 10 10 10 10 10 10
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -903,7 +904,7 @@ Stats1     -1000 25 0 -4 0 0
 Stats2     1 1 385
 Stats3     4 5 15
 Stats4     0 0 0 0 0
-Attribs    13 13 13 13 13 13 13 0
+Attribs    13 13 13 13 13 13 13
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -926,7 +927,7 @@ Stats1     0 1 0 0 0 0
 Stats2     0 0 0
 Stats3     0 0 0
 Stats4     0 0 0 0 0
-Attribs    10 10 10 10 10 10 10 0
+Attribs    10 10 10 10 10 10 10
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -948,7 +949,7 @@ Stats1     0 36 0 10 0 0
 Stats2     7 10 360
 Stats3     3 4 2
 Stats4     0 0 0 30 7
-Attribs    20 20 20 20 20 20 20 0
+Attribs    20 20 20 20 20 20 20
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -973,7 +974,7 @@ Stats1     0 15 0 62 0 0
 Stats2     3 10 150
 Stats3     1 4 2
 Stats4     0 0 0 3 3
-Attribs    10 10 10 10 10 10 10 0
+Attribs    10 10 10 10 10 10 10
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -995,7 +996,7 @@ Stats1     0 15 0 62 0 0
 Stats2     3 10 150
 Stats3     1 4 2
 Stats4     0 0 0 3 3
-Attribs    13 13 13 13 13 13 13 0
+Attribs    13 13 13 13 13 13 13
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -1024,7 +1025,7 @@ Stats1     0 1 0 0 0 0
 Stats2     0 0 0
 Stats3     0 0 0
 Stats4     0 0 0 0 0
-Attribs    10 10 10 10 10 10 10 0
+Attribs    10 10 10 10 10 10 10
 Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
@@ -1755,18 +1756,18 @@ Long     &R...There are flames everywhere!~
 Values   0 0 0 0 0 0
 Stats    1 0 0 0 0
 #MUDPROG
-Progtype  rand_prog~
+Progtype  greet_prog~
 Arglist   100~
-Comlist   mea $n &RYou are scorched by the blaze!
+Comlist   mea $n &w
+mea $n &RYou are scorched by the blaze!
 mpdamage $n 50
 ~
 #ENDPROG
 
 #MUDPROG
-Progtype  greet_prog~
+Progtype  rand_prog~
 Arglist   100~
-Comlist   mea $n &w
-mea $n &RYou are scorched by the blaze!
+Comlist   mea $n &RYou are scorched by the blaze!
 mpdamage $n 50
 ~
 #ENDPROG
@@ -1837,22 +1838,6 @@ Desc     You are floating in nothing.
 ~
 #MUDPROG
 Progtype  speech_prog~
-Arglist   test~
-Comlist   say triggered by (name):	$n
-say triggered by (name&title): 	$N
-say triggerer is (he,she,it):	$e
-say triggerer is (him,her,it):	$m
-say triggerer is (his,hers,its):$s
-say random char (name):		$r
-say random char (name&title or short): 	$R
-say random char  (he,she,it):	$J
-say random char (him,her,it):	$K
-say random char (his,hers,its):	$L
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  speech_prog~
 Arglist   test2~
 Comlist   say firstname of room:	 	$i
 say short_desc/title of room: 	$I
@@ -1864,6 +1849,22 @@ say short_desc/title of victim:	$T
 say he/she/it of victim: 	$E
 say him/her/it of victim: 	$M
 say his/hers/its of victim:	$S
+~
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   test~
+Comlist   say triggered by (name):	$n
+say triggered by (name&title): 	$N
+say triggerer is (he,she,it):	$e
+say triggerer is (him,her,it):	$m
+say triggerer is (his,hers,its):$s
+say random char (name):		$r
+say random char (name&title or short): 	$R
+say random char  (he,she,it):	$J
+say random char (him,her,it):	$K
+say random char (his,hers,its):	$L
 ~
 #ENDPROG
 
@@ -1881,17 +1882,17 @@ Desc     &RTo go to coruscant, say "&WCoruscant&R"
 Reset M 0 1 1 2
 #MUDPROG
 Progtype  speech_prog~
-Arglist   Coruscant~
+Arglist   calamari~
 Comlist   mea $n You are mysteriosly transferred.
-mptransfer $n 1050
+mptransfer $n 9701
 ~
 #ENDPROG
 
 #MUDPROG
 Progtype  speech_prog~
-Arglist   calamari~
+Arglist   Coruscant~
 Comlist   mea $n You are mysteriosly transferred.
-mptransfer $n 9701
+mptransfer $n 1050
 ~
 #ENDPROG
 
@@ -2036,18 +2037,18 @@ ToRoom    36
 #ENDEXIT
 
 #MUDPROG
+Progtype  rand_prog~
+Arglist   15~
+Comlist   mpecho A slow chant floats down to you:  "Two man enter ... one man leave."
+~
+#ENDPROG
+
+#MUDPROG
 Progtype  death_prog~
 Arglist   100~
 Comlist   mpecho A deafening clamor of gleeful shouts rain down from above!
 mpechoaround $n Trinkets, spittle and half-eaten food pelt down on your head.
 mpechoaround $n Tokens of favor from an appreciative crowd.
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  rand_prog~
-Arglist   15~
-Comlist   mpecho A slow chant floats down to you:  "Two man enter ... one man leave."
 ~
 #ENDPROG
 
@@ -2085,18 +2086,18 @@ ToRoom    37
 #ENDEXIT
 
 #MUDPROG
+Progtype  rand_prog~
+Arglist   15~
+Comlist   mpecho A slow chant floats down to you:  "Two man enter ... one man leave."
+~
+#ENDPROG
+
+#MUDPROG
 Progtype  death_prog~
 Arglist   100~
 Comlist   mpecho A deafening clamor of gleeful shouts rain down from above!
 mpechoaround $n Trinkets, spittle and half-eaten food pelt down on your head.
 mpechoaround $n Tokens of favor from an appreciative crowd.
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  rand_prog~
-Arglist   15~
-Comlist   mpecho A slow chant floats down to you:  "Two man enter ... one man leave."
 ~
 #ENDPROG
 
@@ -2128,18 +2129,18 @@ ToRoom    30
 #ENDEXIT
 
 #MUDPROG
+Progtype  rand_prog~
+Arglist   15~
+Comlist   mpecho A slow chant floats down to you:  "Two man enter ... one man leave."
+~
+#ENDPROG
+
+#MUDPROG
 Progtype  death_prog~
 Arglist   100~
 Comlist   mpecho A deafening clamor of gleeful shouts rain down from above!
 mpechoaround $n Trinkets, spittle and half-eaten food pelt down on your head.
 mpechoaround $n Tokens of favor from an appreciative crowd.
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  rand_prog~
-Arglist   15~
-Comlist   mpecho A slow chant floats down to you:  "Two man enter ... one man leave."
 ~
 #ENDPROG
 
@@ -2177,18 +2178,18 @@ ToRoom    37
 #ENDEXIT
 
 #MUDPROG
+Progtype  rand_prog~
+Arglist   15~
+Comlist   mpecho A slow chant floats down to you:  "Two man enter ... one man leave."
+~
+#ENDPROG
+
+#MUDPROG
 Progtype  death_prog~
 Arglist   100~
 Comlist   mpecho A deafening clamor of gleeful shouts rain down from above!
 mpechoaround $n Trinkets, spittle and half-eaten food pelt down on your head.
 mpechoaround $n Tokens of favor from an appreciative crowd.
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  rand_prog~
-Arglist   15~
-Comlist   mpecho A slow chant floats down to you:  "Two man enter ... one man leave."
 ~
 #ENDPROG
 
@@ -2220,18 +2221,18 @@ ToRoom    37
 #ENDEXIT
 
 #MUDPROG
+Progtype  rand_prog~
+Arglist   15~
+Comlist   mpecho A slow chant floats down to you:  "Two man enter ... one man leave."
+~
+#ENDPROG
+
+#MUDPROG
 Progtype  death_prog~
 Arglist   100~
 Comlist   mpecho A deafening clamor of gleeful shouts rain down from above!
 mpechoaround $n Trinkets, spittle and half-eaten food pelt down on your head.
 mpechoaround $n Tokens of favor from an appreciative crowd.
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  rand_prog~
-Arglist   15~
-Comlist   mpecho A slow chant floats down to you:  "Two man enter ... one man leave."
 ~
 #ENDPROG
 
@@ -2269,18 +2270,18 @@ ToRoom    37
 #ENDEXIT
 
 #MUDPROG
+Progtype  rand_prog~
+Arglist   15~
+Comlist   mpecho A slow chant floats down to you:  "Two man enter ... one man leave."
+~
+#ENDPROG
+
+#MUDPROG
 Progtype  death_prog~
 Arglist   100~
 Comlist   mpecho A deafening clamor of gleeful shouts rain down from above!
 mpechoaround $n Trinkets, spittle and half-eaten food pelt down on your head.
 mpechoaround $n Tokens of favor from an appreciative crowd.
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  rand_prog~
-Arglist   15~
-Comlist   mpecho A slow chant floats down to you:  "Two man enter ... one man leave."
 ~
 #ENDPROG
 
@@ -2312,18 +2313,18 @@ ToRoom    36
 #ENDEXIT
 
 #MUDPROG
+Progtype  rand_prog~
+Arglist   15~
+Comlist   mpecho A slow chant floats down to you:  "Two man enter ... one man leave."
+~
+#ENDPROG
+
+#MUDPROG
 Progtype  death_prog~
 Arglist   100~
 Comlist   mpecho A deafening clamor of gleeful shouts rain down from above!
 mpechoaround $n Trinkets, spittle and half-eaten food pelt down on your head.
 mpechoaround $n Tokens of favor from an appreciative crowd.
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  rand_prog~
-Arglist   15~
-Comlist   mpecho A slow chant floats down to you:  "Two man enter ... one man leave."
 ~
 #ENDPROG
 
@@ -2361,18 +2362,18 @@ ToRoom    37
 #ENDEXIT
 
 #MUDPROG
+Progtype  rand_prog~
+Arglist   15~
+Comlist   mpecho A slow chant floats down to you:  "Two man enter ... one man leave."
+~
+#ENDPROG
+
+#MUDPROG
 Progtype  death_prog~
 Arglist   100~
 Comlist   mpecho A deafening clamor of gleeful shouts rain down from above!
 mpechoaround $n Trinkets, spittle and half-eaten food pelt down on your head.
 mpechoaround $n Tokens of favor from an appreciative crowd.
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  rand_prog~
-Arglist   15~
-Comlist   mpecho A slow chant floats down to you:  "Two man enter ... one man leave."
 ~
 #ENDPROG
 
@@ -2444,18 +2445,18 @@ ToRoom    36
 #ENDEXIT
 
 #MUDPROG
+Progtype  rand_prog~
+Arglist   15~
+Comlist   mpecho A slow chant floats down to you:  "Two man enter ... one man leave."
+~
+#ENDPROG
+
+#MUDPROG
 Progtype  death_prog~
 Arglist   100~
 Comlist   mpecho A deafening clamor of gleeful shouts rain down from above!
 mpechoaround $n Trinkets, spittle and half-eaten food pelt down on your head.
 mpechoaround $n Tokens of favor from an appreciative crowd.
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  rand_prog~
-Arglist   15~
-Comlist   mpecho A slow chant floats down to you:  "Two man enter ... one man leave."
 ~
 #ENDPROG
 
@@ -2483,18 +2484,18 @@ Flags     climb~
 #ENDEXIT
 
 #MUDPROG
+Progtype  rand_prog~
+Arglist   15~
+Comlist   mpecho A slow chant floats down to you:  "Two man enter ... one man leave."
+~
+#ENDPROG
+
+#MUDPROG
 Progtype  death_prog~
 Arglist   100~
 Comlist   mpecho A deafening clamor of gleeful shouts rain down from above!
 mpechoaround $n Trinkets, spittle and half-eaten food pelt down on your head.
 mpechoaround $n Tokens of favor from an appreciative crowd.
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  rand_prog~
-Arglist   15~
-Comlist   mpecho A slow chant floats down to you:  "Two man enter ... one man leave."
 ~
 #ENDPROG
 
@@ -2522,18 +2523,18 @@ Flags     climb~
 #ENDEXIT
 
 #MUDPROG
+Progtype  rand_prog~
+Arglist   15~
+Comlist   mpecho A slow chant floats down to you:  "Two man enter ... one man leave."
+~
+#ENDPROG
+
+#MUDPROG
 Progtype  death_prog~
 Arglist   100~
 Comlist   mpecho A deafening clamor of gleeful shouts rain down from above!
 mpechoaround $n Trinkets, spittle and half-eaten food pelt down on your head.
 mpechoaround $n Tokens of favor from an appreciative crowd.
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  rand_prog~
-Arglist   15~
-Comlist   mpecho A slow chant floats down to you:  "Two man enter ... one man leave."
 ~
 #ENDPROG
 
@@ -2560,18 +2561,18 @@ ToRoom    38
 #ENDEXIT
 
 #MUDPROG
+Progtype  rand_prog~
+Arglist   15~
+Comlist   mpecho A slow chant floats down to you:  "Two man enter ... one man leave."
+~
+#ENDPROG
+
+#MUDPROG
 Progtype  death_prog~
 Arglist   100~
 Comlist   mpecho A deafening clamor of gleeful shouts rain down from above!
 mpechoaround $n Trinkets, spittle and half-eaten food pelt down on your head.
 mpechoaround $n Tokens of favor from an appreciative crowd.
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  rand_prog~
-Arglist   15~
-Comlist   mpecho A slow chant floats down to you:  "Two man enter ... one man leave."
 ~
 #ENDPROG
 

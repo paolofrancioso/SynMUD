@@ -1426,6 +1426,9 @@ struct smaug_affect
 #define ACT_PUEBLO		 BV28 /* This is the pueblo flag */
 #define ACT_PROTOTYPE		 BV30 /* A prototype mob   */
 
+/* cyberware acts */
+#define ACT_CYBERWARE   BV29 /* This is for mobs who can implant cyberware */
+
 /* Act2 Flags */
 #define	ACT_BOUND		 BV00 /* This is the bind flag */
 #define ACT_JEDI		 BV01 /* This is a light jedi */
@@ -4406,8 +4409,6 @@ DECLARE_DO_FUN( do_setprototype );
 DECLARE_DO_FUN( do_showprototype );
 DECLARE_DO_FUN( do_designship );
 DECLARE_DO_FUN( do_wear );
-DECLARE_DO_FUN( do_cyber );
-DECLARE_DO_FUN( do_remove_cyber );
 DECLARE_DO_FUN( do_weather );
 DECLARE_DO_FUN( do_west );
 DECLARE_DO_FUN( do_where );
@@ -4421,6 +4422,11 @@ DECLARE_DO_FUN( do_wizlock );
 DECLARE_DO_FUN( do_yell );
 DECLARE_DO_FUN( do_zap );
 DECLARE_DO_FUN( do_zones );
+
+/* cyberware stuff */
+DECLARE_DO_FUN( do_cyber );
+DECLARE_DO_FUN( do_remove_cyber );
+DECLARE_DO_FUN( do_implant );
 
 /* mob prog stuff */
 DECLARE_DO_FUN( do_mp_close_passage );

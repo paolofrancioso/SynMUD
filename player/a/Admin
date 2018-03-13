@@ -10,12 +10,12 @@ Languages    -1 1
 Toplevel     36
 Pheight      0
 Build        0
-Played       136922
+Played       138427
 Ship            ~
 ShipNum         0
 Room         100
 HpManaMove   1000 1000 1022 1000 1000 1000
-Gold         2134114427
+Gold         2132574427
 Bank         10
 Salary       0
 Ability        0 200 19840460 0
@@ -40,7 +40,7 @@ Armor        10
 Rppoints   0
 Mentalstate  0
 Password     9c3a88f26d3623fcf0a4aa881518170c70f5e1d62e0d9f9fa7e9b3f07fa299b7~
-Lastplayed   1520963433
+Lastplayed   1520979134
 Title         The Glorious Admin is here~
 AuthedBy     Admin~
 Addiction    0 0 0 0 0 0 0 0 0 0
@@ -190,18 +190,10 @@ End
 Name         An Infrared Eye rename~
 ShortDescr   An Infrared Eye~
 Vnum         63
-WearFlags    -2147483648
+WearFlags    67108864
 WearLoc      26
 ItemType     99
 Level        36
-End
-
-#OBJECT
-Vnum         37
-WearFlags    131073
-Level        36
-Values       15 15 0 0 0 0
-Affect       -1 -1 10 67 0
 End
 
 #OBJECT

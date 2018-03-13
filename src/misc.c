@@ -2927,7 +2927,7 @@ void do_train( CHAR_DATA * ch, const char *argument )
 				return;
 			}
 			ch->gold -=  cost ;	  
-			
+			ch_printf( ch, "&YYou pay %d credits.\r\n", cost );
       send_to_char( "&GYou begin your weight training.\r\n", ch );
    }
    if( !str_cmp( arg, "dex" ) || !str_cmp( arg, "dexterity" ) )
@@ -2945,7 +2945,7 @@ void do_train( CHAR_DATA * ch, const char *argument )
 				return;
 			}
 			ch->gold -=  cost ;	  			
-			
+			ch_printf( ch, "&YYou pay %d credits.\r\n", cost );
       send_to_char( "&GYou begin to work at some challenging tests of coordination.\r\n", ch );
    }
    if( !str_cmp( arg, "int" ) || !str_cmp( arg, "intelligence" ) )
@@ -2963,7 +2963,7 @@ void do_train( CHAR_DATA * ch, const char *argument )
 				return;
 			}
 			ch->gold -=  cost ;	  
-			
+			ch_printf( ch, "&YYou pay %d credits.\r\n", cost );
       send_to_char( "&GYou begin your studies.\r\n", ch );
    }
    if( !str_cmp( arg, "wis" ) || !str_cmp( arg, "wisdom" ) )
@@ -2981,7 +2981,7 @@ void do_train( CHAR_DATA * ch, const char *argument )
 				return;
 			}
 			ch->gold -=  cost ;	  
-			
+			ch_printf( ch, "&YYou pay %d credits.\r\n", cost );
       send_to_char( "&GYou begin contemplating several ancient texts in an effort to gain wisdom.\r\n", ch );
    }
    if( !str_cmp( arg, "con" ) || !str_cmp( arg, "constitution" ) )
@@ -2999,7 +2999,7 @@ void do_train( CHAR_DATA * ch, const char *argument )
 				return;
 			}
 			ch->gold -=  cost ;	  
-			
+			ch_printf( ch, "&YYou pay %d credits.\r\n", cost );
       send_to_char( "&GYou begin your endurance training.\r\n", ch );
    }
    if( !str_cmp( arg, "cha" ) || !str_cmp( arg, "charisma" ) )
@@ -3017,7 +3017,7 @@ void do_train( CHAR_DATA * ch, const char *argument )
 				return;
 			}
 			ch->gold -=  cost ;	  
-			
+			ch_printf( ch, "&YYou pay %d credits.\r\n", cost );
       send_to_char( "&GYou begin lessons in maners and ettiquite.\r\n", ch );
    }
    //add_timer ( ch , TIMER_DO_FUN , 10 , do_train , 1 );
