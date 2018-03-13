@@ -4407,6 +4407,7 @@ DECLARE_DO_FUN( do_showprototype );
 DECLARE_DO_FUN( do_designship );
 DECLARE_DO_FUN( do_wear );
 DECLARE_DO_FUN( do_cyber );
+DECLARE_DO_FUN( do_remove_cyber );
 DECLARE_DO_FUN( do_weather );
 DECLARE_DO_FUN( do_west );
 DECLARE_DO_FUN( do_where );

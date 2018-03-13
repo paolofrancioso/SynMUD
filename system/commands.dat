@@ -1361,9 +1361,17 @@ End
 #COMMAND
 Name        cyber~
 Code        do_cyber
-Position    5
-Level       0
-Log         0
+Position    0
+Level       34
+Log         1
+End
+
+#COMMAND
+Name        remcyber~
+Code        do_remove_cyber
+Position    0
+Level       34
+Log         1
 End
 
 #COMMAND

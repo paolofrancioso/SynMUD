@@ -187,7 +187,7 @@ void do_cyber( CHAR_DATA * ch, const char *argument )
 
    if( arg1[0] == '\0' )
    {
-      send_to_char( "Wear, wield, or hold what?\r\n", ch );
+      send_to_char( "Which cyberware?\r\n", ch );
       return;
    }
 
@@ -215,7 +215,7 @@ void do_cyber( CHAR_DATA * ch, const char *argument )
    {
       if( ( obj = get_obj_carry( ch, arg1 ) ) == NULL )
       {
-         send_to_char( "You do not have that item.\r\n", ch );
+         send_to_char( "You do not have that cyberware.\r\n", ch );
          return;
       }
       if( obj->item_type == ITEM_BINDERS )
@@ -232,4 +232,91 @@ void do_cyber( CHAR_DATA * ch, const char *argument )
 
    return;
 
+}
+
+
+void do_remove_cyber( CHAR_DATA * ch, const char *argument )
+{
+
+   OBJ_DATA *obj, *obj_next;
+   char arg1[MAX_INPUT_LENGTH];
+   char arg2[MAX_INPUT_LENGTH];
+   CHAR_DATA *victim;
+
+   if( IS_NPC( ch ) )
+   {
+      send_to_char( "Mob's can't mset\r\n", ch );
+      return;
+   }
+
+   if( !ch->desc )
+   {
+      send_to_char( "You have no descriptor\r\n", ch );
+      return;
+   }
+
+   victim = NULL;
+
+	 argument = one_argument( argument, arg1 );
+	 argument = one_argument( argument, arg2 );
+
+   if( arg1[0] == '\0' || arg2[0] == '\0')
+   {
+     send_to_char( "Syntax: remcyber <victim> <object>\r\n", ch );
+		 return;
+   }
+	 
+	 if( !victim && get_trust( ch ) <= LEVEL_IMMORTAL )
+   {
+      if( ( victim = get_char_room( ch, arg1 ) ) == NULL )
+      {
+         send_to_char( "They aren't here.\r\n", ch );
+         return;
+      }
+   }
+   else if( !victim )
+   {
+      if( ( victim = get_char_world( ch, arg1 ) ) == NULL )
+      {
+         send_to_char( "No one like that in all the realms.\r\n", ch );
+         return;
+      }
+   }
+
+   if( !str_cmp( arg2, "all" ) )  /* SB Remove all */
+   {
+      for( obj = victim->first_carrying; obj != NULL; obj = obj_next )
+      {
+         obj_next = obj->next_content;
+         if( obj->wear_loc != WEAR_NONE && can_see_obj( ch, obj ) && 
+			       ( obj->item_type == ITEM_CYBER_EYE 
+             || obj->item_type == ITEM_CYBER_BRAIN 
+			       || obj->item_type == ITEM_CYBER_ARMS
+             || obj->item_type == ITEM_CYBER_LEGS 
+			       || obj->item_type == ITEM_CYBER_BODY
+			       || obj->item_type == ITEM_CYBER_EPIDERMIS ) )
+				 
+            remove_obj( victim, obj->wear_loc, TRUE );
+      }
+      return;
+   }
+
+   if( ( obj = get_obj_wear( victim, arg2 ) ) == NULL )
+   {
+      send_to_char( "Item not found.\r\n", ch );
+      return;
+   }
+   
+   if( obj->item_type != ITEM_CYBER_EYE
+		   && obj->item_type != ITEM_CYBER_BRAIN 
+		   && obj->item_type != ITEM_CYBER_ARMS
+			 && obj->item_type != ITEM_CYBER_LEGS 
+		   && obj->item_type != ITEM_CYBER_BODY
+			 && obj->item_type != ITEM_CYBER_EPIDERMIS )
+   {
+      send_to_char( "You can remove only cyberware with this command.\r\n", ch );
+      return;
+   }
+   remove_obj( victim, obj->wear_loc, TRUE );
+   return;
 }
