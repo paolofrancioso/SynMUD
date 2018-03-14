@@ -2693,7 +2693,7 @@ ch_ret spell_identify( int sn, int level, CHAR_DATA * ch, void *vo )
          case ITEM_WEAPON:
             ch_printf( ch, "Damage is %d to %d (average %d).\r\n",
                        obj->value[1], obj->value[2], ( obj->value[1] + obj->value[2] ) / 2 );
-            if( obj->value[3] == WEAPON_BLASTER )
+            if( obj->value[3] == WEAPON_ELECTRON_MACE )
             {
                if( obj->blaster_setting == BLASTER_FULL )
                   ch_printf( ch, "It is set on FULL power.\r\n" );

@@ -1860,17 +1860,18 @@ typedef enum
 
 /* Weapon Types */
 
-#define WEAPON_NONE     	0
-#define WEAPON_VIBRO_AXE	1
-#define WEAPON_VIBRO_BLADE	2
-#define WEAPON_LIGHTSABER	3
-#define WEAPON_WHIP		4
-#define WEAPON_CLAW		5
-#define WEAPON_BLASTER		6
-#define WEAPON_BLUDGEON		8
+#define WEAPON_NONE     				0
+#define WEAPON_VIBRO_AXE				1
+#define WEAPON_VIBRO_BLADE			2
+#define WEAPON_LIGHTSABER				3
+#define WEAPON_WHIP							4
+#define WEAPON_CLAW							5
+#define WEAPON_ELECTRON_MACE		6
+#define WEAPON_BLUDGEON					8
 #define WEAPON_BOWCASTER        9
-#define WEAPON_FORCE_PIKE	11
-#define WEAPON_DUAL_LIGHTSABER	12
+#define WEAPON_DUAL_LIGHTSABER  10
+#define WEAPON_FORCE_PIKE				11
+
 
 /* Lever/dial/switch/button/pullchain flags */
 #define TRIG_UP			BV00
@@ -3152,7 +3153,7 @@ extern short gsn_makebug;
 extern short gsn_makebeacon;
 extern short gsn_makepike;
 extern short gsn_makejewelry;
-extern short gsn_makeblaster;
+extern short gsn_makeelmace;
 extern short gsn_makelight;
 extern short gsn_makecomlink;
 extern short gsn_makegrenade;
@@ -3243,7 +3244,7 @@ extern short gsn_stun;
 extern short gsn_poison_weapon;
 extern short gsn_climb;
 
-extern short gsn_blasters;
+extern short gsn_elmace;
 extern short gsn_force_pikes;
 extern short gsn_bowcasters;
 extern short gsn_lightsabers;
@@ -3902,7 +3903,7 @@ DECLARE_DO_FUN( do_clan_withdraw );
 DECLARE_DO_FUN( do_fly );
 DECLARE_DO_FUN( do_drive );
 DECLARE_DO_FUN( do_bomb );
-DECLARE_DO_FUN( do_setblaster );
+DECLARE_DO_FUN( do_setelmace );
 DECLARE_DO_FUN( do_ammo );
 DECLARE_DO_FUN( do_ambush );
 DECLARE_DO_FUN( do_takedrug );
@@ -3951,7 +3952,7 @@ DECLARE_DO_FUN( do_makebug );
 DECLARE_DO_FUN( do_makegoggles );
 DECLARE_DO_FUN( do_spousetalk );
 DECLARE_DO_FUN( do_makepike );
-DECLARE_DO_FUN( do_makeblaster );
+DECLARE_DO_FUN( do_makeelmace );
 DECLARE_DO_FUN( do_makelightsaber );
 DECLARE_DO_FUN( do_makeduallightsaber );
 DECLARE_DO_FUN( do_makespice );

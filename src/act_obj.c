@@ -2501,10 +2501,10 @@ void do_auction( CHAR_DATA * ch, const char *argument )
                           obj->value[3] == WEAPON_VIBRO_BLADE ? "vibro blade" :
                           obj->value[3] == WEAPON_BOWCASTER ? "bowcaster" :
                           obj->value[3] == WEAPON_FORCE_PIKE ? "force pike" :
-                          obj->value[3] == WEAPON_BLASTER ? "blaster" :
+                          obj->value[3] == WEAPON_ELECTRON_MACE ? "electron mace" :
                           obj->value[3] == WEAPON_LIGHTSABER ? "lightsaber" :
                           "weapon", ( obj->value[1] + obj->value[2] ) / 2 );
-               if( obj->value[3] == WEAPON_BLASTER || obj->value[3] == WEAPON_VIBRO_BLADE
+               if( obj->value[3] == WEAPON_ELECTRON_MACE || obj->value[3] == WEAPON_VIBRO_BLADE
                    || obj->value[3] == WEAPON_LIGHTSABER || obj->value[3] == WEAPON_FORCE_PIKE )
                   ch_printf( ch, "&z|| &wEnergy cell rating: &G%d\r\n", obj->value[5] );
                ch_printf( ch, "&W++\r\n" );

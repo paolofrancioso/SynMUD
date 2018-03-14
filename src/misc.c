@@ -445,12 +445,12 @@ void do_ammo( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-   if( wield->value[3] == WEAPON_BLASTER )
+   if( wield->value[3] == WEAPON_ELECTRON_MACE )
    {
 
       if( obj && obj->item_type != ITEM_AMMO )
       {
-         send_to_char( "&RYour hands are too full to reload your blaster.\r\n&w", ch );
+         send_to_char( "&RYour hands are too full to reload your electron mace.\r\n&w", ch );
          return;
       }
 
@@ -458,7 +458,7 @@ void do_ammo( CHAR_DATA * ch, const char *argument )
       {
          if( obj->value[0] > wield->value[5] )
          {
-            send_to_char( "That cartridge is too big for your blaster.", ch );
+            send_to_char( "That cartridge is too big for your electron mace.", ch );
             return;
          }
          unequip_char( ch, obj );
@@ -475,7 +475,7 @@ void do_ammo( CHAR_DATA * ch, const char *argument )
             {
                if( obj->value[0] > wield->value[5] )
                {
-                  send_to_char( "That cartridge is too big for your blaster.", ch );
+                  send_to_char( "That cartridge is too big for your electron_mace.", ch );
                   continue;
                }
                checkammo = TRUE;
@@ -489,12 +489,12 @@ void do_ammo( CHAR_DATA * ch, const char *argument )
 
       if( !checkammo )
       {
-         send_to_char( "&RYou don't seem to have any ammo to reload your blaster with.\r\n&w", ch );
+         send_to_char( "&RYou don't seem to have any ammo to reload your electron mace with.\r\n&w", ch );
          return;
       }
 
       ch_printf( ch,
-                 "You replace your ammunition cartridge.\r\nYour blaster is charged with %d shots at high power to %d shots on low.\r\n",
+                 "You replace your ammunition cartridge.\r\nYour electron mace is charged with %d shots at high power to %d shots on low.\r\n",
                  charge / 5, charge );
       act( AT_PLAIN, "$n replaces the ammunition cell in $p.", ch, wield, NULL, TO_ROOM );
 
@@ -616,27 +616,27 @@ void do_ammo( CHAR_DATA * ch, const char *argument )
 
 }
 
-void do_setblaster( CHAR_DATA * ch, const char *argument )
+void do_setelmace( CHAR_DATA * ch, const char *argument )
 {
    OBJ_DATA *wield;
    OBJ_DATA *wield2;
 
    wield = get_eq_char( ch, WEAR_WIELD );
-   if( wield && !( wield->item_type == ITEM_WEAPON && wield->value[3] == WEAPON_BLASTER ) )
+   if( wield && !( wield->item_type == ITEM_WEAPON && wield->value[3] == WEAPON_ELECTRON_MACE ) )
       wield = NULL;
    wield2 = get_eq_char( ch, WEAR_DUAL_WIELD );
-   if( wield2 && !( wield2->item_type == ITEM_WEAPON && wield2->value[3] == WEAPON_BLASTER ) )
+   if( wield2 && !( wield2->item_type == ITEM_WEAPON && wield2->value[3] == WEAPON_ELECTRON_MACE ) )
       wield2 = NULL;
 
    if( !wield && !wield2 )
    {
-      send_to_char( "&RYou don't seem to be wielding a blaster.\r\n&w", ch );
+      send_to_char( "&RYou don't seem to be wielding a electron mace.\r\n&w", ch );
       return;
    }
 
    if( argument[0] == '\0' )
    {
-      send_to_char( "&RUsage: setblaster <full|high|normal|half|low|stun>\r\n&w", ch );
+      send_to_char( "&RUsage: setelmace <full|high|normal|half|low|stun>\r\n&w", ch );
       return;
    }
 
@@ -651,12 +651,12 @@ void do_setblaster( CHAR_DATA * ch, const char *argument )
       if( wield )
       {
          wield->blaster_setting = BLASTER_FULL;
-         send_to_char( "&YWielded blaster set to FULL Power\r\n&w", ch );
+         send_to_char( "&YWielded electron mace set to FULL Power\r\n&w", ch );
       }
       if( wield2 )
       {
          wield2->blaster_setting = BLASTER_FULL;
-         send_to_char( "&YDual wielded blaster set to FULL Power\r\n&w", ch );
+         send_to_char( "&YDual wielded electron mace set to FULL Power\r\n&w", ch );
       }
       return;
    }
@@ -665,12 +665,12 @@ void do_setblaster( CHAR_DATA * ch, const char *argument )
       if( wield )
       {
          wield->blaster_setting = BLASTER_HIGH;
-         send_to_char( "&YWielded blaster set to HIGH Power\r\n&w", ch );
+         send_to_char( "&YWielded electron mace set to HIGH Power\r\n&w", ch );
       }
       if( wield2 )
       {
          wield2->blaster_setting = BLASTER_HIGH;
-         send_to_char( "&YDual wielded blaster set to HIGH Power\r\n&w", ch );
+         send_to_char( "&YDual wielded electron mace set to HIGH Power\r\n&w", ch );
       }
       return;
    }
@@ -679,12 +679,12 @@ void do_setblaster( CHAR_DATA * ch, const char *argument )
       if( wield )
       {
          wield->blaster_setting = BLASTER_NORMAL;
-         send_to_char( "&YWielded blaster set to NORMAL Power\r\n&w", ch );
+         send_to_char( "&YWielded electron mace set to NORMAL Power\r\n&w", ch );
       }
       if( wield2 )
       {
          wield2->blaster_setting = BLASTER_NORMAL;
-         send_to_char( "&YDual wielded blaster set to NORMAL Power\r\n&w", ch );
+         send_to_char( "&YDual wielded electron mace set to NORMAL Power\r\n&w", ch );
       }
       return;
    }
@@ -693,12 +693,12 @@ void do_setblaster( CHAR_DATA * ch, const char *argument )
       if( wield )
       {
          wield->blaster_setting = BLASTER_HALF;
-         send_to_char( "&YWielded blaster set to HALF Power\r\n&w", ch );
+         send_to_char( "&YWielded electron mace set to HALF Power\r\n&w", ch );
       }
       if( wield2 )
       {
          wield2->blaster_setting = BLASTER_HALF;
-         send_to_char( "&YDual wielded blaster set to HALF Power\r\n&w", ch );
+         send_to_char( "&YDual wielded electron mace set to HALF Power\r\n&w", ch );
       }
       return;
    }
@@ -707,12 +707,12 @@ void do_setblaster( CHAR_DATA * ch, const char *argument )
       if( wield )
       {
          wield->blaster_setting = BLASTER_LOW;
-         send_to_char( "&YWielded blaster set to LOW Power\r\n&w", ch );
+         send_to_char( "&YWielded electron mace set to LOW Power\r\n&w", ch );
       }
       if( wield2 )
       {
          wield2->blaster_setting = BLASTER_LOW;
-         send_to_char( "&YDual wielded blaster set to LOW Power\r\n&w", ch );
+         send_to_char( "&YDual wielded electron mace set to LOW Power\r\n&w", ch );
       }
       return;
    }
@@ -721,17 +721,17 @@ void do_setblaster( CHAR_DATA * ch, const char *argument )
       if( wield )
       {
          wield->blaster_setting = BLASTER_STUN;
-         send_to_char( "&YWielded blaster set to STUN\r\n&w", ch );
+         send_to_char( "&YWielded electron mace set to STUN\r\n&w", ch );
       }
       if( wield2 )
       {
          wield2->blaster_setting = BLASTER_STUN;
-         send_to_char( "&YDual wielded blaster set to STUN\r\n&w", ch );
+         send_to_char( "&YDual wielded electron mace set to STUN\r\n&w", ch );
       }
       return;
    }
    else
-      do_setblaster( ch, "" );
+      do_setelmace( ch, "" );
 
 }
 
@@ -3177,9 +3177,9 @@ void do_suicide( CHAR_DATA * ch, const char *argument )
                  TO_ROOM );
             break;
 
-         case WEAPON_BLASTER:
+         case WEAPON_ELECTRON_MACE:
             act( AT_BLOOD,
-                 "You calmly place the barrel of your blaster into your mouth, and a spurt of brains falls to the ground behind you.",
+                 "You calmly place the barrel of your electron mace into your mouth, and a spurt of brains falls to the ground behind you.",
                  ch, NULL, NULL, TO_CHAR );
             act( AT_BLOOD, "A spurt of brains hits the ground as $n blows $s head off.", ch, NULL, NULL, TO_ROOM );
             break;

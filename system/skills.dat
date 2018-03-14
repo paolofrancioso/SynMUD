@@ -1196,19 +1196,6 @@ Minlevel     8
 End
 
 #SKILL
-Name         makeblaster~
-Type         Skill
-Flags        0
-Minpos       5
-Guild        2
-Code         do_makeblaster
-Dammsg       ~
-Wearoff      !done!~
-Teachers     294~
-Minlevel     28
-End
-
-#SKILL
 Name         makebug~
 Type         Skill
 Flags        0
@@ -1279,6 +1266,19 @@ Dammsg       ~
 Teachers     655 655~
 Alignment   -1001
 Minlevel     31
+End
+
+#SKILL
+Name         makeelmace~
+Type         Skill
+Flags        0
+Minpos       5
+Guild        2
+Code         do_makeelmace
+Dammsg       ~
+Wearoff      !done!~
+Teachers     294~
+Minlevel     28
 End
 
 #SKILL
@@ -1951,14 +1951,14 @@ Minlevel     31
 End
 
 #SKILL
-Name         blasters~
+Name         electron-maces~
 Type         Weapon
 Flags        0
 Minpos       7
 Guild        0
 Code         spell_null
 Dammsg       ~
-Wearoff      !Blasters!~
+Wearoff      !Electron-Maces!~
 Teachers     32012 32011 412 907 16 116 1111 1080 1111~
 Minlevel     2
 End

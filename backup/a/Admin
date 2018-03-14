@@ -10,7 +10,7 @@ Languages    -1 1
 Toplevel     36
 Pheight      0
 Build        0
-Played       139872
+Played       140246
 Ship            ~
 ShipNum         0
 Room         100
@@ -38,9 +38,9 @@ Hitroll      0
 Damroll      0
 Armor        10
 Rppoints   0
-Mentalstate  -9
+Mentalstate  0
 Password     9c3a88f26d3623fcf0a4aa881518170c70f5e1d62e0d9f9fa7e9b3f07fa299b7~
-Lastplayed   1520984252
+Lastplayed   1521066403
 Title         The Glorious Admin is here~
 AuthedBy     Admin~
 Addiction    0 0 0 0 0 0 0 0 0 0
@@ -106,12 +106,12 @@ Skill        100 'limber'
 Skill        100 'makearmor'
 Skill        100 'makebinders'
 Skill        100 'makeblade'
-Skill        100 'makeblaster'
 Skill        100 'makebug'
 Skill        100 'makecomlink'
 Skill        100 'makecommsystem'
 Skill        100 'makecontainer'
 Skill        100 'makedatapad'
+Skill        100 'makeelmace'
 Skill        100 'makeflashlight'
 Skill        100 'makegoggles'
 Skill        100 'makegrenade'
@@ -154,8 +154,8 @@ Skill        100 'third attack'
 Skill        100 'throw'
 Skill        100 'torture'
 Skill        100 'track'
-Weapon       100 'blasters'
 Weapon       100 'bowcasters'
+Weapon       100 'electron-maces'
 Weapon       100 'force pikes'
 Weapon       100 'launchers'
 Weapon       100 'vibro-blades'
@@ -170,7 +170,7 @@ End
 #OBJECT
 Vnum         50
 ExtraFlags   16
-WearLoc      18
+WearLoc      16
 Level        66
 Values       9 1 4 6 18 2000
 Affect       -1 -1 10 77 0
@@ -198,7 +198,7 @@ End
 
 #OBJECT
 Vnum         50
-WearLoc      16
+WearLoc      18
 Level        36
 Values       12 1 4 6 1568 2000
 Affect       -1 -1 10 12 0

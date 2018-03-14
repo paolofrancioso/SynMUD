@@ -273,7 +273,7 @@ void do_makeblade( CHAR_DATA * ch, const char *argument )
    learn_from_success( ch, gsn_makeblade );
 }
 
-void do_makeblaster( CHAR_DATA * ch, const char *argument )
+void do_makeelmace( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char buf[MAX_STRING_LENGTH];
@@ -292,7 +292,7 @@ void do_makeblaster( CHAR_DATA * ch, const char *argument )
       default:
          if( arg[0] == '\0' )
          {
-            send_to_char( "&RUsage: Makeblaster <name>\r\n&w", ch );
+            send_to_char( "&RUsage: MakeElMace <name>\r\n&w", ch );
             return;
          }
 
@@ -327,7 +327,7 @@ void do_makeblaster( CHAR_DATA * ch, const char *argument )
 
          if( !checktool )
          {
-            send_to_char( "&RYou need toolkit to make a blaster.\r\n", ch );
+            send_to_char( "&RYou need toolkit to make a electron mace.\r\n", ch );
             return;
          }
 
@@ -339,7 +339,7 @@ void do_makeblaster( CHAR_DATA * ch, const char *argument )
 
          if( !checkbatt )
          {
-            send_to_char( "&RYou need a power source for your blaster.\r\n", ch );
+            send_to_char( "&RYou need a power source for your electron mace.\r\n", ch );
             return;
          }
 
@@ -361,18 +361,18 @@ void do_makeblaster( CHAR_DATA * ch, const char *argument )
             return;
          }
 
-         schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_makeblaster] );
+         schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_makeelmace] );
          if( number_percent(  ) < schance )
          {
-            send_to_char( "&GYou begin the long process of making a blaster.\r\n", ch );
+            send_to_char( "&GYou begin the long process of making a electron mace.\r\n", ch );
             act( AT_PLAIN, "$n takes $s tools and a small oven and begins to work on something.", ch,
                  NULL, argument, TO_ROOM );
-            add_timer( ch, TIMER_DO_FUN, 25, do_makeblaster, 1 );
+            add_timer( ch, TIMER_DO_FUN, 25, do_makeelmace, 1 );
             ch->dest_buf = str_dup( arg );
             return;
          }
          send_to_char( "&RYou can't figure out how to fit the parts together.\r\n", ch );
-         learn_from_failure( ch, gsn_makeblaster );
+         learn_from_failure( ch, gsn_makeelmace );
          return;
 
       case 1:
@@ -391,7 +391,7 @@ void do_makeblaster( CHAR_DATA * ch, const char *argument )
 
    ch->substate = SUB_NONE;
 
-   level = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_makeblaster] );
+   level = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_makeelmace] );
    vnum = 50;
 
    if( ( pObjIndex = get_obj_index( vnum ) ) == NULL )
@@ -465,15 +465,15 @@ void do_makeblaster( CHAR_DATA * ch, const char *argument )
       }
    }
 
-   schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_makeblaster] );
+   schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_makeelmace] );
 
    if( number_percent(  ) > schance * 2 || ( !checktool ) || ( !checkdura ) || ( !checkbatt ) || ( !checkoven )
        || ( !checkcond ) || ( !checkcirc ) )
    {
-      send_to_char( "&RYou hold up your new blaster and aim at a leftover piece of plastic.\r\n", ch );
+      send_to_char( "&RYou hold up your new electron mace and aim at a leftover piece of plastic.\r\n", ch );
       send_to_char( "&RYou slowly squeeze the trigger hoping for the best...\r\n", ch );
-      send_to_char( "&RYour blaster backfires destroying your weapon and burning your hand.\r\n", ch );
-      learn_from_failure( ch, gsn_makeblaster );
+      send_to_char( "&RYour electron mace backfires destroying your weapon and burning your hand.\r\n", ch );
+      learn_from_failure( ch, gsn_makeelmace );
       return;
    }
 
@@ -486,7 +486,7 @@ void do_makeblaster( CHAR_DATA * ch, const char *argument )
    obj->weight = 2 + level / 10;
    STRFREE( obj->name );
    strcpy( buf, arg );
-   strcat( buf, " blaster " );
+   strcat( buf, " electron mace " );
    strcat( buf, remand( buf ) );
    obj->name = STRALLOC( buf );
    strcpy( buf, arg );
@@ -516,15 +516,15 @@ void do_makeblaster( CHAR_DATA * ch, const char *argument )
    obj->value[0] = INIT_WEAPON_CONDITION; /* condition  */
    obj->value[1] = ( int )( level / 10 + 15 );  /* min dmg  */
    obj->value[2] = ( int )( level / 5 + 25 );   /* max dmg  */
-   obj->value[3] = WEAPON_BLASTER;
+   obj->value[3] = WEAPON_ELECTRON_MACE;
    obj->value[4] = ammo;
    obj->value[5] = 2000;
    obj->cost = obj->value[2] * 50;
 
    obj = obj_to_char( obj, ch );
 
-   send_to_char( "&GYou finish your work and hold up your newly created blaster.&w\r\n", ch );
-   act( AT_PLAIN, "$n finishes making $s new blaster.", ch, NULL, argument, TO_ROOM );
+   send_to_char( "&GYou finish your work and hold up your newly created electron mace.&w\r\n", ch );
+   act( AT_PLAIN, "$n finishes making $s new electron mace.", ch, NULL, argument, TO_ROOM );
 
    {
       long xpgain;
@@ -536,7 +536,7 @@ void do_makeblaster( CHAR_DATA * ch, const char *argument )
       gain_exp( ch, xpgain, ENGINEER_ABILITY );
       ch_printf( ch, "You gain %d engineering experience.", xpgain );
    }
-   learn_from_success( ch, gsn_makeblaster );
+   learn_from_success( ch, gsn_makeelmace );
 }
 
 void do_makelightsaber( CHAR_DATA * ch, const char *argument )
@@ -2874,7 +2874,7 @@ void add_reinforcements( CHAR_DATA * ch )
             stop_follower( mob[mob_cnt] );
          add_follower( mob[mob_cnt], ch );
          SET_BIT( mob[mob_cnt]->affected_by, AFF_CHARM );
-         do_setblaster( mob[mob_cnt], "full" );
+         do_setelmace( mob[mob_cnt], "full" );
       }
    }
    else
@@ -3334,9 +3334,9 @@ void do_snipe( CHAR_DATA * ch, const char *argument )
    }
 
    wield = get_eq_char( ch, WEAR_WIELD );
-   if( !wield || wield->item_type != ITEM_WEAPON || wield->value[3] != WEAPON_BLASTER )
+   if( !wield || wield->item_type != ITEM_WEAPON || wield->value[3] != WEAPON_ELECTRON_MACE )
    {
-      send_to_char( "You don't seem to be holding a blaster", ch );
+      send_to_char( "You don't seem to be holding a electron mace", ch );
       return;
    }
 
@@ -3473,16 +3473,16 @@ void do_snipe( CHAR_DATA * ch, const char *argument )
 
    if( number_percent(  ) < schance )
    {
-      sprintf( buf, "$n fires a blaster shot to the %s.", dir_name[get_door(arg)] );
+      sprintf( buf, "$n fires a electron mace shot to the %s.", dir_name[get_door(arg)] );
       act( AT_ACTION, buf, ch, NULL, NULL, TO_ROOM );
 
       char_from_room( ch );
       char_to_room( ch, victim->in_room );
 
-      sprintf( buf, "A blaster shot fires at you from the %s.", dir_name[dir] );
+      sprintf( buf, "A electron mace shot fires at you from the %s.", dir_name[dir] );
       act( AT_ACTION, buf, victim, NULL, ch, TO_CHAR );
       act( AT_ACTION, "You fire at $N.", ch, NULL, victim, TO_CHAR );
-      sprintf( buf, "A blaster shot fires at $N from the %s.", dir_name[dir] );
+      sprintf( buf, "A electron mace shot fires at $N from the %s.", dir_name[dir] );
       act( AT_ACTION, buf, ch, NULL, victim, TO_NOTVICT );
 
       /* Fix to prevent automatic looting of corpses with snipe */
@@ -3500,14 +3500,14 @@ void do_snipe( CHAR_DATA * ch, const char *argument )
    }
    else
    {
-      sprintf( buf, "$n fires a blaster shot to the %s.", dir_name[get_door(arg)] );
+      sprintf( buf, "$n fires a electron mace shot to the %s.", dir_name[get_door(arg)] );
       act( AT_ACTION, buf, ch, NULL, NULL, TO_ROOM );
 
       char_from_room( ch );
       char_to_room( ch, victim->in_room );
 
       act( AT_ACTION, "You fire at $N but don't even come close.", ch, NULL, victim, TO_CHAR );
-      sprintf( buf, "A blaster shot fired from the %s barely misses you.", dir_name[dir] );
+      sprintf( buf, "A electron mace shot fired from the %s barely misses you.", dir_name[dir] );
       act( AT_ACTION, buf, ch, NULL, victim, TO_ROOM );
       learn_from_failure( ch, gsn_snipe );
    }

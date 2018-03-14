@@ -3051,8 +3051,8 @@ Log         1
 End
 
 #COMMAND
-Name        setblaster~
-Code        do_setblaster
+Name        setelmace~
+Code        do_setelmace
 Position    5
 Level       1
 Log         0

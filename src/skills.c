@@ -3080,7 +3080,7 @@ void do_aid( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-   if( victim->hit <= -400 )
+   if( victim->hit <= -8 )
    {
       act( AT_PLAIN, "$N's condition is beyond your aiding ability.", ch, NULL, victim, TO_CHAR );
       return;

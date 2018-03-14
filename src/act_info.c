@@ -1586,7 +1586,7 @@ void do_examine( CHAR_DATA * ch, const char *argument )
                strcat( buf, "broken." );
             strcat( buf, "\r\n" );
             send_to_char( buf, ch );
-            if( obj->value[3] == WEAPON_BLASTER )
+            if( obj->value[3] == WEAPON_ELECTRON_MACE )
             {
                if( obj->blaster_setting == BLASTER_FULL )
                   ch_printf( ch, "It is set on FULL power.\r\n" );
@@ -1600,7 +1600,7 @@ void do_examine( CHAR_DATA * ch, const char *argument )
                   ch_printf( ch, "It is set on LOW power.\r\n" );
                else if( obj->blaster_setting == BLASTER_STUN )
                   ch_printf( ch, "It is set on STUN.\r\n" );
-               ch_printf( ch, "It has from %d to %d shots remaining.\r\n", obj->value[4] / 5, obj->value[4] );
+               ch_printf( ch, "It has from %d to %d charge remaining.\r\n", obj->value[4] / 5, obj->value[4] );
             }
             else if( ( obj->value[3] == WEAPON_LIGHTSABER || obj->value[3] == WEAPON_DUAL_LIGHTSABER ||
                        obj->value[3] == WEAPON_VIBRO_BLADE || obj->value[3] == WEAPON_FORCE_PIKE ) )

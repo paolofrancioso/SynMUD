@@ -160,7 +160,7 @@ short gsn_spice_refining;
 short gsn_makeblade;
 short gsn_makepike;
 short gsn_sabotage;
-short gsn_makeblaster;
+short gsn_makeelmace;
 short gsn_makelight;
 short gsn_makecomlink;
 short gsn_makegrenade;
@@ -186,7 +186,7 @@ short gsn_makegoggles;
 short gsn_barrelroll;
 short gsn_juke;
 
-short gsn_blasters;
+short gsn_elmace;
 short gsn_bowcasters;
 short gsn_force_pikes;
 short gsn_lightsabers;
@@ -583,7 +583,7 @@ void boot_db( bool fCopyOver )
       ASSIGN_GSN( gsn_beg, "beg" );
       ASSIGN_GSN( gsn_makejewelry, "makejewelry" );
       ASSIGN_GSN( gsn_makeblade, "makeblade" );
-      ASSIGN_GSN( gsn_makeblaster, "makeblaster" );
+      ASSIGN_GSN( gsn_makeelmace, "makeelmace" );
       ASSIGN_GSN( gsn_makelight, "makeflashlight" );
       ASSIGN_GSN( gsn_makecomlink, "makecomlink" );
       ASSIGN_GSN( gsn_makegrenade, "makegrenade" );
@@ -621,7 +621,7 @@ void boot_db( bool fCopyOver )
       ASSIGN_GSN( gsn_spice_refining, "spice refining" );
       ASSIGN_GSN( gsn_scanbugs, "checkbugs" );
       //ASSIGN_GSN( gsn_shipdesign, "ship design" );
-      ASSIGN_GSN( gsn_blasters, "blasters" );
+      ASSIGN_GSN( gsn_elmace, "electron-maces" );
       ASSIGN_GSN( gsn_bowcasters, "bowcasters" );
       ASSIGN_GSN( gsn_force_pikes, "force pikes" );
       ASSIGN_GSN( gsn_lightsabers, "lightsabers" );
@@ -2632,7 +2632,7 @@ OBJ_DATA *create_object( OBJ_INDEX_DATA * pObjIndex, int level )
             obj->value[0] = INIT_WEAPON_CONDITION;
          switch ( obj->value[3] )
          {
-            case WEAPON_BLASTER:
+            case WEAPON_ELECTRON_MACE:
             case WEAPON_LIGHTSABER:
             case WEAPON_DUAL_LIGHTSABER:
             case WEAPON_VIBRO_BLADE:

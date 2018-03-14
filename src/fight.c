@@ -626,7 +626,7 @@ int weapon_prof_bonus_check( CHAR_DATA * ch, OBJ_DATA * wield, int *gsn_ptr )
             *gsn_ptr = gsn_talonous_arms;
             break;
          case 6:
-            *gsn_ptr = gsn_blasters;
+            *gsn_ptr = gsn_elmace;
             break;
          case 8:
             *gsn_ptr = gsn_bludgeons;
@@ -954,12 +954,12 @@ ch_ret one_hit( CHAR_DATA * ch, CHAR_DATA * victim, int dt )
    /*
     * check to see if weapon is charged 
     */
-   if( dt == ( TYPE_HIT + WEAPON_BLASTER ) && wield && wield->item_type == ITEM_WEAPON )
+   if( dt == ( TYPE_HIT + WEAPON_ELECTRON_MACE ) && wield && wield->item_type == ITEM_WEAPON )
    {
       if( wield->value[4] < 1 )
       {
-         act( AT_YELLOW, "$n points their blaster at you but nothing happens.", ch, NULL, victim, TO_VICT );
-         act( AT_YELLOW, "*CLICK* ... your blaster needs a new ammunition cell!", ch, NULL, victim, TO_CHAR );
+         act( AT_YELLOW, "$n points their electron mace at you but nothing happens.", ch, NULL, victim, TO_VICT );
+         act( AT_YELLOW, "*CLICK* ... your electron mace needs a new ammunition cell!", ch, NULL, victim, TO_CHAR );
          if( IS_NPC( ch ) )
          {
             do_remove( ch, wield->name );
@@ -985,7 +985,7 @@ ch_ret one_hit( CHAR_DATA * ch, CHAR_DATA * victim, int dt )
          dam /= 10;
          wield->value[4] -= 3;
          fail = FALSE;
-         schance = ris_save( victim, ch->skill_level[COMMANDO_ABILITY], RIS_PARALYSIS );
+         schance = ris_save( victim, ch->skill_level[DEFENDER_ABILITY], RIS_PARALYSIS );
          if( schance == 1000 )
             fail = TRUE;
          else
@@ -995,7 +995,7 @@ ch_ret one_hit( CHAR_DATA * ch, CHAR_DATA * victim, int dt )
             fail = TRUE;
             victim->was_stunned--;
          }
-         schance = 100 - get_curr_con( victim ) - victim->skill_level[COMMANDO_ABILITY] / 2;
+         schance = 100 - get_curr_con( victim ) - victim->skill_level[DEFENDER_ABILITY] / 2;
          /*
           * harder for player to stun another player 
           */
@@ -1007,11 +1007,11 @@ ch_ret one_hit( CHAR_DATA * ch, CHAR_DATA * victim, int dt )
          if( !fail && number_percent(  ) < schance )
          {
             WAIT_STATE( victim, PULSE_VIOLENCE );
-            act( AT_BLUE, "Blue rings of energy from $N's blaster knock you down leaving you stunned!", victim, NULL, ch,
+            act( AT_BLUE, "Blue rings of energy from $N's electron mace knock you down leaving you stunned!", victim, NULL, ch,
                  TO_CHAR );
-            act( AT_BLUE, "Blue rings of energy from your blaster strike $N, leaving $M stunned!", ch, NULL, victim,
+            act( AT_BLUE, "Blue rings of energy from your electron mace strike $N, leaving $M stunned!", ch, NULL, victim,
                  TO_CHAR );
-            act( AT_BLUE, "Blue rings of energy from $n's blaster hit $N, leaving $M stunned!", ch, NULL, victim,
+            act( AT_BLUE, "Blue rings of energy from $n's electron mace hit $N, leaving $M stunned!", ch, NULL, victim,
                  TO_NOTVICT );
             stop_fighting( victim, TRUE );
             if( !IS_AFFECTED( victim, AFF_PARALYSIS ) )
@@ -1033,11 +1033,11 @@ ch_ret one_hit( CHAR_DATA * ch, CHAR_DATA * victim, int dt )
          }
          else
          {
-            act( AT_BLUE, "Blue rings of energy from $N's blaster hit you but have little effect", victim, NULL, ch,
+            act( AT_BLUE, "Blue rings of energy from $N's electron mace hit you but have little effect", victim, NULL, ch,
                  TO_CHAR );
-            act( AT_BLUE, "Blue rings of energy from your blaster hit $N, but nothing seems to happen!", ch, NULL, victim,
+            act( AT_BLUE, "Blue rings of energy from your electron mace hit $N, but nothing seems to happen!", ch, NULL, victim,
                  TO_CHAR );
-            act( AT_BLUE, "Blue rings of energy from $n's blaster hit $N, but nothing seems to happen!", ch, NULL, victim,
+            act( AT_BLUE, "Blue rings of energy from $n's electron mace hit $N, but nothing seems to happen!", ch, NULL, victim,
                  TO_NOTVICT );
 
          }
@@ -1197,22 +1197,6 @@ ch_ret one_hit( CHAR_DATA * ch, CHAR_DATA * victim, int dt )
    if( retcode != rNONE || char_died( ch ) || char_died( victim ) )
       return retcode;
 
-   /*
-    *   folks with blasters move and snipe instead of getting neatin up in one spot.
-    */
-/*
-     if ( IS_NPC(victim) )
-     {
-         OBJ_DATA *wield;
-         
-         wield = get_eq_char( victim, WEAR_WIELD );                 
-         if ( wield != NULL && wield->value[3] == WEAPON_BLASTER && get_cover( victim ) == TRUE ) 
-         {
-               start_hating( victim, ch );
-	       start_hunting( victim, ch );
-         }
-     }
-  */
    tail_chain(  );
    return retcode;
 }
@@ -1317,7 +1301,7 @@ ch_ret damage( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt )
          dam = ris_damage( victim, dam, RIS_COLD );
       else if( IS_ACID( dt ) )
          dam = ris_damage( victim, dam, RIS_ACID );
-      else if( IS_ELECTRICITY( dt ) )
+      else if( IS_ELECTRICITY( dt ) || dt == ( TYPE_HIT + 6 ) )
          dam = ris_damage( victim, dam, RIS_ELECTRICITY );
       else if( IS_ENERGY( dt ) )
          dam = ris_damage( victim, dam, RIS_ENERGY );
@@ -1325,9 +1309,9 @@ ch_ret damage( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt )
          dam = ris_damage( victim, dam, RIS_DRAIN );
       else if( dt == gsn_poison || IS_POISON( dt ) )
          dam = ris_damage( victim, dam, RIS_POISON );
-      else if( dt == ( TYPE_HIT + 7 ) || dt == ( TYPE_HIT + 8 ) )
+      else if( dt == ( TYPE_HIT + 8 ) )
          dam = ris_damage( victim, dam, RIS_BLUNT );
-      else if( dt == ( TYPE_HIT + 2 ) || dt == ( TYPE_HIT + 11 ) || dt == ( TYPE_HIT + 10 ) )
+      else if( dt == ( TYPE_HIT + 2 ) || dt == ( TYPE_HIT + 11 ) || dt == ( TYPE_HIT + 9 ) )
          dam = ris_damage( victim, dam, RIS_PIERCE );
       else if( dt == ( TYPE_HIT + 1 ) || dt == ( TYPE_HIT + 3 ) || dt == ( TYPE_HIT + 4 ) || dt == ( TYPE_HIT + 5 ) )
          dam = ris_damage( victim, dam, RIS_SLASH );
@@ -1485,16 +1469,16 @@ ch_ret damage( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt )
                   if( ( victwield = get_eq_char( victim, WEAR_WIELD ) ) != NULL )
                   {
                      if( ( victwield->value[3] == WEAPON_LIGHTSABER || victwield->value[3] == WEAPON_DUAL_LIGHTSABER )
-                         && wield->value[3] == WEAPON_BLASTER )
+                         && wield->value[3] == WEAPON_ELECTRON_MACE )
                      {
-                        act( AT_WHITE, "You swing your lightsaber and reflect the blaster bolt back at $n!", ch, NULL,
+                        act( AT_WHITE, "You swing your lightsaber and reflect the electron mace bolt back at $n!", ch, NULL,
                              victim, TO_VICT );
-                        act( AT_WHITE, "$N swings $s lightsaber and reflects the blast back at you!", ch, NULL, victim,
+                        act( AT_WHITE, "$N swings $s lightsaber and reflects the electron mace back at you!", ch, NULL, victim,
                              TO_CHAR );
-                        act( AT_WHITE, "$N swings $s lightsaber and reflects the blast back at $N!", ch, NULL, victim,
+                        act( AT_WHITE, "$N swings $s lightsaber and reflects the electron mace back at $N!", ch, NULL, victim,
                              TO_NOTVICT );
                         ch->hit -= wield->value[1];
-                        dam_message( victim, ch, wield->value[1], ( TYPE_HIT + WEAPON_BLASTER ) );
+                        dam_message( victim, ch, wield->value[1], ( TYPE_HIT + WEAPON_ELECTRON_MACE ) );
                         learn_from_success( victim, gsn_reflect );
                      }
                   }
@@ -2873,7 +2857,7 @@ void dam_message( CHAR_DATA * ch, CHAR_DATA * victim, int dam, unsigned int dt )
    if( dt >= 0 && dt < (unsigned int)top_sn )
       skill = skill_table[dt];
 
-   if( dt == ( TYPE_HIT + WEAPON_BLASTER ) )
+   if( dt == ( TYPE_HIT + WEAPON_ELECTRON_MACE ) )
    {
       char sound[MAX_STRING_LENGTH];
       int vol = number_range( 20, 80 );

@@ -418,7 +418,7 @@ void hunt_victim( CHAR_DATA * ch )
       OBJ_DATA *wield;
 
       wield = get_eq_char( ch, WEAR_WIELD );
-      if( wield != NULL && wield->value[3] == WEAPON_BLASTER )
+      if( wield != NULL && wield->value[3] == WEAPON_ELECTRON_MACE )
       {
          if( mob_snipe( ch, ch->hunting->who ) == TRUE )
             return;
@@ -580,10 +580,10 @@ bool mob_snipe( CHAR_DATA * ch, CHAR_DATA * victim )
       char_from_room( ch );
       char_to_room( ch, victim->in_room );
 
-      sprintf( buf, "A blaster shot fires at you from the %s.", dir_name[dir] );
+      sprintf( buf, "A electron mace shot fires at you from the %s.", dir_name[dir] );
       act( AT_ACTION, buf, victim, NULL, ch, TO_CHAR );
       act( AT_ACTION, "You fire at $N.", ch, NULL, victim, TO_CHAR );
-      sprintf( buf, "A blaster shot fires at $N from the %s.", dir_name[dir] );
+      sprintf( buf, "A electron mace shot fires at $N from the %s.", dir_name[dir] );
       act( AT_ACTION, buf, ch, NULL, victim, TO_NOTVICT );
 
       one_hit( ch, victim, TYPE_UNDEFINED );
