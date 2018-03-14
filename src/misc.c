@@ -499,12 +499,12 @@ void do_ammo( CHAR_DATA * ch, const char *argument )
       act( AT_PLAIN, "$n replaces the ammunition cell in $p.", ch, wield, NULL, TO_ROOM );
 
    }
-   else if( wield->value[3] == WEAPON_BOWCASTER )
+   else if( wield->value[3] == WEAPON_MINIGUN )
    {
 
       if( obj && obj->item_type != ITEM_BOLT )
       {
-         send_to_char( "&RYour hands are too full to reload your bowcaster.\r\n&w", ch );
+         send_to_char( "&RYour hands are too full to reload your minigun.\r\n&w", ch );
          return;
       }
 
@@ -512,7 +512,7 @@ void do_ammo( CHAR_DATA * ch, const char *argument )
       {
          if( obj->value[0] > wield->value[5] )
          {
-            send_to_char( "That cartridge is too big for your bowcaster.", ch );
+            send_to_char( "That cartridge is too big for your minigun.", ch );
             return;
          }
          unequip_char( ch, obj );
@@ -529,7 +529,7 @@ void do_ammo( CHAR_DATA * ch, const char *argument )
             {
                if( obj->value[0] > wield->value[5] )
                {
-                  send_to_char( "That cartridge is too big for your bowcaster.", ch );
+                  send_to_char( "That cartridge is too big for your minigun.", ch );
                   continue;
                }
                checkammo = TRUE;
@@ -543,12 +543,12 @@ void do_ammo( CHAR_DATA * ch, const char *argument )
 
       if( !checkammo )
       {
-         send_to_char( "&RYou don't seem to have any quarrels to reload your bowcaster with.\r\n&w", ch );
+         send_to_char( "&RYou don't seem to have any ammo to reload your minigun with.\r\n&w", ch );
          return;
       }
 
-      ch_printf( ch, "You replace your quarrel pack.\r\nYour bowcaster is charged with %d energy bolts.\r\n", charge );
-      act( AT_PLAIN, "$n replaces the quarrels in $p.", ch, wield, NULL, TO_ROOM );
+      ch_printf( ch, "You replace ammo pack.\r\nYour minigun is charged with %d ammos.\r\n", charge );
+      act( AT_PLAIN, "$n replaces the ammos in $p.", ch, wield, NULL, TO_ROOM );
 
    }
    else
@@ -3207,10 +3207,10 @@ void do_suicide( CHAR_DATA * ch, const char *argument )
                  ch, NULL, NULL, TO_ROOM );
             break;
 
-         case WEAPON_BOWCASTER:
-            act( AT_BLOOD, "You pull back the lever, hold the bowcaster to your face and... death.", ch, NULL, NULL,
+         case WEAPON_MINIGUN:
+            act( AT_BLOOD, "You pull back the lever, hold the minigun to your face and... death.", ch, NULL, NULL,
                  TO_CHAR );
-            act( AT_BLOOD, "$n blows his head off with a bowcaster quarrel!", ch, NULL, NULL, TO_ROOM );
+            act( AT_BLOOD, "$n blows his head off with a minigun shot!", ch, NULL, NULL, TO_ROOM );
             break;
 
       }

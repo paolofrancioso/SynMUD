@@ -6875,8 +6875,8 @@ void ostat_plus( CHAR_DATA * ch, OBJ_DATA * obj )
             ch_printf( ch, "&WGeneral&W\r\n" );
          else if( obj->value[3] == WEAPON_VIBRO_BLADE )
             ch_printf( ch, "&WVibro-Blade&W\r\n" );
-         else if( obj->value[3] == WEAPON_BOWCASTER )
-            ch_printf( ch, "&WBowcaster&W\r\n" );
+         else if( obj->value[3] == WEAPON_MINIGUN )
+            ch_printf( ch, "&WMinigun&W\r\n" );
          else if( obj->value[3] == WEAPON_FORCE_PIKE )
             ch_printf( ch, "&WForce-Pike&W\r\n" );
          else if( obj->value[3] == WEAPON_ELECTRON_MACE )

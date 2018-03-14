@@ -1868,7 +1868,7 @@ typedef enum
 #define WEAPON_CLAW							5
 #define WEAPON_ELECTRON_MACE		6
 #define WEAPON_BLUDGEON					8
-#define WEAPON_BOWCASTER        9
+#define WEAPON_MINIGUN	        9
 #define WEAPON_DUAL_LIGHTSABER  10
 #define WEAPON_FORCE_PIKE				11
 
@@ -3246,7 +3246,7 @@ extern short gsn_climb;
 
 extern short gsn_elmace;
 extern short gsn_force_pikes;
-extern short gsn_bowcasters;
+extern short gsn_miniguns;
 extern short gsn_lightsabers;
 extern short gsn_vibro_blades;
 extern short gsn_flexible_arms;

@@ -10,11 +10,11 @@ Languages    -1 1
 Toplevel     36
 Pheight      0
 Build        0
-Played       140307
+Played       140594
 Ship            ~
 ShipNum         0
-Room         128
-HpManaMove   1000 1000 971 1000 968 1000
+Room         100
+HpManaMove   1000 1000 991 1000 1000 1000
 Gold         2085574427
 Bank         10
 Salary       0
@@ -40,7 +40,7 @@ Armor        10
 Rppoints   0
 Mentalstate  0
 Password     9c3a88f26d3623fcf0a4aa881518170c70f5e1d62e0d9f9fa7e9b3f07fa299b7~
-Lastplayed   1521066464
+Lastplayed   1521068152
 Title         The Glorious Admin is here~
 AuthedBy     Admin~
 Addiction    0 0 0 0 0 0 0 0 0 0
@@ -154,10 +154,10 @@ Skill        100 'third attack'
 Skill        100 'throw'
 Skill        100 'torture'
 Skill        100 'track'
-Weapon       100 'bowcasters'
 Weapon       100 'electron-maces'
 Weapon       100 'force pikes'
 Weapon       100 'launchers'
+Weapon       100 'miniguns'
 Weapon       100 'vibro-blades'
 Tongue       100 'basic'
 Killed       116 1
@@ -198,10 +198,12 @@ Level        36
 End
 
 #OBJECT
+Name         minigun~
+ShortDescr   a Minigun~
 Vnum         50
 WearLoc      18
 Level        36
-Values       12 1 4 6 1478 2000
+Values       12 1 4 9 1478 2000
 Affect       -1 -1 10 12 0
 Affect       -1 -1 12 12 0
 Affect       -1 -1 10 77 0

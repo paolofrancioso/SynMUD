@@ -4177,6 +4177,15 @@ building them. just oi mail for the board in it.
 -Trillen
 ~
 
+36 IMPLANT~
+Usage: implant <cyberware>
+
+If you are at a biotech surgeon, you can purchase a cyberware implant.
+The cost of the implant is 100 * item value/cost. Please consider
+that if you have already a cyberware in the same slot you are going
+to implant, the previous item will be removed.
+~
+
 31 INDUCT OUTCAST~
 Syntax:  induct  <player>
          outcast <player>

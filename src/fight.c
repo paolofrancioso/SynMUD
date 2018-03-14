@@ -632,7 +632,7 @@ int weapon_prof_bonus_check( CHAR_DATA * ch, OBJ_DATA * wield, int *gsn_ptr )
             *gsn_ptr = gsn_bludgeons;
             break;
          case 9:
-            *gsn_ptr = gsn_bowcasters;
+            *gsn_ptr = gsn_miniguns;
             break;
          case 11:
             *gsn_ptr = gsn_force_pikes;
@@ -1086,12 +1086,12 @@ ch_ret one_hit( CHAR_DATA * ch, CHAR_DATA * victim, int dt )
          return rNONE;
       }
    }
-   else if( dt == ( TYPE_HIT + WEAPON_BOWCASTER ) && wield && wield->item_type == ITEM_WEAPON )
+   else if( dt == ( TYPE_HIT + WEAPON_MINIGUN ) && wield && wield->item_type == ITEM_WEAPON )
    {
       if( wield->value[4] < 1 )
       {
-         act( AT_YELLOW, "$n points their bowcaster at you but nothing happens.", ch, NULL, victim, TO_VICT );
-         act( AT_YELLOW, "*CLICK* ... your bowcaster needs a new bolt cartridge!", ch, NULL, victim, TO_CHAR );
+         act( AT_YELLOW, "$n points their minigun at you but nothing happens.", ch, NULL, victim, TO_VICT );
+         act( AT_YELLOW, "*CLICK* ... your minigun needs a new ammo cartridge!", ch, NULL, victim, TO_CHAR );
          if( IS_NPC( ch ) )
          {
             do_remove( ch, wield->name );

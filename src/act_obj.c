@@ -2499,13 +2499,13 @@ void do_auction( CHAR_DATA * ch, const char *argument )
             case ITEM_WEAPON:
                ch_printf( ch, "&z|| &wIt is a &G%s&w.  Average Damage: &G%d&w\r\n",
                           obj->value[3] == WEAPON_VIBRO_BLADE ? "vibro blade" :
-                          obj->value[3] == WEAPON_BOWCASTER ? "bowcaster" :
+                          obj->value[3] == WEAPON_MINIGUN ? "minigun" :
                           obj->value[3] == WEAPON_FORCE_PIKE ? "force pike" :
                           obj->value[3] == WEAPON_ELECTRON_MACE ? "electron mace" :
                           obj->value[3] == WEAPON_LIGHTSABER ? "lightsaber" :
                           "weapon", ( obj->value[1] + obj->value[2] ) / 2 );
                if( obj->value[3] == WEAPON_ELECTRON_MACE || obj->value[3] == WEAPON_VIBRO_BLADE
-                   || obj->value[3] == WEAPON_LIGHTSABER || obj->value[3] == WEAPON_FORCE_PIKE )
+                   || obj->value[3] == WEAPON_LIGHTSABER || obj->value[3] == WEAPON_FORCE_PIKE  || obj->value[3] == WEAPON_MINIGUN )
                   ch_printf( ch, "&z|| &wEnergy cell rating: &G%d\r\n", obj->value[5] );
                ch_printf( ch, "&W++\r\n" );
                break;

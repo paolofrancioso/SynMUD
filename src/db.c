@@ -187,7 +187,7 @@ short gsn_barrelroll;
 short gsn_juke;
 
 short gsn_elmace;
-short gsn_bowcasters;
+short gsn_miniguns;
 short gsn_force_pikes;
 short gsn_lightsabers;
 short gsn_vibro_blades;
@@ -622,7 +622,7 @@ void boot_db( bool fCopyOver )
       ASSIGN_GSN( gsn_scanbugs, "checkbugs" );
       //ASSIGN_GSN( gsn_shipdesign, "ship design" );
       ASSIGN_GSN( gsn_elmace, "electron-maces" );
-      ASSIGN_GSN( gsn_bowcasters, "bowcasters" );
+      ASSIGN_GSN( gsn_miniguns, "miniguns" );
       ASSIGN_GSN( gsn_force_pikes, "force pikes" );
       ASSIGN_GSN( gsn_lightsabers, "lightsabers" );
       ASSIGN_GSN( gsn_vibro_blades, "vibro-blades" );
@@ -2637,7 +2637,7 @@ OBJ_DATA *create_object( OBJ_INDEX_DATA * pObjIndex, int level )
             case WEAPON_DUAL_LIGHTSABER:
             case WEAPON_VIBRO_BLADE:
             case WEAPON_FORCE_PIKE:
-            case WEAPON_BOWCASTER:
+            case WEAPON_MINIGUN:
                if( obj->value[5] <= 0 )
                   obj->value[5] = number_fuzzy( 1000 );
          }

@@ -10,15 +10,15 @@ Languages    -1 1
 Toplevel     36
 Pheight      0
 Build        0
-Played       140246
+Played       140563
 Ship            ~
 ShipNum         0
 Room         100
-HpManaMove   1000 1000 1022 1000 1000 1000
+HpManaMove   1000 1000 991 1000 1000 1000
 Gold         2085574427
 Bank         10
 Salary       0
-Ability        0 200 19843446 0
+Ability        0 200 19853471 0
 Ability        1 200 19800500 0
 Ability        2 200 19800500 0
 Ability        3 200 19800500 0
@@ -40,7 +40,7 @@ Armor        10
 Rppoints   0
 Mentalstate  0
 Password     9c3a88f26d3623fcf0a4aa881518170c70f5e1d62e0d9f9fa7e9b3f07fa299b7~
-Lastplayed   1521066403
+Lastplayed   1521068030
 Title         The Glorious Admin is here~
 AuthedBy     Admin~
 Addiction    0 0 0 0 0 0 0 0 0 0
@@ -48,7 +48,7 @@ Druglevel    0 0 0 0 0 0 0 0 0 0
 WizInvis     105
 Flags        2048
 PKills       17
-MKills       4
+MKills       5
 MDeaths      0
 AttrPerm     25 25 25 25 25 25 25
 AttrMod      0 0 0 0 0 0 0
@@ -154,12 +154,13 @@ Skill        100 'third attack'
 Skill        100 'throw'
 Skill        100 'torture'
 Skill        100 'track'
-Weapon       100 'bowcasters'
 Weapon       100 'electron-maces'
 Weapon       100 'force pikes'
 Weapon       100 'launchers'
+Weapon       100 'miniguns'
 Weapon       100 'vibro-blades'
 Tongue       100 'basic'
+Killed       116 1
 Killed       251 1
 Killed       7806 2
 Killed       28 1
@@ -172,7 +173,7 @@ Vnum         50
 ExtraFlags   16
 WearLoc      16
 Level        66
-Values       9 1 4 6 18 2000
+Values       9 1 4 6 955 2000
 Affect       -1 -1 10 77 0
 End
 
@@ -198,9 +199,8 @@ End
 
 #OBJECT
 Vnum         50
-WearLoc      18
 Level        36
-Values       12 1 4 6 1568 2000
+Values       12 1 4 9 1478 2000
 Affect       -1 -1 10 12 0
 Affect       -1 -1 12 12 0
 Affect       -1 -1 10 77 0
