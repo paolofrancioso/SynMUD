@@ -375,7 +375,7 @@ const char *const attack_table[13] = {
    "hit",
    "slice", "stab", "slash", "whip", "claw",
    "blast", "pound", "crush", "shot", "bite",
-   "pierce", "suction"
+   "pierce", "chain reaction"
 };
 
 

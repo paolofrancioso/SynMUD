@@ -1512,7 +1512,7 @@ void obj_update( void )
       if( obj->item_type == ITEM_WEAPON && obj->carried_by &&
           ( obj->wear_loc == WEAR_WIELD || obj->wear_loc == WEAR_DUAL_WIELD ) &&
           obj->value[3] != WEAPON_ELECTRON_MACE && obj->value[4] > 0 &&
-          obj->value[3] != WEAPON_MINIGUN && obj->value[3] != WEAPON_FORCE_PIKE )
+          obj->value[3] != WEAPON_MINIGUN && obj->value[3] != WEAPON_FORCE_PIKE && obj->value[3] != WEAPON_GRAVITON_GUN )
       {
          obj->value[4]--;
          if( obj->value[4] <= 0 )

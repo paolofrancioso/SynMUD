@@ -1997,6 +1997,19 @@ Minlevel     3
 End
 
 #SKILL
+Name         graviton-guns~
+Type         Weapon
+Flags        0
+Minpos       7
+Guild        0
+Code         spell_null
+Dammsg       ~
+Wearoff      !Graviton-Guns!~
+Teachers     32012 32011 412 907 16 116 1111 1080 1111~
+Minlevel     2
+End
+
+#SKILL
 Name         launchers~
 Type         Weapon
 Flags        0

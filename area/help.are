@@ -8232,6 +8232,9 @@ Syntax: feel weaken <victim>
 This power reduces the strength of the victim by two points.
 ~
 
+36 WEAPON~
+~
+
 31 WEAPONTYPES~
 For items of type "weapon", the value3 field specifies the weapon type:
 
@@ -8249,7 +8252,8 @@ Value3 | Type     | Weapons
    9   | shot     | MINIGUN
   10   | bite     | 
   11   | pierce   | FORCE PIKE
-  12   | suction  |
+  12   | energy   | GRAVITON GUN
+
 
 See OSET.
 ~

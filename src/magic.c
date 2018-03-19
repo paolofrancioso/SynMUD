@@ -2718,6 +2718,10 @@ ch_ret spell_identify( int sn, int level, CHAR_DATA * ch, void *vo )
             {
                ch_printf( ch, "It has %d out of %d units of charge remaining.\r\n", obj->value[4], obj->value[5] );
             }
+						else if( obj->value[3] == WEAPON_GRAVITON_GUN )
+            {
+               ch_printf( ch, "It has %d out of %d units of charge remaining.\r\n", obj->value[4], obj->value[5] );
+            }
             break;
 
          case ITEM_AMMO:

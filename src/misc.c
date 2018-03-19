@@ -502,7 +502,7 @@ void do_ammo( CHAR_DATA * ch, const char *argument )
    else if( wield->value[3] == WEAPON_MINIGUN )
    {
 
-      if( obj && obj->item_type != ITEM_BOLT )
+      if( obj && obj->item_type != ITEM_AMMO )
       {
          send_to_char( "&RYour hands are too full to reload your minigun.\r\n&w", ch );
          return;
@@ -525,7 +525,7 @@ void do_ammo( CHAR_DATA * ch, const char *argument )
       {
          for( obj = ch->last_carrying; obj; obj = obj->prev_content )
          {
-            if( obj->item_type == ITEM_BOLT )
+            if( obj->item_type == ITEM_AMMO )
             {
                if( obj->value[0] > wield->value[5] )
                {
@@ -550,7 +550,7 @@ void do_ammo( CHAR_DATA * ch, const char *argument )
       ch_printf( ch, "You replace ammo pack.\r\nYour minigun is charged with %d ammos.\r\n", charge );
       act( AT_PLAIN, "$n replaces the ammos in $p.", ch, wield, NULL, TO_ROOM );
 
-   }
+   } 
    else
    {
 
@@ -605,6 +605,11 @@ void do_ammo( CHAR_DATA * ch, const char *argument )
          ch_printf( ch, "You replace your power cell.\r\nYour force-pike is charged to %d/%d units.\r\n", charge, charge );
          act( AT_PLAIN, "$n replaces the power cell in $p.", ch, wield, NULL, TO_ROOM );
       }
+      else if( wield->value[3] == WEAPON_GRAVITON_GUN )
+      {
+         ch_printf( ch, "You replace your power cell.\r\nYour graviton gun is charged to %d/%d units.\r\n", charge, charge );
+         act( AT_PLAIN, "$n replaces the power cell in $p.", ch, wield, NULL, TO_ROOM );
+      }			
       else
       {
          ch_printf( ch, "You feel very foolish.\r\n" );

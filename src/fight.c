@@ -637,6 +637,8 @@ int weapon_prof_bonus_check( CHAR_DATA * ch, OBJ_DATA * wield, int *gsn_ptr )
          case 11:
             *gsn_ptr = gsn_force_pikes;
             break;
+				 case 12:
+						*gsn_ptr = gsn_gravitonguns;
 
       }
       if( *gsn_ptr != -1 )
@@ -1101,6 +1103,21 @@ ch_ret one_hit( CHAR_DATA * ch, CHAR_DATA * victim, int dt )
       else
          wield->value[4]--;
    }
+   else if( dt == ( TYPE_HIT + WEAPON_GRAVITON_GUN ) && wield && wield->item_type == ITEM_WEAPON )
+   {
+      if( wield->value[4] < 1 )
+      {
+         act( AT_YELLOW, "$n points their graviton gun at you but nothing happens.", ch, NULL, victim, TO_VICT );
+         act( AT_YELLOW, "*CLICK* ... your graviton gun needs some charge!", ch, NULL, victim, TO_CHAR );
+         if( IS_NPC( ch ) )
+         {
+            do_remove( ch, wield->name );
+         }
+         return rNONE;
+      }
+      else
+         wield->value[4]--;
+   }	 
 
    if( dam <= 0 )
       dam = 1;
@@ -1303,7 +1320,7 @@ ch_ret damage( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt )
          dam = ris_damage( victim, dam, RIS_ACID );
       else if( IS_ELECTRICITY( dt ) || dt == ( TYPE_HIT + 6 ) )
          dam = ris_damage( victim, dam, RIS_ELECTRICITY );
-      else if( IS_ENERGY( dt ) )
+      else if( IS_ENERGY( dt ) || dt == ( TYPE_HIT + 12 ) )
          dam = ris_damage( victim, dam, RIS_ENERGY );
       else if( IS_DRAIN( dt ) )
          dam = ris_damage( victim, dam, RIS_DRAIN );

@@ -1871,6 +1871,7 @@ typedef enum
 #define WEAPON_MINIGUN	        9
 #define WEAPON_DUAL_LIGHTSABER  10
 #define WEAPON_FORCE_PIKE				11
+#define WEAPON_GRAVITON_GUN     12
 
 
 /* Lever/dial/switch/button/pullchain flags */
@@ -3247,6 +3248,7 @@ extern short gsn_climb;
 extern short gsn_elmace;
 extern short gsn_force_pikes;
 extern short gsn_miniguns;
+extern short gsn_gravitonguns;
 extern short gsn_lightsabers;
 extern short gsn_vibro_blades;
 extern short gsn_flexible_arms;
