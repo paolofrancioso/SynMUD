@@ -62,11 +62,11 @@ const char *const planet_flags[] = {
    "p22", "p23", "p24", "p25", "p26", "p27", "p28", "p29", "p30", "p31"
 };
 
-const char *const weapon_table[13] = {
+const char *const weapon_table[14] = {
    "none",
    "vibro-axe", "vibro-blade", "lightsaber", "whip", "claw",
-   "electron-mace", "w7", "bludgeon", "minigun", "w10",
-   "force pike", "dualsaber"
+   "electron mace", "w7", "bludgeon", "minigun", "w10",
+   "pulse laser", "graviton gun", "sniper rifle"
 };
 
 const char *const spice_table[] = {
@@ -3576,8 +3576,9 @@ void do_oset( CHAR_DATA * ch, const char *argument )
             {
                send_to_char( "Unknown weapon type.\r\n", ch );
                send_to_char( "\r\nChoices:\r\n", ch );
-               send_to_char( "   none, lightsaber, vibro-blade, electron-mace, force pike, minigun, bludgeon, dualsaber\r\n",
+               send_to_char( "   none, lightsaber, vibro-blade, electron mace, pulse laser, minigun,\r\n",
                              ch );
+							 send_to_char( "   bludgeon, graviton gun, sniper rifle.\r\n",  ch );
                return;
             }
             tmp = 3;

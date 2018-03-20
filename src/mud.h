@@ -1870,8 +1870,9 @@ typedef enum
 #define WEAPON_BLUDGEON					8
 #define WEAPON_MINIGUN	        9
 #define WEAPON_DUAL_LIGHTSABER  10
-#define WEAPON_FORCE_PIKE				11
+#define WEAPON_PULSE_LASER			11
 #define WEAPON_GRAVITON_GUN     12
+#define WEAPON_SNIPER_RIFLE     13
 
 
 /* Lever/dial/switch/button/pullchain flags */
@@ -3152,7 +3153,7 @@ extern short gsn_beg;
 extern short gsn_makeblade;
 extern short gsn_makebug;
 extern short gsn_makebeacon;
-extern short gsn_makepike;
+extern short gsn_makepulselaser;
 extern short gsn_makejewelry;
 extern short gsn_makeelmace;
 extern short gsn_makelight;
@@ -3246,7 +3247,7 @@ extern short gsn_poison_weapon;
 extern short gsn_climb;
 
 extern short gsn_elmace;
-extern short gsn_force_pikes;
+extern short gsn_pulse_lasers;
 extern short gsn_miniguns;
 extern short gsn_gravitonguns;
 extern short gsn_lightsabers;
@@ -3254,6 +3255,7 @@ extern short gsn_vibro_blades;
 extern short gsn_flexible_arms;
 extern short gsn_talonous_arms;
 extern short gsn_bludgeons;
+extern short gsn_sniper_rifles;
 
 extern short gsn_grip;
 
@@ -3689,7 +3691,7 @@ extern const struct cha_app_type cha_app[26];
 extern const struct lck_app_type lck_app[26];
 extern struct race_type race_table[MAX_RACE];
 extern const struct liq_type liq_table[LIQ_MAX];
-extern const char *const attack_table[13];
+extern const char *const attack_table[14];
 extern const char *const ability_name[MAX_ABILITY];
 extern const char *const height_name[4];
 extern const char *const build_name[6];
@@ -3712,7 +3714,7 @@ extern const char *const cmd_flags[];
 extern const char *const act_flags[];
 extern const char *const planet_flags[];
 extern const char *const mprog_flags[];
-extern const char *const weapon_table[13];
+extern const char *const weapon_table[14];
 extern const char *const spice_table[];
 extern const char *const plr_flags[];
 extern const char *const pc_flags[];
@@ -3953,7 +3955,7 @@ DECLARE_DO_FUN( do_makebinders );
 DECLARE_DO_FUN( do_makebug );
 DECLARE_DO_FUN( do_makegoggles );
 DECLARE_DO_FUN( do_spousetalk );
-DECLARE_DO_FUN( do_makepike );
+DECLARE_DO_FUN( do_makepulselaser );
 DECLARE_DO_FUN( do_makeelmace );
 DECLARE_DO_FUN( do_makelightsaber );
 DECLARE_DO_FUN( do_makeduallightsaber );

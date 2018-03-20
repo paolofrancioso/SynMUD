@@ -2710,13 +2710,13 @@ ch_ret spell_identify( int sn, int level, CHAR_DATA * ch, void *vo )
                ch_printf( ch, "It has %d out of %d charges.\r\n", obj->value[4], obj->value[5] );
             }
             else if( obj->value[3] == WEAPON_LIGHTSABER ||
-                     obj->value[3] == WEAPON_VIBRO_BLADE || obj->value[3] == WEAPON_FORCE_PIKE )
+                     obj->value[3] == WEAPON_VIBRO_BLADE || obj->value[3] == WEAPON_PULSE_LASER )
             {
                ch_printf( ch, "It has %d out of %d units of charge remaining.\r\n", obj->value[4], obj->value[5] );
             }
-            else if( obj->value[3] == WEAPON_MINIGUN )
+            else if( obj->value[3] == WEAPON_MINIGUN || obj->value[3] == WEAPON_SNIPER_RIFLE )
             {
-               ch_printf( ch, "It has %d out of %d units of charge remaining.\r\n", obj->value[4], obj->value[5] );
+               ch_printf( ch, "It has %d out of %d ammos remaining.\r\n", obj->value[4], obj->value[5] );
             }
 						else if( obj->value[3] == WEAPON_GRAVITON_GUN )
             {
@@ -2725,7 +2725,7 @@ ch_ret spell_identify( int sn, int level, CHAR_DATA * ch, void *vo )
             break;
 
          case ITEM_AMMO:
-            ch_printf( ch, "It has %d charges.\r\n", obj->value[0] );
+            ch_printf( ch, "It has %d ammos.\r\n", obj->value[0] );
             break;
 
          case ITEM_BOLT:

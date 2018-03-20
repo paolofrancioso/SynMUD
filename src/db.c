@@ -158,7 +158,7 @@ short gsn_makelightsaber;
 short gsn_makeduallightsaber;
 short gsn_spice_refining;
 short gsn_makeblade;
-short gsn_makepike;
+short gsn_makepulselaser;
 short gsn_sabotage;
 short gsn_makeelmace;
 short gsn_makelight;
@@ -188,8 +188,9 @@ short gsn_juke;
 
 short gsn_elmace;
 short gsn_miniguns;
+short gsn_sniper_rifles;
 short gsn_gravitonguns;
-short gsn_force_pikes;
+short gsn_pulse_lasers;
 short gsn_lightsabers;
 short gsn_vibro_blades;
 short gsn_flexible_arms;
@@ -590,7 +591,7 @@ void boot_db( bool fCopyOver )
       ASSIGN_GSN( gsn_makegrenade, "makegrenade" );
       ASSIGN_GSN( gsn_makelandmine, "makelandmine" );
       ASSIGN_GSN( gsn_makearmor, "makearmor" );
-      ASSIGN_GSN( gsn_makepike, "makepike" );
+      ASSIGN_GSN( gsn_makepulselaser, "makepulselaser" );
       ASSIGN_GSN( gsn_makeshield, "makeshield" );
       ASSIGN_GSN( gsn_makecontainer, "makecontainer" );
       ASSIGN_GSN( gsn_makemissile, "makemissile" );
@@ -622,10 +623,11 @@ void boot_db( bool fCopyOver )
       ASSIGN_GSN( gsn_spice_refining, "spice refining" );
       ASSIGN_GSN( gsn_scanbugs, "checkbugs" );
       //ASSIGN_GSN( gsn_shipdesign, "ship design" );
-      ASSIGN_GSN( gsn_elmace, "electron-maces" );
+      ASSIGN_GSN( gsn_elmace, "electron maces" );
       ASSIGN_GSN( gsn_miniguns, "miniguns" );
-			ASSIGN_GSN( gsn_gravitonguns, "graviton-guns" );
-      ASSIGN_GSN( gsn_force_pikes, "force pikes" );
+			ASSIGN_GSN( gsn_sniper_rifles, "sniper rifles" );
+			ASSIGN_GSN( gsn_gravitonguns, "graviton guns" );
+      ASSIGN_GSN( gsn_pulse_lasers, "pulse lasers" );
       ASSIGN_GSN( gsn_lightsabers, "lightsabers" );
       ASSIGN_GSN( gsn_vibro_blades, "vibro-blades" );
       ASSIGN_GSN( gsn_flexible_arms, "flexible arms" );
@@ -2638,8 +2640,9 @@ OBJ_DATA *create_object( OBJ_INDEX_DATA * pObjIndex, int level )
             case WEAPON_LIGHTSABER:
             case WEAPON_DUAL_LIGHTSABER:
             case WEAPON_VIBRO_BLADE:
-            case WEAPON_FORCE_PIKE:
+            case WEAPON_PULSE_LASER:
             case WEAPON_MINIGUN:
+						case WEAPON_SNIPER_RIFLE:
 						case WEAPON_GRAVITON_GUN:
                if( obj->value[5] <= 0 )
                   obj->value[5] = number_fuzzy( 1000 );

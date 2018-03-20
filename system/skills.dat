@@ -1373,13 +1373,13 @@ Minlevel     20
 End
 
 #SKILL
-Name         makepike~
+Name         makepulselaser~
 Type         Skill
 Flags        0
 Minpos       5
 Rounds       8
 Guild        2
-Code         do_makepike
+Code         do_makepulselaser
 Dammsg       ~
 Wearoff      !done!~
 Teachers     1097~
@@ -1951,14 +1951,14 @@ Minlevel     31
 End
 
 #SKILL
-Name         electron-maces~
+Name         electron maces~
 Type         Weapon
 Flags        0
 Minpos       7
 Guild        0
 Code         spell_null
 Dammsg       ~
-Wearoff      !Electron-Maces!~
+Wearoff      !Electron Maces!~
 Teachers     32012 32011 412 907 16 116 1111 1080 1111~
 Minlevel     2
 End
@@ -1986,25 +1986,14 @@ Minlevel     29
 End
 
 #SKILL
-Name         force pikes~
-Type         Weapon
-Flags        0
-Guild        0
-Code         spell_null
-Dammsg       ~
-Teachers     32012 32011 412 907 16 116 1111 1080 1111~
-Minlevel     3
-End
-
-#SKILL
-Name         graviton-guns~
+Name         graviton guns~
 Type         Weapon
 Flags        0
 Minpos       7
 Guild        0
 Code         spell_null
 Dammsg       ~
-Wearoff      !Graviton-Guns!~
+Wearoff      !Graviton Guns!~
 Teachers     32012 32011 412 907 16 116 1111 1080 1111~
 Minlevel     2
 End
@@ -2048,6 +2037,17 @@ Minlevel     4
 End
 
 #SKILL
+Name         pulse lasers~
+Type         Weapon
+Flags        0
+Guild        0
+Code         spell_null
+Dammsg       ~
+Teachers     32012 32011 412 907 16 116 1111 1080 1111~
+Minlevel     3
+End
+
+#SKILL
 Name         talonous arms~
 Type         Weapon
 Flags        0
@@ -2056,6 +2056,17 @@ Code         spell_null
 Dammsg       ~
 Wearoff      !Talonous Arms!~
 Minlevel     29
+End
+
+#SKILL
+Name         sniper rifles~
+Type         Weapon
+Flags        0
+Guild        0
+Code         spell_null
+Dammsg       ~
+Teachers     32012 32011 412 907 16 116 1111 1080 1111~
+Minlevel     3
 End
 
 #SKILL

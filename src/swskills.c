@@ -3334,9 +3334,9 @@ void do_snipe( CHAR_DATA * ch, const char *argument )
    }
 
    wield = get_eq_char( ch, WEAR_WIELD );
-   if( !wield || wield->item_type != ITEM_WEAPON || wield->value[3] != WEAPON_ELECTRON_MACE )
+   if( !wield || wield->item_type != ITEM_WEAPON || wield->value[3] != WEAPON_SNIPER_RIFLE )
    {
-      send_to_char( "You don't seem to be holding a electron mace", ch );
+      send_to_char( "You don't seem to be holding a sniper rifle", ch );
       return;
    }
 
@@ -3473,16 +3473,16 @@ void do_snipe( CHAR_DATA * ch, const char *argument )
 
    if( number_percent(  ) < schance )
    {
-      sprintf( buf, "$n fires a electron mace shot to the %s.", dir_name[get_door(arg)] );
+      sprintf( buf, "$n fires a sniper rifle shot to the %s.", dir_name[get_door(arg)] );
       act( AT_ACTION, buf, ch, NULL, NULL, TO_ROOM );
 
       char_from_room( ch );
       char_to_room( ch, victim->in_room );
 
-      sprintf( buf, "A electron mace shot fires at you from the %s.", dir_name[dir] );
+      sprintf( buf, "A sniper rifle shot fires at you from the %s.", dir_name[dir] );
       act( AT_ACTION, buf, victim, NULL, ch, TO_CHAR );
       act( AT_ACTION, "You fire at $N.", ch, NULL, victim, TO_CHAR );
-      sprintf( buf, "A electron mace shot fires at $N from the %s.", dir_name[dir] );
+      sprintf( buf, "A sniper rifle shot fires at $N from the %s.", dir_name[dir] );
       act( AT_ACTION, buf, ch, NULL, victim, TO_NOTVICT );
 
       /* Fix to prevent automatic looting of corpses with snipe */
@@ -3500,14 +3500,14 @@ void do_snipe( CHAR_DATA * ch, const char *argument )
    }
    else
    {
-      sprintf( buf, "$n fires a electron mace shot to the %s.", dir_name[get_door(arg)] );
+      sprintf( buf, "$n fires a sniper rifle shot to the %s.", dir_name[get_door(arg)] );
       act( AT_ACTION, buf, ch, NULL, NULL, TO_ROOM );
 
       char_from_room( ch );
       char_to_room( ch, victim->in_room );
 
       act( AT_ACTION, "You fire at $N but don't even come close.", ch, NULL, victim, TO_CHAR );
-      sprintf( buf, "A electron mace shot fired from the %s barely misses you.", dir_name[dir] );
+      sprintf( buf, "A sniper rifle shot fired from the %s barely misses you.", dir_name[dir] );
       act( AT_ACTION, buf, ch, NULL, victim, TO_ROOM );
       learn_from_failure( ch, gsn_snipe );
    }
@@ -5485,7 +5485,7 @@ void do_makeduallightsaber( CHAR_DATA * ch, const char *argument )
    learn_from_success( ch, gsn_makeduallightsaber );
 }
 
-void do_makepike( CHAR_DATA * ch, const char *argument )
+void do_makepulselaser( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char buf[MAX_STRING_LENGTH];
@@ -5504,7 +5504,7 @@ void do_makepike( CHAR_DATA * ch, const char *argument )
 
          if( arg[0] == '\0' )
          {
-            send_to_char( "&RUsage: Makepike <name>\r\n&w", ch );
+            send_to_char( "&RUsage: Makepulselaser <name>\r\n&w", ch );
             return;
          }
 
@@ -5534,7 +5534,7 @@ void do_makepike( CHAR_DATA * ch, const char *argument )
 
          if( !checktool )
          {
-            send_to_char( "&RYou need toolkit to make a force pike.\r\n", ch );
+            send_to_char( "&RYou need toolkit to make a pulse laser.\r\n", ch );
             return;
          }
 
@@ -5546,7 +5546,7 @@ void do_makepike( CHAR_DATA * ch, const char *argument )
 
          if( !checkbatt )
          {
-            send_to_char( "&RYou need a power source for your pike.\r\n", ch );
+            send_to_char( "&RYou need a power source for your pulse laser.\r\n", ch );
             return;
          }
 
@@ -5556,18 +5556,18 @@ void do_makepike( CHAR_DATA * ch, const char *argument )
             return;
          }
 
-         schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_makepike] );
+         schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_makepulselaser] );
          if( number_percent(  ) < schance )
          {
-            send_to_char( "&GYou begin the long process of crafting a force pike.\r\n", ch );
+            send_to_char( "&GYou begin the long process of crafting a pulse laser.\r\n", ch );
             act( AT_PLAIN, "$n takes $s tools and a small oven and begins to work on something.", ch,
                  NULL, argument, TO_ROOM );
-            add_timer( ch, TIMER_DO_FUN, 30, do_makepike, 1 );
+            add_timer( ch, TIMER_DO_FUN, 30, do_makepulselaser, 1 );
             ch->dest_buf = str_dup( arg );
             return;
          }
          send_to_char( "&RYou can't figure out how to fit the parts together.\r\n", ch );
-         learn_from_failure( ch, gsn_makepike );
+         learn_from_failure( ch, gsn_makepulselaser );
          return;
 
       case 1:
@@ -5586,7 +5586,7 @@ void do_makepike( CHAR_DATA * ch, const char *argument )
 
    ch->substate = SUB_NONE;
 
-   level = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_makepike] );
+   level = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_makepulselaser] );
    vnum = 74;
 
    if( ( pObjIndex = get_obj_index( vnum ) ) == NULL )
@@ -5625,14 +5625,14 @@ void do_makepike( CHAR_DATA * ch, const char *argument )
       }
    }
 
-   schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_makepike] );
+   schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_makepulselaser] );
 
    if( number_percent(  ) > schance * 2 || ( !checktool ) || ( !checkdura ) || ( !checkbatt ) || ( !checkoven ) )
    {
-      send_to_char( "&RYou activate your newly created force pike.\r\n", ch );
+      send_to_char( "&RYou activate your newly created pulse laser.\r\n", ch );
       send_to_char( "&RIt hums softly for a few seconds then begins to shake violently.\r\n", ch );
       send_to_char( "&RIt finally shatters breaking apart into a dozen pieces.\r\n", ch );
-      learn_from_failure( ch, gsn_makepike );
+      learn_from_failure( ch, gsn_makepulselaser );
       return;
    }
 
@@ -5645,7 +5645,7 @@ void do_makepike( CHAR_DATA * ch, const char *argument )
    obj->weight = 3;
    STRFREE( obj->name );
    strcpy( buf, arg );
-   strcat( buf, " force pike" );
+   strcat( buf, " pulse laser" );
    strcat( buf, remand( buf ) );
    obj->name = STRALLOC( buf );
    strcpy( buf, arg );
@@ -5666,15 +5666,15 @@ void do_makepike( CHAR_DATA * ch, const char *argument )
    obj->value[0] = INIT_WEAPON_CONDITION;
    obj->value[1] = ( int )( level / 10 + 10 );  /* min dmg  */
    obj->value[2] = ( int )( level / 2 + 20 );   /* max dmg */
-   obj->value[3] = WEAPON_FORCE_PIKE;
+   obj->value[3] = WEAPON_PULSE_LASER;
    obj->value[4] = charge;
    obj->value[5] = charge;
    obj->cost = obj->value[2] * 10;
 
    obj = obj_to_char( obj, ch );
 
-   send_to_char( "&GYou finish your work and hold up your newly created force pike.&w\r\n", ch );
-   act( AT_PLAIN, "$n finishes crafting a force pike.", ch, NULL, argument, TO_ROOM );
+   send_to_char( "&GYou finish your work and hold up your newly created pulse laser.&w\r\n", ch );
+   act( AT_PLAIN, "$n finishes crafting a pulse laser.", ch, NULL, argument, TO_ROOM );
 
    {
       long xpgain;
@@ -5687,7 +5687,7 @@ void do_makepike( CHAR_DATA * ch, const char *argument )
       ch_printf( ch, "You gain %d engineering experience.", xpgain );
    }
 
-   learn_from_success( ch, gsn_makepike );
+   learn_from_success( ch, gsn_makepulselaser );
 }
 
 void do_makebug( CHAR_DATA * ch, const char *argument )

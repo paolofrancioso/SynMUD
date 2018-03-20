@@ -1815,6 +1815,18 @@ void wear_obj( CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace, short wear_bit )
             dw = get_eq_char( ch, WEAR_DUAL_WIELD );
             hd = get_eq_char( ch, WEAR_HOLD );
 
+
+						if( ( tmpobj && tmpobj->value[3] == WEAPON_SNIPER_RIFLE ) || ( dw && dw->value[3] == WEAPON_SNIPER_RIFLE ) )
+						{
+							send_to_char( "You cannot use this while using a sniper rifle.\r\n", ch );
+							return;
+						}
+            
+						if ( ( obj && obj->value[3] == WEAPON_SNIPER_RIFLE ) && ( tmpobj || dw || hd ) ) {
+					 		send_to_char( "Your hands must be empty to wield a sniper rifle.\r\n", ch );
+							return;
+						}
+						
             if( tmpobj )
             {
                if( !can_dual( ch ) )
@@ -2500,14 +2512,15 @@ void do_auction( CHAR_DATA * ch, const char *argument )
                ch_printf( ch, "&z|| &wIt is a &G%s&w.  Average Damage: &G%d&w\r\n",
                           obj->value[3] == WEAPON_VIBRO_BLADE ? "vibro blade" :
                           obj->value[3] == WEAPON_MINIGUN ? "minigun" :
+													obj->value[3] == WEAPON_SNIPER_RIFLE ? "sniper rifle" :
 													obj->value[3] == WEAPON_GRAVITON_GUN ? "graviton gun" :
-                          obj->value[3] == WEAPON_FORCE_PIKE ? "force pike" :
+                          obj->value[3] == WEAPON_PULSE_LASER ? "pulse laser" :
                           obj->value[3] == WEAPON_ELECTRON_MACE ? "electron mace" :
                           obj->value[3] == WEAPON_LIGHTSABER ? "lightsaber" :
                           "weapon", ( obj->value[1] + obj->value[2] ) / 2 );
                if( obj->value[3] == WEAPON_ELECTRON_MACE || obj->value[3] == WEAPON_VIBRO_BLADE
-                   || obj->value[3] == WEAPON_LIGHTSABER || obj->value[3] == WEAPON_FORCE_PIKE  
-									 || obj->value[3] == WEAPON_MINIGUN || obj->value[3] == WEAPON_GRAVITON_GUN )
+                   || obj->value[3] == WEAPON_LIGHTSABER || obj->value[3] == WEAPON_PULSE_LASER  
+									 || obj->value[3] == WEAPON_GRAVITON_GUN )
                   ch_printf( ch, "&z|| &wEnergy cell rating: &G%d\r\n", obj->value[5] );
                ch_printf( ch, "&W++\r\n" );
                break;

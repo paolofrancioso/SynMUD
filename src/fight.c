@@ -635,11 +635,15 @@ int weapon_prof_bonus_check( CHAR_DATA * ch, OBJ_DATA * wield, int *gsn_ptr )
             *gsn_ptr = gsn_miniguns;
             break;
          case 11:
-            *gsn_ptr = gsn_force_pikes;
+            *gsn_ptr = gsn_pulse_lasers;
             break;
 				 case 12:
 						*gsn_ptr = gsn_gravitonguns;
-
+						break;
+				 case 13:
+						*gsn_ptr = gsn_sniper_rifles;
+						break;
+						
       }
       if( *gsn_ptr != -1 )
          bonus = ( int )( ch->pcdata->learned[*gsn_ptr] );
@@ -1064,12 +1068,17 @@ ch_ret one_hit( CHAR_DATA * ch, CHAR_DATA * victim, int dt )
          dam /= 3;
       }
    }
-   else if( dt == ( TYPE_HIT + WEAPON_FORCE_PIKE ) && wield && wield->item_type == ITEM_WEAPON )
+   else if( dt == ( TYPE_HIT + WEAPON_PULSE_LASER ) && wield && wield->item_type == ITEM_WEAPON )
    {
       if( wield->value[4] < 1 )
       {
-         act( AT_YELLOW, "Your force-pike needs recharging ...", ch, NULL, victim, TO_CHAR );
-         dam /= 2;
+         act( AT_YELLOW, "$n points their pulse laser at you but nothing happens.", ch, NULL, victim, TO_VICT );
+         act( AT_YELLOW, "*CLICK* ... your pulse laser needs some charge...NOW!", ch, NULL, victim, TO_CHAR );
+         if( IS_NPC( ch ) )
+         {
+            do_remove( ch, wield->name );
+         }
+         return rNONE;
       }
       else
          wield->value[4]--;
@@ -1103,6 +1112,21 @@ ch_ret one_hit( CHAR_DATA * ch, CHAR_DATA * victim, int dt )
       else
          wield->value[4]--;
    }
+   else if( dt == ( TYPE_HIT + WEAPON_SNIPER_RIFLE ) && wield && wield->item_type == ITEM_WEAPON )
+   {
+      if( wield->value[4] < 1 )
+      {
+         act( AT_YELLOW, "$n points their sniper rifle at you but nothing happens.", ch, NULL, victim, TO_VICT );
+         act( AT_YELLOW, "*CLICK* ... your sniper rifle needs a new ammo cartridge!", ch, NULL, victim, TO_CHAR );
+         if( IS_NPC( ch ) )
+         {
+            do_remove( ch, wield->name );
+         }
+         return rNONE;
+      }
+      else
+         wield->value[4]--;
+   }	 
    else if( dt == ( TYPE_HIT + WEAPON_GRAVITON_GUN ) && wield && wield->item_type == ITEM_WEAPON )
    {
       if( wield->value[4] < 1 )
@@ -1320,15 +1344,15 @@ ch_ret damage( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt )
          dam = ris_damage( victim, dam, RIS_ACID );
       else if( IS_ELECTRICITY( dt ) || dt == ( TYPE_HIT + 6 ) )
          dam = ris_damage( victim, dam, RIS_ELECTRICITY );
-      else if( IS_ENERGY( dt ) || dt == ( TYPE_HIT + 12 ) )
+      else if( IS_ENERGY( dt ) || dt == ( TYPE_HIT + 11 ) )
          dam = ris_damage( victim, dam, RIS_ENERGY );
-      else if( IS_DRAIN( dt ) )
+      else if( IS_DRAIN( dt ) || dt == ( TYPE_HIT + 12 ) )
          dam = ris_damage( victim, dam, RIS_DRAIN );
       else if( dt == gsn_poison || IS_POISON( dt ) )
          dam = ris_damage( victim, dam, RIS_POISON );
       else if( dt == ( TYPE_HIT + 8 ) )
          dam = ris_damage( victim, dam, RIS_BLUNT );
-      else if( dt == ( TYPE_HIT + 2 ) || dt == ( TYPE_HIT + 11 ) || dt == ( TYPE_HIT + 9 ) )
+      else if( dt == ( TYPE_HIT + 2 ) || dt == ( TYPE_HIT + 9 ) || dt == ( TYPE_HIT + 13 ) )
          dam = ris_damage( victim, dam, RIS_PIERCE );
       else if( dt == ( TYPE_HIT + 1 ) || dt == ( TYPE_HIT + 3 ) || dt == ( TYPE_HIT + 4 ) || dt == ( TYPE_HIT + 5 ) )
          dam = ris_damage( victim, dam, RIS_SLASH );

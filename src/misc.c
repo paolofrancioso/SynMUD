@@ -499,12 +499,12 @@ void do_ammo( CHAR_DATA * ch, const char *argument )
       act( AT_PLAIN, "$n replaces the ammunition cell in $p.", ch, wield, NULL, TO_ROOM );
 
    }
-   else if( wield->value[3] == WEAPON_MINIGUN )
+   else if( wield->value[3] == WEAPON_MINIGUN || wield->value[3] == WEAPON_SNIPER_RIFLE )
    {
 
       if( obj && obj->item_type != ITEM_AMMO )
       {
-         send_to_char( "&RYour hands are too full to reload your minigun.\r\n&w", ch );
+         send_to_char( "&RYour hands are too full to reload your weapon.\r\n&w", ch );
          return;
       }
 
@@ -512,7 +512,7 @@ void do_ammo( CHAR_DATA * ch, const char *argument )
       {
          if( obj->value[0] > wield->value[5] )
          {
-            send_to_char( "That cartridge is too big for your minigun.", ch );
+            send_to_char( "That cartridge is too big for your weapon.", ch );
             return;
          }
          unequip_char( ch, obj );
@@ -529,7 +529,7 @@ void do_ammo( CHAR_DATA * ch, const char *argument )
             {
                if( obj->value[0] > wield->value[5] )
                {
-                  send_to_char( "That cartridge is too big for your minigun.", ch );
+                  send_to_char( "That cartridge is too big for your weapon.", ch );
                   continue;
                }
                checkammo = TRUE;
@@ -543,11 +543,11 @@ void do_ammo( CHAR_DATA * ch, const char *argument )
 
       if( !checkammo )
       {
-         send_to_char( "&RYou don't seem to have any ammo to reload your minigun with.\r\n&w", ch );
+         send_to_char( "&RYou don't seem to have any ammo to reload your weapon with.\r\n&w", ch );
          return;
       }
 
-      ch_printf( ch, "You replace ammo pack.\r\nYour minigun is charged with %d ammos.\r\n", charge );
+      ch_printf( ch, "You replace ammo pack.\r\nYour weapon is charged with %d ammos.\r\n", charge );
       act( AT_PLAIN, "$n replaces the ammos in $p.", ch, wield, NULL, TO_ROOM );
 
    } 
@@ -600,9 +600,9 @@ void do_ammo( CHAR_DATA * ch, const char *argument )
          ch_printf( ch, "You replace your power cell.\r\nYour vibro-blade is charged to %d/%d units.\r\n", charge, charge );
          act( AT_PLAIN, "$n replaces the power cell in $p.", ch, wield, NULL, TO_ROOM );
       }
-      else if( wield->value[3] == WEAPON_FORCE_PIKE )
+      else if( wield->value[3] == WEAPON_PULSE_LASER )
       {
-         ch_printf( ch, "You replace your power cell.\r\nYour force-pike is charged to %d/%d units.\r\n", charge, charge );
+         ch_printf( ch, "You replace your power cell.\r\nYour pulse laser is charged to %d/%d units.\r\n", charge, charge );
          act( AT_PLAIN, "$n replaces the power cell in $p.", ch, wield, NULL, TO_ROOM );
       }
       else if( wield->value[3] == WEAPON_GRAVITON_GUN )
@@ -3195,13 +3195,21 @@ void do_suicide( CHAR_DATA * ch, const char *argument )
             act( AT_BLOOD, "Cold shivers run down your spine as you watch $n slit $s own throat!", ch, NULL, NULL, TO_ROOM );
             break;
 
-         case WEAPON_FORCE_PIKE:
-            act( AT_BLOOD, "You wedge your force pike into the ground and slam your face into the blade.", ch, NULL, NULL,
+         case WEAPON_PULSE_LASER:
+            act( AT_BLOOD, "You point the pulse laser to your face and...ZZZZAP!", ch, NULL, NULL,
                  TO_CHAR );
             act( AT_BLOOD,
-                 "$n slams $s face into $s force pike, pieces of face fall to the ground as the pike slices through it like butter.",
+                 "$n points a pulser laser to his face and....ZZZZAP! His face disappear in a cloud of dust.",
                  ch, NULL, NULL, TO_ROOM );
             break;
+
+         case WEAPON_GRAVITON_GUN:
+            act( AT_BLOOD, "You point the graviton gun to your head and after a while you are no more.", ch, NULL, NULL,
+                 TO_CHAR );
+            act( AT_BLOOD,
+                 "$n points a graviton gun to his head and you see his head explode in a cloud of blood and bones.",
+                 ch, NULL, NULL, TO_ROOM );
+            break;						
 
          case WEAPON_LIGHTSABER:
          case WEAPON_DUAL_LIGHTSABER:
@@ -3217,6 +3225,12 @@ void do_suicide( CHAR_DATA * ch, const char *argument )
                  TO_CHAR );
             act( AT_BLOOD, "$n blows his head off with a minigun shot!", ch, NULL, NULL, TO_ROOM );
             break;
+						
+         case WEAPON_SNIPER_RIFLE:
+            act( AT_BLOOD, "You pull back the lever, hold the sniper rifle to your face and... death.", ch, NULL, NULL,
+                 TO_CHAR );
+            act( AT_BLOOD, "$n blows his head off with a sniper rifle shot!", ch, NULL, NULL, TO_ROOM );
+            break;						
 
       }
    }
