@@ -7486,6 +7486,7 @@ caught. Most good smugglers move on to eventually become crimelords.
 Syntax : Snipe (direction) (target)
  
 This skill allows you to engange enemies at long range.
+In order to snipe an enemy you must wear a Sniper Rifle.
 ~
 
 31 SOBER~
@@ -8252,13 +8253,14 @@ Value3 | Type     | Weapons
    3   | slash    | LIGHTSABER
    4   | whip     | 
    5   | claw     | 
-   6   | blast    | BLASTER
+   6   | shock    | ELECTRON MACE
    7   | pound    | 
    8   | crush    | 
-   9   | shot     | MINIGUN
+   9   | pierce   | MINIGUN
   10   | bite     | 
   11   | energy   | PULSE LASER
   12   | drain    | GRAVITON GUN
+  13   | pierce   | SNIPER RIFLE
 
 
 See OSET.

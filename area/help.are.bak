@@ -8235,6 +8235,12 @@ This power reduces the strength of the victim by two points.
 36 WEAPON~
 ~
 
+36 WEAPON TYPE~
+~
+
+36 WEAPONTYPE~
+~
+
 31 WEAPONTYPES~
 For items of type "weapon", the value3 field specifies the weapon type:
 
@@ -8246,13 +8252,14 @@ Value3 | Type     | Weapons
    3   | slash    | LIGHTSABER
    4   | whip     | 
    5   | claw     | 
-   6   | blast    | BLASTER
+   6   | shock    | ELECTRON MACE
    7   | pound    | 
    8   | crush    | 
-   9   | shot     | MINIGUN
+   9   | pierce   | MINIGUN
   10   | bite     | 
-  11   | pierce   | FORCE PIKE
-  12   | energy   | GRAVITON GUN
+  11   | energy   | PULSE LASER
+  12   | drain    | GRAVITON GUN
+  13   | pierce   | SNIPER RIFLE
 
 
 See OSET.
