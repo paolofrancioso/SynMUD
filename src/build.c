@@ -65,7 +65,7 @@ const char *const planet_flags[] = {
 const char *const weapon_table[14] = {
    "none",
    "vibro-axe", "vibro-blade", "lightsaber", "whip", "claw",
-   "electron mace", "w7", "bludgeon", "minigun", "w10",
+   "electron mace", "w7", "bludgeon", "minigun", "flame thrower",
    "pulse laser", "graviton gun", "sniper rifle"
 };
 
@@ -3578,7 +3578,7 @@ void do_oset( CHAR_DATA * ch, const char *argument )
                send_to_char( "\r\nChoices:\r\n", ch );
                send_to_char( "   none, lightsaber, vibro-blade, electron mace, pulse laser, minigun,\r\n",
                              ch );
-							 send_to_char( "   bludgeon, graviton gun, sniper rifle.\r\n",  ch );
+							 send_to_char( "   bludgeon, graviton gun, sniper rifle, flame thrower.\r\n",  ch );
                return;
             }
             tmp = 3;

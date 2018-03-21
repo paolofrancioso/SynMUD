@@ -155,7 +155,6 @@ short gsn_bomb;
 
 short gsn_truesight;
 short gsn_makelightsaber;
-short gsn_makeduallightsaber;
 short gsn_spice_refining;
 short gsn_makeblade;
 short gsn_makepulselaser;
@@ -190,6 +189,7 @@ short gsn_elmace;
 short gsn_miniguns;
 short gsn_sniper_rifles;
 short gsn_gravitonguns;
+short gsn_flame_throwers;
 short gsn_pulse_lasers;
 short gsn_lightsabers;
 short gsn_vibro_blades;
@@ -619,7 +619,6 @@ void boot_db( bool fCopyOver )
       ASSIGN_GSN( gsn_makedatapad, "makedatapad" );
       ASSIGN_GSN( gsn_first_aid, "first aid" );
       ASSIGN_GSN( gsn_makelightsaber, "makelightsaber" );
-      ASSIGN_GSN( gsn_makeduallightsaber, "makeduallightsaber" );
       ASSIGN_GSN( gsn_spice_refining, "spice refining" );
       ASSIGN_GSN( gsn_scanbugs, "checkbugs" );
       //ASSIGN_GSN( gsn_shipdesign, "ship design" );
@@ -627,6 +626,7 @@ void boot_db( bool fCopyOver )
       ASSIGN_GSN( gsn_miniguns, "miniguns" );
 			ASSIGN_GSN( gsn_sniper_rifles, "sniper rifles" );
 			ASSIGN_GSN( gsn_gravitonguns, "graviton guns" );
+			ASSIGN_GSN( gsn_gravitonguns, "flame throwers" );
       ASSIGN_GSN( gsn_pulse_lasers, "pulse lasers" );
       ASSIGN_GSN( gsn_lightsabers, "lightsabers" );
       ASSIGN_GSN( gsn_vibro_blades, "vibro-blades" );
@@ -784,8 +784,8 @@ void boot_db( bool fCopyOver )
       //log_string( "Loading black market ships");
       //load_market_list();
 
-      log_string( "Making new blackmarket list..." );
-      make_random_marketlist(  );
+      //log_string( "Making new blackmarket list..." );
+      //make_random_marketlist(  );
 
       MOBtrigger = TRUE;
    }
@@ -2638,7 +2638,7 @@ OBJ_DATA *create_object( OBJ_INDEX_DATA * pObjIndex, int level )
          {
             case WEAPON_ELECTRON_MACE:
             case WEAPON_LIGHTSABER:
-            case WEAPON_DUAL_LIGHTSABER:
+            case WEAPON_FLAME_THROWER:
             case WEAPON_VIBRO_BLADE:
             case WEAPON_PULSE_LASER:
             case WEAPON_MINIGUN:

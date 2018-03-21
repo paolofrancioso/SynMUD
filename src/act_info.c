@@ -1602,11 +1602,20 @@ void do_examine( CHAR_DATA * ch, const char *argument )
                   ch_printf( ch, "It is set on STUN.\r\n" );
                ch_printf( ch, "It has from %d to %d charge remaining.\r\n", obj->value[4] / 5, obj->value[4] );
             }
-            else if( ( obj->value[3] == WEAPON_LIGHTSABER || obj->value[3] == WEAPON_DUAL_LIGHTSABER ||
-                       obj->value[3] == WEAPON_VIBRO_BLADE || obj->value[3] == WEAPON_PULSE_LASER ) )
+            else if( obj->value[3] == WEAPON_LIGHTSABER  ||
+										 obj->value[3] == WEAPON_VIBRO_BLADE || obj->value[3] == WEAPON_PULSE_LASER ||
+										 obj->value[3] == WEAPON_ELECTRON_MACE || obj->value[3] == WEAPON_GRAVITON_GUN )
             {
                ch_printf( ch, "It has %d/%d units of charge remaining.\r\n", obj->value[4], obj->value[5] );
             }
+            else if( obj->value[3] == WEAPON_FLAME_THROWER )
+            {
+               ch_printf( ch, "It has %d/%d units of fuel remaining.\r\n", obj->value[4], obj->value[5] );
+            }
+            else if( obj->value[3] == WEAPON_MINIGUN || obj->value[3] == WEAPON_SNIPER_RIFLE )
+            {
+               ch_printf( ch, "It has %d/%d ammos remaining.\r\n", obj->value[4], obj->value[5] );
+            }							
             break;
 
          case ITEM_FOOD:

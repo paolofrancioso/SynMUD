@@ -303,7 +303,7 @@ bool load_planet_file( const char *planetfile )
 
          if( letter != '#' )
          {
-            bug( "Load_planet_file: # not found.", 0 );
+            bug( "Load_region_file: # not found.", 0 );
             break;
          }
 
@@ -345,7 +345,7 @@ void load_planets(  )
    first_planet = NULL;
    last_planet = NULL;
 
-   log_string( "Loading planets..." );
+   log_string( "Loading regions..." );
 
    sprintf( planetlist, "%s%s", PLANET_DIR, PLANET_LIST );
    if( ( fpList = fopen( planetlist, "r" ) ) == NULL )
@@ -365,12 +365,12 @@ void load_planets(  )
 	  
       if( !load_planet_file( filename ) )
       {
-         sprintf( buf, "Cannot load planet file: %s", filename );
+         sprintf( buf, "Cannot load region file: %s", filename );
          bug( buf, 0 );
       }
    }
    fclose( fpList );
-   log_string( "Done planets " );
+   log_string( "Done regions " );
    return;
 }
 

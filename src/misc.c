@@ -550,7 +550,59 @@ void do_ammo( CHAR_DATA * ch, const char *argument )
       ch_printf( ch, "You replace ammo pack.\r\nYour weapon is charged with %d ammos.\r\n", charge );
       act( AT_PLAIN, "$n replaces the ammos in $p.", ch, wield, NULL, TO_ROOM );
 
-   } 
+   }
+   else if( wield->value[3] == WEAPON_FLAME_THROWER )
+   {
+
+      if( obj && obj->item_type != ITEM_FUEL )
+      {
+         send_to_char( "&RYour hands are too full to reload your weapon.\r\n&w", ch );
+         return;
+      }
+
+      if( obj )
+      {
+         if( obj->value[0] > wield->value[5] )
+         {
+            send_to_char( "That fuel container is too big for your weapon.", ch );
+            return;
+         }
+         unequip_char( ch, obj );
+         checkammo = TRUE;
+         charge = obj->value[0];
+         separate_obj( obj );
+         extract_obj( obj );
+      }
+      else
+      {
+         for( obj = ch->last_carrying; obj; obj = obj->prev_content )
+         {
+            if( obj->item_type == ITEM_FUEL )
+            {
+               if( obj->value[0] > wield->value[5] )
+               {
+                  send_to_char( "That fuel container is too big for your weapon.", ch );
+                  continue;
+               }
+               checkammo = TRUE;
+               charge = obj->value[0];
+               separate_obj( obj );
+               extract_obj( obj );
+               break;
+            }
+         }
+      }
+
+      if( !checkammo )
+      {
+         send_to_char( "&RYou don't seem to have any fuel container to reload your flame thrower with.\r\n&w", ch );
+         return;
+      }
+
+      ch_printf( ch, "You replace the fuel container.\r\nYour flame thrower is charged with %d fuel units.\r\n", charge );
+      act( AT_PLAIN, "$n replaces the fuel in $p.", ch, wield, NULL, TO_ROOM );
+
+   }  
    else
    {
 
@@ -609,7 +661,7 @@ void do_ammo( CHAR_DATA * ch, const char *argument )
       {
          ch_printf( ch, "You replace your power cell.\r\nYour graviton gun is charged to %d/%d units.\r\n", charge, charge );
          act( AT_PLAIN, "$n replaces the power cell in $p.", ch, wield, NULL, TO_ROOM );
-      }			
+      }		
       else
       {
          ch_printf( ch, "You feel very foolish.\r\n" );
@@ -3211,8 +3263,15 @@ void do_suicide( CHAR_DATA * ch, const char *argument )
                  ch, NULL, NULL, TO_ROOM );
             break;						
 
+         case WEAPON_FLAME_THROWER:
+            act( AT_BLOOD, "You point the flame thrower to you and after a while you start running and crying in flame.", ch, NULL, NULL,
+                 TO_CHAR );
+            act( AT_BLOOD,
+                 "$n points a flame thrower to him and after a while he starts running and crying in flame.",
+                 ch, NULL, NULL, TO_ROOM );
+            break;		
+						
          case WEAPON_LIGHTSABER:
-         case WEAPON_DUAL_LIGHTSABER:
             act( AT_BLOOD,
                  "You calmly kneel, and hold your saber hilt to your sternum, and without a moments hesitation, turn it on.",
                  ch, NULL, NULL, TO_CHAR );

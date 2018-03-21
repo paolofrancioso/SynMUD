@@ -634,6 +634,9 @@ int weapon_prof_bonus_check( CHAR_DATA * ch, OBJ_DATA * wield, int *gsn_ptr )
          case 9:
             *gsn_ptr = gsn_miniguns;
             break;
+				 case 10:
+						*gsn_ptr = gsn_flame_throwers;
+						break;						
          case 11:
             *gsn_ptr = gsn_pulse_lasers;
             break;
@@ -821,8 +824,6 @@ ch_ret one_hit( CHAR_DATA * ch, CHAR_DATA * victim, int dt )
       if( wield && wield->item_type == ITEM_WEAPON )
          dt += wield->value[3];
 
-      if( wield && wield->item_type == ITEM_WEAPON && wield->value[3] == WEAPON_DUAL_LIGHTSABER )
-         dt = ( TYPE_HIT + WEAPON_LIGHTSABER );
    }
 
    //Calculate to-hit-armor-class-0 versus armor (20 -3 for each Commando Level)
@@ -1142,7 +1143,22 @@ ch_ret one_hit( CHAR_DATA * ch, CHAR_DATA * victim, int dt )
       else
          wield->value[4]--;
    }	 
-
+   else if( dt == ( TYPE_HIT + WEAPON_FLAME_THROWER ) && wield && wield->item_type == ITEM_WEAPON )
+   {
+      if( wield->value[4] < 1 )
+      {
+         act( AT_YELLOW, "$n points their flame thrower at you but you see only some smoke..", ch, NULL, victim, TO_VICT );
+         act( AT_YELLOW, "*CLICK* ... your flame thrower needs some fuel!", ch, NULL, victim, TO_CHAR );
+         if( IS_NPC( ch ) )
+         {
+            do_remove( ch, wield->name );
+         }
+         return rNONE;
+      }
+      else
+         wield->value[4]--;
+   }	 
+	 
    if( dam <= 0 )
       dam = 1;
 
@@ -1336,7 +1352,7 @@ ch_ret damage( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt )
     */
    if( dam && dt != TYPE_UNDEFINED )
    {
-      if( IS_FIRE( dt ) )
+      if( IS_FIRE( dt ) || dt == ( TYPE_HIT + 10 ) )
          dam = ris_damage( victim, dam, RIS_FIRE );
       else if( IS_COLD( dt ) )
          dam = ris_damage( victim, dam, RIS_COLD );
@@ -1509,8 +1525,7 @@ ch_ret damage( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt )
                {
                   if( ( victwield = get_eq_char( victim, WEAR_WIELD ) ) != NULL )
                   {
-                     if( ( victwield->value[3] == WEAPON_LIGHTSABER || victwield->value[3] == WEAPON_DUAL_LIGHTSABER )
-                         && wield->value[3] == WEAPON_ELECTRON_MACE )
+                     if( victwield->value[3] == WEAPON_LIGHTSABER && wield->value[3] == WEAPON_ELECTRON_MACE )
                      {
                         act( AT_WHITE, "You swing your lightsaber and reflect the electron mace bolt back at $n!", ch, NULL,
                              victim, TO_VICT );
