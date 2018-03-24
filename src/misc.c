@@ -647,6 +647,11 @@ void do_ammo( CHAR_DATA * ch, const char *argument )
          act( AT_PLAIN, "$n replaces the power cell in $p.", ch, wield, NULL, TO_ROOM );
          act( AT_PLAIN, "$p ignites with a bright glow.", ch, wield, NULL, TO_ROOM );
       }
+      else if( wield->value[3] == WEAPON_VIBRO_AXE )
+      {
+         ch_printf( ch, "You replace your power cell.\r\nYour vibro-axe is charged to %d/%d units.\r\n", charge, charge );
+         act( AT_PLAIN, "$n replaces the power cell in $p.", ch, wield, NULL, TO_ROOM );
+      }			
       else if( wield->value[3] == WEAPON_VIBRO_BLADE )
       {
          ch_printf( ch, "You replace your power cell.\r\nYour vibro-blade is charged to %d/%d units.\r\n", charge, charge );
@@ -3246,6 +3251,12 @@ void do_suicide( CHAR_DATA * ch, const char *argument )
                  TO_CHAR );
             act( AT_BLOOD, "Cold shivers run down your spine as you watch $n slit $s own throat!", ch, NULL, NULL, TO_ROOM );
             break;
+						
+         case WEAPON_VIBRO_AXE:
+            act( AT_BLOOD, "With a sad determination and trembling hands you slit your own throat!", ch, NULL, NULL,
+                 TO_CHAR );
+            act( AT_BLOOD, "Cold shivers run down your spine as you watch $n slit $s own throat!", ch, NULL, NULL, TO_ROOM );
+            break;						
 
          case WEAPON_PULSE_LASER:
             act( AT_BLOOD, "You point the pulse laser to your face and...ZZZZAP!", ch, NULL, NULL,

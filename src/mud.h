@@ -3251,6 +3251,7 @@ extern short gsn_miniguns;
 extern short gsn_gravitonguns;
 extern short gsn_flame_throwers;
 extern short gsn_lightsabers;
+extern short gsn_vibro_axes;
 extern short gsn_vibro_blades;
 extern short gsn_flexible_arms;
 extern short gsn_talonous_arms;

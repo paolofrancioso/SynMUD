@@ -193,6 +193,7 @@ short gsn_flame_throwers;
 short gsn_pulse_lasers;
 short gsn_lightsabers;
 short gsn_vibro_blades;
+short gsn_vibro_axes;
 short gsn_flexible_arms;
 short gsn_talonous_arms;
 short gsn_bludgeons;
@@ -630,6 +631,7 @@ void boot_db( bool fCopyOver )
       ASSIGN_GSN( gsn_pulse_lasers, "pulse lasers" );
       ASSIGN_GSN( gsn_lightsabers, "lightsabers" );
       ASSIGN_GSN( gsn_vibro_blades, "vibro-blades" );
+			ASSIGN_GSN( gsn_vibro_blades, "vibro-axes" );
       ASSIGN_GSN( gsn_flexible_arms, "flexible arms" );
       ASSIGN_GSN( gsn_talonous_arms, "talonous arms" );
       ASSIGN_GSN( gsn_bludgeons, "bludgeons" );
@@ -2640,6 +2642,7 @@ OBJ_DATA *create_object( OBJ_INDEX_DATA * pObjIndex, int level )
             case WEAPON_LIGHTSABER:
             case WEAPON_FLAME_THROWER:
             case WEAPON_VIBRO_BLADE:
+						case WEAPON_VIBRO_AXE:
             case WEAPON_PULSE_LASER:
             case WEAPON_MINIGUN:
 						case WEAPON_SNIPER_RIFLE:

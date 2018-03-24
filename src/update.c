@@ -1523,7 +1523,7 @@ void obj_update( void )
                act( AT_PLAIN, "$p fizzles and dies.", obj->carried_by, obj, NULL, TO_CHAR );
                act( AT_PLAIN, "$n's lightsaber fizzles and dies.", obj->carried_by, NULL, NULL, TO_ROOM );
             }
-            else if( obj->value[3] == WEAPON_VIBRO_BLADE )
+            else if( obj->value[3] == WEAPON_VIBRO_BLADE || obj->value[3] == WEAPON_VIBRO_AXE )
             {
                act( AT_PLAIN, "$p stops vibrating.", obj->carried_by, obj, NULL, TO_CHAR );
             }

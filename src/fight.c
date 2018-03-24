@@ -613,12 +613,15 @@ int weapon_prof_bonus_check( CHAR_DATA * ch, OBJ_DATA * wield, int *gsn_ptr )
          default:
             *gsn_ptr = -1;
             break;
-         case 3:
-            *gsn_ptr = gsn_lightsabers;
-            break;
+         case 1:
+            *gsn_ptr = gsn_vibro_axes;
+            break;						
          case 2:
             *gsn_ptr = gsn_vibro_blades;
             break;
+         case 3:
+            *gsn_ptr = gsn_lightsabers;
+            break;						
          case 4:
             *gsn_ptr = gsn_flexible_arms;
             break;
@@ -1069,6 +1072,14 @@ ch_ret one_hit( CHAR_DATA * ch, CHAR_DATA * victim, int dt )
          dam /= 3;
       }
    }
+   else if( dt == ( TYPE_HIT + WEAPON_VIBRO_AXE ) && wield && wield->item_type == ITEM_WEAPON )
+   {
+      if( wield->value[4] < 1 )
+      {
+         act( AT_YELLOW, "Your vibro-axe needs recharging ...", ch, NULL, victim, TO_CHAR );
+         dam /= 3;
+      }
+   }	 
    else if( dt == ( TYPE_HIT + WEAPON_PULSE_LASER ) && wield && wield->item_type == ITEM_WEAPON )
    {
       if( wield->value[4] < 1 )

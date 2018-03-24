@@ -10,11 +10,11 @@ Languages    -1 1
 Toplevel     36
 Pheight      0
 Build        0
-Played       142489
+Played       142546
 Ship            ~
 ShipNum         0
 Room         100
-HpManaMove   1000 1000 522 1000 988 1000
+HpManaMove   1000 1000 522 1000 1000 1000
 Gold         2085574427
 Bank         10
 Salary       0
@@ -40,7 +40,7 @@ Armor        10
 Rppoints   0
 Mentalstate  0
 Password     9c3a88f26d3623fcf0a4aa881518170c70f5e1d62e0d9f9fa7e9b3f07fa299b7~
-Lastplayed   1521671753
+Lastplayed   1521908615
 Title         The Glorious Admin is here~
 AuthedBy     Admin~
 Addiction    0 0 0 0 0 0 0 0 0 0
@@ -161,6 +161,7 @@ Weapon       100 'launchers'
 Weapon       100 'miniguns'
 Weapon       100 'pulse lasers'
 Weapon       100 'sniper rifles'
+Weapon       100 'vibro-axes'
 Weapon       100 'vibro-blades'
 Tongue       100 'basic'
 Killed       116 5

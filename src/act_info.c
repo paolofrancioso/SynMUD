@@ -1602,7 +1602,7 @@ void do_examine( CHAR_DATA * ch, const char *argument )
                   ch_printf( ch, "It is set on STUN.\r\n" );
                ch_printf( ch, "It has from %d to %d charge remaining.\r\n", obj->value[4] / 5, obj->value[4] );
             }
-            else if( obj->value[3] == WEAPON_LIGHTSABER  ||
+            else if( obj->value[3] == WEAPON_LIGHTSABER  || obj->value[3] == WEAPON_VIBRO_AXE ||
 										 obj->value[3] == WEAPON_VIBRO_BLADE || obj->value[3] == WEAPON_PULSE_LASER ||
 										 obj->value[3] == WEAPON_ELECTRON_MACE || obj->value[3] == WEAPON_GRAVITON_GUN )
             {

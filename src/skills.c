@@ -3330,7 +3330,7 @@ void do_poison_weapon( CHAR_DATA * ch, const char *argument )
       send_to_char( "That item is not a weapon.\r\n", ch );
       return;
    }
-   if( obj->value[3] != WEAPON_VIBRO_BLADE )
+   if( obj->value[3] != WEAPON_VIBRO_BLADE && obj->value[3] != WEAPON_VIBRO_AXE )
    {
       send_to_char( "You can only poison bladed weapons.\r\n", ch );
       return;

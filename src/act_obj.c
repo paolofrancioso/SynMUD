@@ -2511,6 +2511,7 @@ void do_auction( CHAR_DATA * ch, const char *argument )
             case ITEM_WEAPON:
                ch_printf( ch, "&z|| &wIt is a &G%s&w.  Average Damage: &G%d&w\r\n",
                           obj->value[3] == WEAPON_VIBRO_BLADE ? "vibro blade" :
+													obj->value[3] == WEAPON_VIBRO_AXE ? "vibro axe" :
                           obj->value[3] == WEAPON_MINIGUN ? "minigun" :
 													obj->value[3] == WEAPON_SNIPER_RIFLE ? "sniper rifle" :
 													obj->value[3] == WEAPON_GRAVITON_GUN ? "graviton gun" :
@@ -2519,7 +2520,7 @@ void do_auction( CHAR_DATA * ch, const char *argument )
 													obj->value[3] == WEAPON_FLAME_THROWER ? "flame thrower" :
                           obj->value[3] == WEAPON_LIGHTSABER ? "lightsaber" :
                           "weapon", ( obj->value[1] + obj->value[2] ) / 2 );
-               if( obj->value[3] == WEAPON_ELECTRON_MACE || obj->value[3] == WEAPON_VIBRO_BLADE
+               if( obj->value[3] == WEAPON_ELECTRON_MACE || obj->value[3] == WEAPON_VIBRO_BLADE || obj->value[3] == WEAPON_VIBRO_AXE
                    || obj->value[3] == WEAPON_LIGHTSABER || obj->value[3] == WEAPON_PULSE_LASER  
 									 || obj->value[3] == WEAPON_GRAVITON_GUN )
                   ch_printf( ch, "&z|| &wEnergy cell rating: &G%d\r\n", obj->value[5] );
