@@ -620,7 +620,7 @@ int weapon_prof_bonus_check( CHAR_DATA * ch, OBJ_DATA * wield, int *gsn_ptr )
             *gsn_ptr = gsn_vibro_blades;
             break;
          case 3:
-            *gsn_ptr = gsn_lightsabers;
+            *gsn_ptr = gsn_deflectingshields;
             break;						
          case 4:
             *gsn_ptr = gsn_flexible_arms;
@@ -1095,12 +1095,12 @@ ch_ret one_hit( CHAR_DATA * ch, CHAR_DATA * victim, int dt )
       else
          wield->value[4]--;
    }
-   else if( dt == ( TYPE_HIT + WEAPON_LIGHTSABER ) && wield && wield->item_type == ITEM_WEAPON )
+   else if( dt == ( TYPE_HIT + WEAPON_DEFL_SHIELD ) && wield && wield->item_type == ITEM_WEAPON )
    {
       if( wield->value[4] < 1 )
       {
          act( AT_YELLOW, "$n waves a dead hand grip around in the air.", ch, NULL, victim, TO_VICT );
-         act( AT_YELLOW, "You need to recharge your lightsaber ... it seems to be lacking a blade.", ch, NULL, victim,
+         act( AT_YELLOW, "You need to recharge your deflecting shield ... it seems to be lacking energy.", ch, NULL, victim,
               TO_CHAR );
          if( IS_NPC( ch ) )
          {
@@ -1515,10 +1515,18 @@ ch_ret damage( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt )
 
       if( dam < 0 )
          dam = 0;
-
+      
+			//Deflecting Shield does 0 damage by default
+	    if( dt ==  ( TYPE_HIT + WEAPON_DEFL_SHIELD ) ) {
+				 dam = 0;
+	    }
       /*
        * Check for disarm, trip, parry, and dodge.
        */
+			
+			int damtype = 0;
+			int damnum = 0;
+			
       if( dt >= TYPE_HIT )
       {
          if( IS_NPC( ch ) && IS_SET( ch->attacks, DFND_DISARM ) && number_percent(  ) < ch->skill_level[COMMANDO_ABILITY] / 2 )
@@ -1526,34 +1534,44 @@ ch_ret damage( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt )
 
          if( IS_NPC( ch ) && IS_SET( ch->attacks, ATCK_TRIP ) && number_percent(  ) < ch->skill_level[COMMANDO_ABILITY] )
             trip( ch, victim );
+							
 
-         if( check_parry( ch, victim ) )
-         {
-            if( !IS_NPC( ch ) && ch->pcdata->learned[gsn_reflect]
-                && ( ch->pcdata->learned[gsn_reflect] / 2 ) > number_percent(  ) )
-            {
-               if( ( wield = get_eq_char( ch, WEAR_WIELD ) ) != NULL )
-               {
-                  if( ( victwield = get_eq_char( victim, WEAR_WIELD ) ) != NULL )
-                  {
-                     if( victwield->value[3] == WEAPON_LIGHTSABER && wield->value[3] == WEAPON_ELECTRON_MACE )
-                     {
-                        act( AT_WHITE, "You swing your lightsaber and reflect the electron mace bolt back at $n!", ch, NULL,
-                             victim, TO_VICT );
-                        act( AT_WHITE, "$N swings $s lightsaber and reflects the electron mace back at you!", ch, NULL, victim,
-                             TO_CHAR );
-                        act( AT_WHITE, "$N swings $s lightsaber and reflects the electron mace back at $N!", ch, NULL, victim,
-                             TO_NOTVICT );
-                        ch->hit -= wield->value[1];
-                        dam_message( victim, ch, wield->value[1], ( TYPE_HIT + WEAPON_ELECTRON_MACE ) );
-                        learn_from_success( victim, gsn_reflect );
-                     }
-                  }
-               }
-            }
-            else
-               return rNONE;
-         }
+					if( !IS_NPC( victim ) && victim->pcdata->learned[gsn_deflectingshields]
+							&& ( victim->pcdata->learned[gsn_deflectingshields] / 3 ) > number_percent(  ) )
+					{
+						 if( ( wield = get_eq_char( ch, WEAR_WIELD ) ) != NULL )
+						 { 
+							 damtype = wield->value[3];
+							 damnum = wield->value[3];
+						 } else {
+							 damtype = WEAPON_BLUDGEON;
+							 damnum = ch->damroll;
+						 }
+						 
+								if( ( victwield = get_eq_char( victim, WEAR_WIELD ) ) != NULL )
+								{
+									 if( victwield->value[3] == WEAPON_DEFL_SHIELD )
+									 {
+											act( AT_WHITE, "Your deflecting shield protects you and strikes back at $n!", ch, NULL,
+													 victim, TO_VICT );
+											act( AT_WHITE, "$N activates $s deflecting shield protecting $sself and striking back at you!", ch, NULL, victim,
+													 TO_CHAR );
+											act( AT_WHITE, "$N activates $s deflecting shield protecting $sself and striking back at $N!", ch, NULL, victim,
+													 TO_NOTVICT );
+											
+											//Strikes back with True Damage ignoring shields and resistences
+											ch->hit -= damnum;
+											
+											dam_message( victim, ch, damnum, ( TYPE_HIT + damtype ) );
+											learn_from_success( victim, gsn_deflectingshields );
+									 }
+								}
+						 
+					}
+            
+				 if( check_parry( ch, victim ) )
+						return rNONE;
+						
          if( check_dodge( ch, victim ) )
             return rNONE;
       }
@@ -1561,7 +1579,7 @@ ch_ret damage( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt )
       if( dam > 0 && dt > TYPE_HIT
           && !IS_AFFECTED( victim, AFF_POISON )
           && is_wielding_poisoned( ch )
-          && !IS_SET( victim->immune, RIS_POISON ) && !saves_poison_death( ch->skill_level[COMMANDO_ABILITY], victim ) )
+          && !IS_SET( victim->immune, RIS_POISON ) && !saves_poison_death( ch->skill_level[DEFENDER_ABILITY], victim ) )
       {
          AFFECT_DATA af;
 
@@ -1630,22 +1648,26 @@ ch_ret damage( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt )
 			dam = 0;
 			
 		int diff;
-		if ( victim->mana >= dam ) {
-		  if ( dam > 0) { 
-			victim->mana -= dam;
-			 if( ch != victim )
-			   dam_shielded( ch, victim, dam, dt );
-         dam = 0;	
-			} else {
-				 dam_message( ch, victim, dam, dt );
-			}
+		if ( dam > 0 ) {
+		 if ( victim->mana >= dam ) {
+		   if ( dam > 0) 
+		 	  victim->mana -= dam;
+		  	if( ch != victim ) {
+		 	  	dam_shielded( ch, victim, dam, dt );
+		  		dam = 0;	
+			  } else {
+				  dam_message( ch, victim, dam, dt );
+			  }
+		  } else {
+			  diff = victim->mana - dam;
+			  victim->hit += diff; //diff should be negative at this point.
+			  victim->mana = 0;
+			  if( ch != victim )
+			    dam_message( ch, victim, dam, dt );
+			  dam = diff * -1;
+		 }
 		} else {
-			 diff = victim->mana - dam;
-			 victim->hit += diff; //diff should be negative at this point.
-			 victim->mana = 0;
-			 if( ch != victim )
-        dam_message( ch, victim, dam, dt );
-			 dam = diff * -1;
+			dam_message( ch, victim, dam, dt );
 		}
 
    /*
@@ -2924,16 +2946,12 @@ void dam_message( CHAR_DATA * ch, CHAR_DATA * victim, int dam, unsigned int dt )
    if( dt >= 0 && dt < (unsigned int)top_sn )
       skill = skill_table[dt];
 
-   if( dt == ( TYPE_HIT + WEAPON_ELECTRON_MACE ) )
-   {
-      char sound[MAX_STRING_LENGTH];
-      int vol = number_range( 20, 80 );
-
-      sprintf( sound, "!!SOUND(blaster V=%d)", vol );
-      sound_to_room( ch->in_room, sound );
-   }
-
-   if( dt == TYPE_HIT || dam == 0 )
+	 if( ( dt == TYPE_HIT + WEAPON_DEFL_SHIELD ) && dam == 0 ) {
+		 sprintf( buf1, "$n is using a deflecting shield" );
+		 sprintf( buf2, "You are using a deflecting shield and you cannot hurt $N" );
+		 sprintf( buf3, "$n is using a deflecting shield" );
+	 }
+	 else if( dt == TYPE_HIT || dam == 0 )
    {
       sprintf( buf1, "$n %s $N%c", vp, punct );
       sprintf( buf2, "You %s $N%c", vs, punct );

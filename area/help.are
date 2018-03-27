@@ -8250,7 +8250,7 @@ Value3 | Type     | Weapons
    0   | hit      | general
    1   | slice    | VIBRO-AXE
    2   | stab     | VIBRO-BLADE
-   3   | slash    | LIGHTSABER
+   3   | shield   | DEFLECTING SHIELD (True Damage)
    4   | whip     | 
    5   | claw     | 
    6   | shock    | ELECTRON MACE

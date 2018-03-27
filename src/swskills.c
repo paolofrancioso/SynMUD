@@ -539,7 +539,7 @@ void do_makeelmace( CHAR_DATA * ch, const char *argument )
    learn_from_success( ch, gsn_makeelmace );
 }
 
-void do_makelightsaber( CHAR_DATA * ch, const char *argument )
+void do_makedeflshield( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char buf[MAX_STRING_LENGTH];
@@ -558,7 +558,7 @@ void do_makelightsaber( CHAR_DATA * ch, const char *argument )
       default:
          if( arg[0] == '\0' )
          {
-            send_to_char( "&RUsage: Makelightsaber <name>\r\n&w", ch );
+            send_to_char( "&RUsage: Makedeflshield <name>\r\n&w", ch );
             return;
          }
 
@@ -574,7 +574,7 @@ void do_makelightsaber( CHAR_DATA * ch, const char *argument )
 
          if( !IS_SET( ch->in_room->room_flags, ROOM_SAFE ) || !IS_SET( ch->in_room->room_flags, ROOM_SILENCE ) )
          {
-            send_to_char( "&RYou need to be in a quiet peaceful place to craft a lightsaber.\r\n", ch );
+            send_to_char( "&RYou need to be in a quiet peaceful place to craft a deflecting shield.\r\n", ch );
             return;
          }
 
@@ -602,7 +602,7 @@ void do_makelightsaber( CHAR_DATA * ch, const char *argument )
 
          if( !checktool )
          {
-            send_to_char( "&RYou need toolkit to make a lightsaber.\r\n", ch );
+            send_to_char( "&RYou need toolkit to make a deflecting shield.\r\n", ch );
             return;
          }
 
@@ -614,7 +614,7 @@ void do_makelightsaber( CHAR_DATA * ch, const char *argument )
 
          if( !checkbatt )
          {
-            send_to_char( "&RYou need a power source for your lightsaber.\r\n", ch );
+            send_to_char( "&RYou need a power source for your deflecting shield.\r\n", ch );
             return;
          }
 
@@ -632,7 +632,7 @@ void do_makelightsaber( CHAR_DATA * ch, const char *argument )
 
          if( !checkcond )
          {
-            send_to_char( "&RYou still need a small superconductor for your lightsaber.\r\n", ch );
+            send_to_char( "&RYou still need a small superconductor for your deflecting shield.\r\n", ch );
             return;
          }
 
@@ -644,28 +644,28 @@ void do_makelightsaber( CHAR_DATA * ch, const char *argument )
 
          if( !checkgems )
          {
-            send_to_char( "&RLightsabers require 1 to 3 gems to work properly.\r\n", ch );
+            send_to_char( "&RDeflecting shields require 1 to 3 gems to work properly.\r\n", ch );
             return;
          }
 
          if( !checkmirr )
          {
-            send_to_char( "&RYou need a high intesity reflective cup to create a lightsaber.\r\n", ch );
+            send_to_char( "&RYou need a high intesity reflective cup to create a deflecting shield.\r\n", ch );
             return;
          }
 
-         schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_makelightsaber] );
+         schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_makedeflshield] );
          if( number_percent(  ) < schance )
          {
-            send_to_char( "&GYou begin the long process of crafting a lightsaber.\r\n", ch );
+            send_to_char( "&GYou begin the long process of crafting a deflecting shield.\r\n", ch );
             act( AT_PLAIN, "$n takes $s tools and a small oven and begins to work on something.", ch,
                  NULL, argument, TO_ROOM );
-            add_timer( ch, TIMER_DO_FUN, 25, do_makelightsaber, 1 );
+            add_timer( ch, TIMER_DO_FUN, 25, do_makedeflshield, 1 );
             ch->dest_buf = str_dup( arg );
             return;
          }
          send_to_char( "&RYou can't figure out how to fit the parts together.\r\n", ch );
-         learn_from_failure( ch, gsn_makelightsaber );
+         learn_from_failure( ch, gsn_makedeflshield );
          return;
 
       case 1:
@@ -684,7 +684,7 @@ void do_makelightsaber( CHAR_DATA * ch, const char *argument )
 
    ch->substate = SUB_NONE;
 
-   level = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_makelightsaber] );
+   level = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_makedeflshield] );
    vnum = 72;
 
    if( ( pObjIndex = get_obj_index( vnum ) ) == NULL )
@@ -776,16 +776,16 @@ void do_makelightsaber( CHAR_DATA * ch, const char *argument )
       }
    }
 
-   schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_makelightsaber] );
+   schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_makedeflshield] );
 
    if( number_percent(  ) > schance * 2 || ( !checktool ) || ( !checkdura ) || ( !checkbatt ) || ( !checkoven )
        || ( !checkmirr ) || ( !checklens ) || ( !checkgems ) || ( !checkcond ) || ( !checkcirc ) )
 
    {
-      send_to_char( "&RYou hold up your new lightsaber and press the switch hoping for the best.\r\n", ch );
-      send_to_char( "&RInstead of a blade of light, smoke starts pouring from the handle.\r\n", ch );
+      send_to_char( "&RYou hold up your new deflecting shield and press the switch hoping for the best.\r\n", ch );
+      send_to_char( "&RInstead of an energy shield, smoke starts pouring from the handle.\r\n", ch );
       send_to_char( "&RYou drop the hot handle and watch as it melts on away on the floor.\r\n", ch );
-      learn_from_failure( ch, gsn_makelightsaber );
+      learn_from_failure( ch, gsn_makedeflshield );
       return;
    }
 
@@ -802,7 +802,7 @@ void do_makelightsaber( CHAR_DATA * ch, const char *argument )
    obj->level = level;
    obj->weight = 5;
    STRFREE( obj->name );
-   obj->name = STRALLOC( "lightsaber saber" );
+   obj->name = STRALLOC( "deflecting shield" );
    strcpy( buf, arg );
    STRFREE( obj->short_descr );
    obj->short_descr = STRALLOC( buf );
@@ -834,26 +834,26 @@ void do_makelightsaber( CHAR_DATA * ch, const char *argument )
    obj->value[0] = INIT_WEAPON_CONDITION; /* condition  */
    obj->value[1] = ( int )( level / 10 + gemtype * 2 );  /* min dmg  */
    obj->value[2] = ( int )( level / 5 + gemtype * 6 );   /* max dmg */
-   obj->value[3] = WEAPON_LIGHTSABER;
+   obj->value[3] = WEAPON_DEFL_SHIELD;
    obj->value[4] = charge;
    obj->value[5] = charge;
    obj->cost = obj->value[2] * 75;
 
    obj = obj_to_char( obj, ch );
 
-   send_to_char( "&GYou finish your work and hold up your newly created lightsaber.&w\r\n", ch );
-   act( AT_PLAIN, "$n finishes making $s new lightsaber.", ch, NULL, argument, TO_ROOM );
+   send_to_char( "&GYou finish your work and hold up your newly created deflecting shield.&w\r\n", ch );
+   act( AT_PLAIN, "$n finishes making $s new deflecting shield.", ch, NULL, argument, TO_ROOM );
 
    {
       long xpgain;
 
-      xpgain = UMIN( obj->cost * 50, ( ch->pcdata->learned[gsn_makelightsaber] * 50 ) );
-// Changed. -Tawnos
-//         xpgain = UMIN( obj->cost*50 ,( exp_level(ch->skill_level[FORCE_ABILITY]+1) - exp_level(ch->skill_level[ENGINEER_ABILITY]) ) );
-      gain_exp( ch, xpgain, FORCE_ABILITY );
-      ch_printf( ch, "You gain %d force experience.", xpgain );
+      xpgain = UMIN( obj->cost * 50, ( ch->pcdata->learned[gsn_makedeflshield] * 50 ) );
+
+		  //xpgain = UMIN( obj->cost*50 ,( exp_level(ch->skill_level[FORCE_ABILITY]+1) - exp_level(ch->skill_level[ENGINEER_ABILITY]) ) );
+      gain_exp( ch, xpgain, ENGINEER_ABILITY );
+      ch_printf( ch, "You gain %d engineer experience.", xpgain );
    }
-   learn_from_success( ch, gsn_makelightsaber );
+   learn_from_success( ch, gsn_makedeflshield );
 }
 
 

@@ -1826,6 +1826,17 @@ void wear_obj( CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace, short wear_bit )
 					 		send_to_char( "Your hands must be empty to wield a sniper rifle.\r\n", ch );
 							return;
 						}
+
+						if( ( tmpobj && tmpobj->value[3] == WEAPON_DEFL_SHIELD ) || ( dw && dw->value[3] == WEAPON_DEFL_SHIELD ) )
+						{
+							send_to_char( "You cannot use this while using a deflecting shield.\r\n", ch );
+							return;
+						}
+            
+						if ( ( obj && obj->value[3] == WEAPON_DEFL_SHIELD ) && ( tmpobj || dw || hd ) ) {
+					 		send_to_char( "Your hands must be empty to wield a deflecting shield.\r\n", ch );
+							return;
+						}						
 						
             if( tmpobj )
             {
@@ -2518,14 +2529,16 @@ void do_auction( CHAR_DATA * ch, const char *argument )
                           obj->value[3] == WEAPON_PULSE_LASER ? "pulse laser" :
                           obj->value[3] == WEAPON_ELECTRON_MACE ? "electron mace" :
 													obj->value[3] == WEAPON_FLAME_THROWER ? "flame thrower" :
-                          obj->value[3] == WEAPON_LIGHTSABER ? "lightsaber" :
+                          obj->value[3] == WEAPON_DEFL_SHIELD ? "deflecting shield" :
                           "weapon", ( obj->value[1] + obj->value[2] ) / 2 );
                if( obj->value[3] == WEAPON_ELECTRON_MACE || obj->value[3] == WEAPON_VIBRO_BLADE || obj->value[3] == WEAPON_VIBRO_AXE
-                   || obj->value[3] == WEAPON_LIGHTSABER || obj->value[3] == WEAPON_PULSE_LASER  
+                   || obj->value[3] == WEAPON_DEFL_SHIELD || obj->value[3] == WEAPON_PULSE_LASER  
 									 || obj->value[3] == WEAPON_GRAVITON_GUN )
                   ch_printf( ch, "&z|| &wEnergy cell rating: &G%d\r\n", obj->value[5] );
 							 if( obj->value[3] == WEAPON_FLAME_THROWER )
-                  ch_printf( ch, "&z|| &wFuel container rating: &G%d\r\n", obj->value[5] );		
+                  ch_printf( ch, "&z|| &wFuel container rating: &G%d\r\n", obj->value[5] );	
+							 if( obj->value[3] == WEAPON_MINIGUN || obj->value[3] == WEAPON_SNIPER_RIFLE )
+                  ch_printf( ch, "&z|| &wAmmo cartrige size: &G%d\r\n", obj->value[5] );		
                ch_printf( ch, "&W++\r\n" );
                break;
 

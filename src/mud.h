@@ -1863,7 +1863,7 @@ typedef enum
 #define WEAPON_NONE     				0
 #define WEAPON_VIBRO_AXE				1
 #define WEAPON_VIBRO_BLADE			2
-#define WEAPON_LIGHTSABER				3
+#define WEAPON_DEFL_SHIELD			3
 #define WEAPON_WHIP							4
 #define WEAPON_CLAW							5
 #define WEAPON_ELECTRON_MACE		6
@@ -3165,7 +3165,7 @@ extern short gsn_makearmor;
 extern short gsn_makeshield;
 extern short gsn_makecontainer;
 extern short gsn_gemcutting;
-extern short gsn_makelightsaber;
+extern short gsn_makedeflshield;
 extern short gsn_repair;
 extern short gsn_shiprepair;
 extern short gsn_spice_refining;
@@ -3250,7 +3250,7 @@ extern short gsn_pulse_lasers;
 extern short gsn_miniguns;
 extern short gsn_gravitonguns;
 extern short gsn_flame_throwers;
-extern short gsn_lightsabers;
+extern short gsn_deflectingshields;
 extern short gsn_vibro_axes;
 extern short gsn_vibro_blades;
 extern short gsn_flexible_arms;
@@ -3958,7 +3958,7 @@ DECLARE_DO_FUN( do_makegoggles );
 DECLARE_DO_FUN( do_spousetalk );
 DECLARE_DO_FUN( do_makepulselaser );
 DECLARE_DO_FUN( do_makeelmace );
-DECLARE_DO_FUN( do_makelightsaber );
+DECLARE_DO_FUN( do_makedeflshield );
 DECLARE_DO_FUN( do_makespice );
 DECLARE_DO_FUN( do_closebay );
 DECLARE_DO_FUN( do_openbay );

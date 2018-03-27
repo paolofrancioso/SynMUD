@@ -2709,7 +2709,7 @@ ch_ret spell_identify( int sn, int level, CHAR_DATA * ch, void *vo )
                   ch_printf( ch, "It is set on STUN.\r\n" );
                ch_printf( ch, "It has %d out of %d charges.\r\n", obj->value[4], obj->value[5] );
             }
-            else if( obj->value[3] == WEAPON_LIGHTSABER || obj->value[3] == WEAPON_VIBRO_AXE ||
+            else if( obj->value[3] == WEAPON_DEFL_SHIELD || obj->value[3] == WEAPON_VIBRO_AXE ||
                      obj->value[3] == WEAPON_VIBRO_BLADE || obj->value[3] == WEAPON_PULSE_LASER )
             {
                ch_printf( ch, "It has %d out of %d units of charge remaining.\r\n", obj->value[4], obj->value[5] );

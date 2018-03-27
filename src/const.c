@@ -373,7 +373,7 @@ const struct liq_type liq_table[LIQ_MAX] = {
 
 const char *const attack_table[14] = {
    "hit",
-   "slice", "stab", "slash", "whip", "claw",
+   "slice", "stab", "shield", "whip", "claw",
    "blast", "pound", "crush", "shot", "flame",
    "laser", "chain reaction", "shot"
 };

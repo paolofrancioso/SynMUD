@@ -1257,6 +1257,19 @@ Minlevel     5
 End
 
 #SKILL
+Name         makedeflshield~
+Type         Skill
+Flags        0
+Minpos       5
+Guild        2
+Code         do_makedeflshield
+Dammsg       ~
+Wearoff      !done!~
+Teachers     50 605 4503 655~
+Minlevel     25
+End
+
+#SKILL
 Name         makeelmace~
 Type         Skill
 Flags        0
@@ -1332,19 +1345,6 @@ Dammsg       ~
 Wearoff      !done!~
 Teachers     294~
 Minlevel     23
-End
-
-#SKILL
-Name         makelightsaber~
-Type         Skill
-Flags        0
-Minpos       5
-Guild        6
-Code         do_makelightsaber
-Dammsg       ~
-Wearoff      !done!~
-Teachers     50 605 4503 655~
-Minlevel     31
 End
 
 #SKILL
@@ -1963,6 +1963,19 @@ Minlevel     29
 End
 
 #SKILL
+Name         deflecting shields~
+Type         Weapon
+Flags        0
+Minpos       7
+Guild        0
+Code         spell_null
+Dammsg       ~
+Wearoff      !Deflecting Shields!~
+Teachers     50 605 4503 655~
+Minlevel     15
+End
+
+#SKILL
 Name         flexible arms~
 Type         Weapon
 Flags        0
@@ -2010,19 +2023,6 @@ Dammsg       ~
 Wearoff      !Launchers!~
 Teachers     32012 32011 412 907 16 116 1111  1080 1111~
 Minlevel     30
-End
-
-#SKILL
-Name         lightsabers~
-Type         Weapon
-Flags        0
-Minpos       7
-Guild        0
-Code         spell_null
-Dammsg       ~
-Wearoff      !Lightsabers!~
-Teachers     50 605 4503 655~
-Minlevel     31
 End
 
 #SKILL

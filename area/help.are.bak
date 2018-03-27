@@ -8257,7 +8257,7 @@ Value3 | Type     | Weapons
    7   | pound    | 
    8   | crush    | 
    9   | pierce   | MINIGUN
-  10   | bite     | 
+  10   | fire     | FLAME THROWER 
   11   | energy   | PULSE LASER
   12   | drain    | GRAVITON GUN
   13   | pierce   | SNIPER RIFLE

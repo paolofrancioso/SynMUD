@@ -154,7 +154,7 @@ short gsn_spacecombat3;
 short gsn_bomb;
 
 short gsn_truesight;
-short gsn_makelightsaber;
+short gsn_makedeflshield;
 short gsn_spice_refining;
 short gsn_makeblade;
 short gsn_makepulselaser;
@@ -191,7 +191,7 @@ short gsn_sniper_rifles;
 short gsn_gravitonguns;
 short gsn_flame_throwers;
 short gsn_pulse_lasers;
-short gsn_lightsabers;
+short gsn_deflectingshields;
 short gsn_vibro_blades;
 short gsn_vibro_axes;
 short gsn_flexible_arms;
@@ -619,7 +619,7 @@ void boot_db( bool fCopyOver )
       ASSIGN_GSN( gsn_checkprints, "checkprints" );
       ASSIGN_GSN( gsn_makedatapad, "makedatapad" );
       ASSIGN_GSN( gsn_first_aid, "first aid" );
-      ASSIGN_GSN( gsn_makelightsaber, "makelightsaber" );
+      ASSIGN_GSN( gsn_makedeflshield, "makedeflshield" );
       ASSIGN_GSN( gsn_spice_refining, "spice refining" );
       ASSIGN_GSN( gsn_scanbugs, "checkbugs" );
       //ASSIGN_GSN( gsn_shipdesign, "ship design" );
@@ -629,7 +629,7 @@ void boot_db( bool fCopyOver )
 			ASSIGN_GSN( gsn_gravitonguns, "graviton guns" );
 			ASSIGN_GSN( gsn_gravitonguns, "flame throwers" );
       ASSIGN_GSN( gsn_pulse_lasers, "pulse lasers" );
-      ASSIGN_GSN( gsn_lightsabers, "lightsabers" );
+      ASSIGN_GSN( gsn_deflectingshields, "deflecting shields" );
       ASSIGN_GSN( gsn_vibro_blades, "vibro-blades" );
 			ASSIGN_GSN( gsn_vibro_blades, "vibro-axes" );
       ASSIGN_GSN( gsn_flexible_arms, "flexible arms" );
@@ -2639,7 +2639,7 @@ OBJ_DATA *create_object( OBJ_INDEX_DATA * pObjIndex, int level )
          switch ( obj->value[3] )
          {
             case WEAPON_ELECTRON_MACE:
-            case WEAPON_LIGHTSABER:
+            case WEAPON_DEFL_SHIELD:
             case WEAPON_FLAME_THROWER:
             case WEAPON_VIBRO_BLADE:
 						case WEAPON_VIBRO_AXE:

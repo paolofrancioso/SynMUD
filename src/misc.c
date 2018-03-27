@@ -641,9 +641,9 @@ void do_ammo( CHAR_DATA * ch, const char *argument )
          return;
       }
 
-      if( wield->value[3] == WEAPON_LIGHTSABER )
+      if( wield->value[3] == WEAPON_DEFL_SHIELD )
       {
-         ch_printf( ch, "You replace your power cell.\r\nYour lightsaber is charged to %d/%d units.\r\n", charge, charge );
+         ch_printf( ch, "You replace your power cell.\r\nYour deflecting shield is charged to %d/%d units.\r\n", charge, charge );
          act( AT_PLAIN, "$n replaces the power cell in $p.", ch, wield, NULL, TO_ROOM );
          act( AT_PLAIN, "$p ignites with a bright glow.", ch, wield, NULL, TO_ROOM );
       }
@@ -3282,11 +3282,11 @@ void do_suicide( CHAR_DATA * ch, const char *argument )
                  ch, NULL, NULL, TO_ROOM );
             break;		
 						
-         case WEAPON_LIGHTSABER:
+         case WEAPON_DEFL_SHIELD:
             act( AT_BLOOD,
-                 "You calmly kneel, and hold your saber hilt to your sternum, and without a moments hesitation, turn it on.",
+                 "You calmly overcharge your deflecting shield and you explode in a burst of blood.",
                  ch, NULL, NULL, TO_CHAR );
-            act( AT_BLOOD, "$n calmly kneels and holds $s saber hilt to $s chest, and turns it on. $e falls over in agony.",
+            act( AT_BLOOD, "$n calmly overcharges $s deflecting shield exploding in a burst of blood.",
                  ch, NULL, NULL, TO_ROOM );
             break;
 

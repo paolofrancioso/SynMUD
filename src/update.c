@@ -1518,10 +1518,10 @@ void obj_update( void )
          obj->value[4]--;
          if( obj->value[4] <= 0 )
          {
-            if( obj->value[3] == WEAPON_LIGHTSABER )
+            if( obj->value[3] == WEAPON_DEFL_SHIELD )
             {
                act( AT_PLAIN, "$p fizzles and dies.", obj->carried_by, obj, NULL, TO_CHAR );
-               act( AT_PLAIN, "$n's lightsaber fizzles and dies.", obj->carried_by, NULL, NULL, TO_ROOM );
+               act( AT_PLAIN, "$n's deflecting shield fizzles and dies.", obj->carried_by, NULL, NULL, TO_ROOM );
             }
             else if( obj->value[3] == WEAPON_VIBRO_BLADE || obj->value[3] == WEAPON_VIBRO_AXE )
             {
