@@ -54,6 +54,9 @@ void remship( SHIP_DATA * ship );
 /* From comm.c */
 void name_log( const char *str, ... );
 
+/* From act_wiz.c*/
+void transfer_char(CHAR_DATA * ch, CHAR_DATA * victim, ROOM_INDEX_DATA * location);
+
 /*
  * Local functions.
  */
@@ -2279,6 +2282,8 @@ void fix_char_death( CHAR_DATA * ch )
 {
    AFFECT_DATA *aff;
    OBJ_DATA *obj;
+   ROOM_INDEX_DATA *location;
+   char *room = (char *)"115";
 
    de_equip_char( ch );
 
@@ -2286,9 +2291,9 @@ void fix_char_death( CHAR_DATA * ch )
       affect_modify( ch, aff, FALSE );
 
    ch->affected_by = race_table[ch->race].affected;
-   ch->mental_state = -10;
+   ch->mental_state = 0; //-10
    ch->hit = 1;
-   ch->mana = 1;
+   ch->mana = 0;
    ch->move = UMAX( 1, ch->move );
    ch->armor = 10;
    ch->mod_str = 0;
@@ -2316,9 +2321,10 @@ void fix_char_death( CHAR_DATA * ch )
    ch->mod_energy = 0;   /* New Res System */
    ch->mod_drain = 0;    /* New Res System */
    ch->mod_poison = 0;   /* New Res System */	 
-	 ch->hit_regen = 0;
-	 ch->mana_regen = 0;
-	 ch->move_regen = 0;
+   ch->hit_regen = 0;
+   ch->mana_regen = 0;
+   ch->move_regen = 0;
+   ch->position = POS_STANDING;
 
    for( aff = ch->first_affect; aff; aff = aff->next )
       affect_modify( ch, aff, TRUE );
@@ -2335,6 +2341,10 @@ void fix_char_death( CHAR_DATA * ch )
    }
 
    re_equip_char( ch );
+
+   //Move Death Character to Initial Location (This could change based on Factions or other staff)
+   location = find_location(ch, room);
+   transfer_char(ch, ch, location);
 }
 
 void death_cry( CHAR_DATA * ch )

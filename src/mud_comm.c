@@ -782,7 +782,7 @@ void do_mpinvis( CHAR_DATA * ch, const char *argument )
    else
    {
       SET_BIT( ch->act, ACT_MOBINVIS );
-      act( AT_IMMORT, "$n slowly fades into thin air.", ch, NULL, NULL, TO_ROOM );
+      act( AT_IMMORT, "$n slowly into thin air.", ch, NULL, NULL, TO_ROOM );
       send_to_char( "You slowly vanish into thin air.\r\n", ch );
    }
    return;

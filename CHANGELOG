@@ -2,6 +2,9 @@
 * Modified by Paolo (Marduk) Francioso                      *
 *************************************************************
 
+---------------------24th Jenuary 2019-----------------------
+- Fixed Death. Now the Character is moved to room 115 and initialized
+
 -----------------------1st March 2018------------------------
 - Cleaned Boards Directory
 - Fixed mail management. The right HELP is suggested now

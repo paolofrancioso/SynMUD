@@ -20,5 +20,15 @@ You should immediately change your name and password. This obviously goes
 without saying, but. Who knows.
 
 
+NOTES:
+Under Players folder please create all the folders to contain characters file as:
+a
+b
+c
+d
+...
+
+
+
 
 

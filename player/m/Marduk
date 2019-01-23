@@ -10,11 +10,11 @@ Languages    1 1
 Toplevel     1
 Pheight      0
 Build        1
-Played       202
+Played       231
 Ship            ~
 ShipNum         0
-Room         128
-HpManaMove   6 270 0 0 161 200
+Room         115
+HpManaMove   6 270 0 0 147 200
 Gold         1000
 Bank         0
 Salary       0
@@ -40,7 +40,7 @@ Armor        10
 Rppoints   0
 Mentalstate  0
 Password     e28ffd855f1fd84969ec447a24a060d6325d7c479e4281635e452cfb268e0f13~
-Lastplayed   1548287123
+Lastplayed   1548287152
 Title         Marduk the Italian~
 AuthedBy     Grotans~
 Addiction    0 0 0 0 0 0 0 0 0 0
