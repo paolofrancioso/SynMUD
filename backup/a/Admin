@@ -10,37 +10,38 @@ Languages    -1 1
 Toplevel     36
 Pheight      0
 Build        0
-Played       143181
+Played       144073
 Ship            ~
 ShipNum         0
-Room         100
-HpManaMove   1000 1000 653 1000 975 1000
+Room         128
+HpManaMove   1000 1000 1000 1000 1000 1000
 Gold         2085574427
 Bank         10
 Salary       0
-Ability        0 200 19874542 0
+Ability        0 200 19874543 0
 Ability        1 200 19800500 0
 Ability        2 200 19800500 0
 Ability        3 200 19800500 0
 Ability        4 200 19833000 0
 Ability        5 200 19800500 0
 Ability        6 1 0 0
-Ability        7 200 19821500 0
+Ability        7 200 19827500 0
 Ability        8 200 19800500 0
 Ability        9 200 19999999 0
 Act          574641736
+AffectedBy   2048
 Position     8
 SavingThrows 0 0 0 0 0
 Alignment    -1000
 Glory        0
 MGlory       0
 Hitroll      0
-Damroll      20
+Damroll      65
 Armor        10
 Rppoints   0
 Mentalstate  0
 Password     9c3a88f26d3623fcf0a4aa881518170c70f5e1d62e0d9f9fa7e9b3f07fa299b7~
-Lastplayed   1522187595
+Lastplayed   1548281481
 Title         The Glorious Admin is here~
 AuthedBy     Admin~
 Addiction    0 0 0 0 0 0 0 0 0 0
@@ -48,7 +49,7 @@ Druglevel    0 0 0 0 0 0 0 0 0 0
 WizInvis     105
 Flags        2048
 PKills       17
-MKills       9
+MKills       10
 MDeaths      0
 AttrPerm     25 25 25 25 25 25 25
 AttrMod      0 0 0 0 0 0 0
@@ -111,6 +112,7 @@ Skill        100 'makecomlink'
 Skill        100 'makecommsystem'
 Skill        100 'makecontainer'
 Skill        100 'makedatapad'
+Skill        100 'makedeflshield'
 Skill        100 'makeelmace'
 Skill        100 'makeflashlight'
 Skill        100 'makegoggles'
@@ -165,7 +167,9 @@ Weapon       100 'sniper rifles'
 Weapon       100 'vibro-axes'
 Weapon       100 'vibro-blades'
 Tongue       100 'basic'
-Killed       116 5
+AffectData   'acute_damage' 107  10  19          0
+AffectData   'cover_trail' 199   0  26       2048
+Killed       116 6
 Killed       251 1
 Killed       7806 2
 Killed       28 1
@@ -209,15 +213,30 @@ End
 Name         minigun~
 ShortDescr   a Minigun~
 Vnum         50
-WearLoc      16
 Level        36
-Values       8 1 4 3 996 2000
+Values       8 1 4 3 987 2000
 Affect       -1 -1 10 12 0
 Affect       -1 -1 12 12 0
 Affect       -1 -1 10 77 0
 Affect       -1 -1 10 78 0
 Affect       -1 -1 10 79 0
 Affect       -1 -1 20 18 0
+End
+
+#OBJECT
+Vnum         37
+Level        36
+Values       15 15 0 0 0 0
+End
+
+#OBJECT
+Vnum         63
+Level        36
+End
+
+#OBJECT
+Vnum         62
+Level        36
 End
 
 #END

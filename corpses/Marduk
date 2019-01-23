@@ -1,0 +1,20 @@
+#CORPSE
+Name         corpse Marduk~
+ShortDescr   the corpse of Marduk~
+Description  The corpse of Marduk is lying here.~
+Vnum         11
+Room         129
+Rvnum	   129
+Timer        36
+Values       0 0 5 0 0 0
+End
+
+#OBJECT
+Nest         1
+ShortDescr   1000 credits~
+Vnum         3
+Values       1000 0 0 0 0 0
+End
+
+#END
+
