@@ -786,13 +786,17 @@ Speaking   basic~
 #MUDPROG
 Progtype  all_greet_prog~
 Arglist   100~
-Comlist   say Good day to you $n, and welcome to Star Wars: Fall of the Empire. 
-say My name is Grotans. Let me begin by saying how pleased we are you
-say have chosen to join us. We feel you can achieve great things.
-say Now to begin I recomend you find the turbolift and visit each level
-say in this academy. With each level you will be able to gain some 
-say experience in the Star Wars universe. With time you will be ready
-say to venture into the real world. Now go, and good luck $n.
+Comlist   say Good day to you $n, you finally woke up. 
+say My name is Dr. Karl Heinz. Let me begin by saying...sorry.
+say Your UTOPIA Chip was too damaged and we had to take some...
+say ...extreme solution...
+say ...your memory was resetted to "factory defaults". I hope this is
+say enough. Our agents never give a second chance. 
+say You know how these things go nowdays.
+say Well, to begin I recomend you find the turbolift and visit each level
+say in this building. With each level you will be able to gain some 
+say memory back. With time you will be ready to join once again
+say the society as a respectable citizen. Now go, and good luck $n.
 ~
 #ENDPROG
 
@@ -1388,6 +1392,16 @@ Stats    1 0 0 0 0
 #ENDOBJECT
 
 #OBJECT
+Vnum     155
+Keywords Stimpack~
+Type     chemical~
+Short    a Stimpack~
+Long     a Stimpack lies here.~
+Values   0 0 0 0 0 0
+Stats    1 50 5 0 0
+#ENDOBJECT
+
+#OBJECT
 Vnum     190
 Keywords hi_obj~
 Type     trash~
@@ -1403,10 +1417,10 @@ Name     A cryogenic chamber~
 Sector   city~
 Flags    nomob indoors hotel~
 Stats    0 0 3720
-Desc     You wake up suddenly coughing and vomiting gelatinous fluids that filled
-your lungs. You sit on your marble slab where someone has abandoned you
+Desc     You wake up suddenly coughing and vomiting gelatinous fluids that filled 
+your lungs. You sit on your marble slab where someone has abandoned you 
 to make you regain consciousness. Around you there are several cryogenic
-tanks, some filled only with greenish liquids, others with inside those 
+tanks, some filled only with greenish liquids, others with inside those
 that seem to be ... humans.
 
 (You can safely exit the game from here.)
@@ -1416,8 +1430,8 @@ somebody know.)
  
 &w&RNOTE: Prospective builders, say build.&W
 
-Note to new players. If you want to be authed, stay with Dr. Karl Lothar
-for a few seconds and he automatically auths you.
+Note to new players. If you want to be authed, stay with Dr. Karl Heinz for
+a few seconds and he automatically auths you.
 ~
 #EXIT
 Direction down~
@@ -1444,17 +1458,17 @@ mea $n &w&Won other muds and that muds address is a plus.
 
 #ROOM
 Vnum     116
-Name     Small Cabin~
+Name     A long corridor~
 Sector   city~
 Flags    nomob indoors safe~
 Stats    0 0 3720
-Desc     The room is of average size for a large starship and is sparsly decorated.
-The walls and ceiling are white and the floor is a dark grey tile. In the
-corner there is a small bunk, and beside it there is a small table.
-Sitting on the table is a soft glowing lamp. In the opposite corner there
-is a padded chair. It looks like a nice place to relax. But you have too
-much to do for that. To the north there is a corridor that leads to the
-rest of the ship.
+Desc     You enter what appears to be the office of some doctor or surgeon. 
+The walls are scattered with paintings and photos representing the human 
+body and its nervous circuits. In the center of the room you see a desk 
+and a small man playing nervously with a pen while studying some papers. 
+Just above your head you see a small red flashing light. You understand 
+that this is a video camera aimed at you and that is following your every
+movement. Someone is watching you right now.
 ~
 #EXIT
 Direction north~
@@ -1481,11 +1495,6 @@ brain. The floor and walls are the same as in the bunks but the air seems
 a little bit cooler but still very nice. The corridor continues east and
 west.
 ~
-#EXIT
-Direction north~
-ToRoom    121
-#ENDEXIT
-
 #EXIT
 Direction east~
 ToRoom    120
@@ -1574,54 +1583,22 @@ ToRoom    117
 
 #ROOM
 Vnum     121
-Name     Small Cabin~
+Name     Unused~
 Sector   city~
-Flags    indoors~
+Flags    nomob indoors~
 Stats    0 0 3720
-Desc     The room is of average size for a large starship and is sparsely decorated.
-The walls and ceiling are white and the floor is a dark grey tile. In the
-corner there is a small bunk, an beside it there is a small table. Sitting
-on the table is a soft glowing lamp. In the opposite corener there is a
-padded chair. It looks like a nice place to relax. But you too much to do
-for that. To the south there is a corridor that leads to the rest of the
-ship.
+Desc     Unused
 ~
-#EXIT
-Direction south~
-ToRoom    117
-#ENDEXIT
-
-#EXIT
-Direction up~
-ToRoom    122
-#ENDEXIT
-
 #ENDROOM
 
 #ROOM
 Vnum     122
-Name     In a Bunk~
+Name     Unused~
 Sector   city~
-Flags    indoors hotel~
+Flags    nomob indoors hotel~
 Stats    0 0 3720
-Desc     Where am I? runs through your mind. Well, you are lying down on a bunk on
-the Newbie Ship that slowly makes its way around the galaxy. Through the
-window you can see the stars shining on the bed. The quiet of the room and
-the tranquil site can make on very sleepy, but you have lots ahead of you.
-On the ship there is a large training facility designed especially for
-you. So wander around and ask questions if you need to.
- 
-(You can safely exit the game from here.)
- 
- 
-(Please look at the help files to learn new things. If there isn't one, let
-somebody know.)
+Desc     Unused
 ~
-#EXIT
-Direction down~
-ToRoom    121
-#ENDEXIT
-
 #ENDROOM
 
 #ROOM

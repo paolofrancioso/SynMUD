@@ -212,7 +212,7 @@ bool check_skill( CHAR_DATA * ch, const char *command, const char *argument )
 
       if( !IS_NPC( ch ) && ch->mana < mana )
       {
-         send_to_char( "You need to rest before using the Force any more.\r\n", ch );
+         send_to_char( "You need shield points before using this skill any more.\r\n", ch );
          return TRUE;
       }
    }
@@ -297,6 +297,18 @@ bool check_skill( CHAR_DATA * ch, const char *command, const char *argument )
        * waitstate 
        */
       WAIT_STATE( ch, skill_table[sn]->beats );
+
+	  /*
+	  * Marduk - Added Components management also for skills
+	  */
+	  if (!process_spell_components(ch, sn))
+	  {
+
+		  if (get_trust(ch) < LEVEL_IMMORTAL) /* so imms dont lose mana */
+			  ch->mana -= mana / 2;
+		  learn_from_failure(ch, sn);
+		  return TRUE;
+	  }
       /*
        * check for failure 
        */

@@ -1,21 +1,21 @@
 #PLAYER
 Version      4
 Name         Marduk~
-Comfreq      091.733~
+Comfreq      344.143~
 Sex          1
 Race         0
-MainAbility  0
-SecondAbility  1
+MainAbility  9
+SecondAbility  0
 Languages    1 1
 Toplevel     1
 Pheight      0
 Build        1
-Played       231
+Played       1533
 Ship            ~
 ShipNum         0
 Room         115
-HpManaMove   6 270 0 0 147 200
-Gold         1000
+HpManaMove   157 280 0 0 182 200
+Gold         0
 Bank         0
 Salary       0
 Ability        0 1 0 0
@@ -27,7 +27,7 @@ Ability        5 1 0 0
 Ability        6 1 0 0
 Ability        7 1 0 0
 Ability        8 1 0 0
-Ability        9 1 0 0
+Ability        9 1 190 0
 Act          570426952
 Position     8
 SavingThrows 0 0 0 0 0
@@ -40,7 +40,7 @@ Armor        10
 Rppoints   0
 Mentalstate  0
 Password     e28ffd855f1fd84969ec447a24a060d6325d7c479e4281635e452cfb268e0f13~
-Lastplayed   1548287152
+Lastplayed   1548412441
 Title         Marduk the Italian~
 AuthedBy     Grotans~
 Addiction    0 0 0 0 0 0 0 0 0 0
@@ -48,12 +48,13 @@ Druglevel    0 0 0 0 0 0 0 0 0 0
 Flags        0
 MKills       0
 MDeaths      0
-AttrPerm     13 10 11 9 12 10 12
+AttrPerm     7 11 13 13 13 13 13
 AttrMod      0 0 0 0 0 0 0
 ResiMod      0 0 0 0 0 0 0 0 0 0
 Regens      0 0 0
-Condition    0 48 46 10
+Condition    0 41 41 10
 Site         local-host
+Skill        58 'heal'
 Tongue       100 'basic'
 Tongue       100 'italian'
 MaxColors    115

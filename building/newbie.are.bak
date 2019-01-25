@@ -1401,7 +1401,7 @@ Stats    1 0 0 0 0
 Vnum     115
 Name     A cryogenic chamber~
 Sector   city~
-Flags    nomob indoors hotel prototype~
+Flags    nomob indoors hotel~
 Stats    0 0 3720
 Desc     You wake up suddenly coughing and vomiting gelatinous fluids that filled
 your lungs. You sit on your marble slab where someone has abandoned you

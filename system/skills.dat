@@ -274,21 +274,25 @@ End
 
 #SKILL
 Name         heal~
-Type         Spell
+Type         Skill
 Flags        0
 Target       2
 Minpos       8
-Mana         50
-Rounds       2
-Guild        6
+Mana         0
+Rounds       6
+Guild        9
 Code         spell_smaug
 Dammsg       ~
-Hitchar      You lay a hand of healing upon $N.~
+Hitchar      You use a stimpack to heal $N.~
 Hitvict      A warm feeling fills your body.~
+Hitroom      $n uses a stimpack on $N.~
+Misschar     You break the stimpack before you can use it.~
+Missvict     The stimpack has no effect on you.~
+Missroom     $n uses a stimpack without effects on $N.~
 Teachers     (null) 4503~
-Affect       '' 13 '50*r' 0
-Alignment   1001
-Minlevel     31
+Components   V155~
+Affect       '' 13 '50+2*o' 0
+Minlevel     1
 End
 
 #SKILL

@@ -495,6 +495,31 @@ int rd_parse( CHAR_DATA * ch, int level, char *texp )
    if( len == 1 && isalpha( texp[0] ) )
       switch ( texp[0] )
       {
+
+		 case 'E':
+		 case 'e':
+	       return ch->skill_level[COMMANDO_ABILITY];
+		 case 'F':
+		 case 'f':
+		   return ch->skill_level[DEFENDER_ABILITY];
+		 case 'G':
+		 case 'g':
+		   return ch->skill_level[HUNTER_ABILITY];
+		 case 'K':
+		 case 'k':
+	  	   return ch->skill_level[INFILTRATOR_ABILITY];
+		 case 'P':
+		 case 'p':
+		   return ch->skill_level[PERSUADER_ABILITY];
+		 case 'O':
+		 case 'o':
+		   return ch->skill_level[MEDIC_ABILITY];
+		 case 'B':
+		 case 'b':
+	   	   return ch->skill_level[HACKER_ABILITY];
+	     case 'Z':
+		 case 'z':
+		   return ch->skill_level[ASSASSIN_ABILITY];
          case 'L':
          case 'l':
             return level;
@@ -723,9 +748,9 @@ bool process_spell_components( CHAR_DATA * ch, int sn )
    if( !comp || comp[0] == '\0' )
       return TRUE;
 
-/* disable the whole damn shabang */
+   /* disable the whole damn shabang */
 
-   return TRUE;
+   //return TRUE;
 
    while( comp[0] != '\0' )
    {
@@ -876,8 +901,8 @@ bool process_spell_components( CHAR_DATA * ch, int sn )
                return FALSE;
             else if( --obj->value[val] == 0 )
             {
-               act( AT_MAGIC, "$p glows briefly, then disappears in a puff of smoke!", ch, obj, NULL, TO_CHAR );
-               act( AT_MAGIC, "$p glows briefly, then disappears in a puff of smoke!", ch, obj, NULL, TO_ROOM );
+               act( AT_MAGIC, "$p is consumed!", ch, obj, NULL, TO_CHAR );
+               act( AT_MAGIC, "$p is consumed!", ch, obj, NULL, TO_ROOM );
                extract_obj( obj );
             }
             else
@@ -886,8 +911,8 @@ bool process_spell_components( CHAR_DATA * ch, int sn )
          else if( consume )
          {
             separate_obj( obj );
-            act( AT_MAGIC, "$p glows brightly, then disappears in a puff of smoke!", ch, obj, NULL, TO_CHAR );
-            act( AT_MAGIC, "$p glows brightly, then disappears in a puff of smoke!", ch, obj, NULL, TO_ROOM );
+            act( AT_MAGIC, "$p is consumed!", ch, obj, NULL, TO_CHAR );
+            act( AT_MAGIC, "$p is consumed!", ch, obj, NULL, TO_ROOM );
             extract_obj( obj );
          }
          else
@@ -895,7 +920,7 @@ bool process_spell_components( CHAR_DATA * ch, int sn )
             int count = obj->count;
 
             obj->count = 1;
-            act( AT_MAGIC, "$p glows briefly.", ch, obj, NULL, TO_CHAR );
+            act( AT_MAGIC, "$p glows briefly and a whisp of smoke rises from it.", ch, obj, NULL, TO_CHAR );
             obj->count = count;
          }
       }
@@ -1065,8 +1090,8 @@ void do_cast( CHAR_DATA * ch, const char *argument )
    {
       default:
          /*
-          * no ordering charmed mobs to cast spells 
-          */
+         * no ordering charmed mobs to cast spells 
+         */
          if( IS_NPC( ch ) && IS_AFFECTED( ch, AFF_CHARM ) )
          {
             send_to_char( "You can't seem to do that right now...\r\n", ch );
@@ -1423,8 +1448,8 @@ void do_cast( CHAR_DATA * ch, const char *argument )
       learn_from_failure( ch, sn );
 
    /*
-    * Fixed up a weird mess here, and added double safeguards -Thoric
-    */
+   * Fixed up a weird mess here, and added double safeguards -Thoric
+   */
    if( skill->target == TAR_CHAR_OFFENSIVE
        && victim && !char_died( victim ) && !IS_SET( victim->affected_by, AFF_PARALYSIS ) && victim != ch )
    {
@@ -4494,10 +4519,10 @@ ch_ret spell_affectchar( int sn, int level, CHAR_DATA * ch, void *vo )
          case AFF_POISON:
             af.type = gsn_poison;
 
-            send_to_char( "You feel the hatred grow within you!\r\n", ch );
-            ch->alignment = ch->alignment - 100;
-            ch->alignment = URANGE( -1000, ch->alignment, 1000 );
-            sith_penalty( ch );
+            //send_to_char( "You feel the hatred grow within you!\r\n", ch );
+            //ch->alignment = ch->alignment - 100;
+            //ch->alignment = URANGE( -1000, ch->alignment, 1000 );
+            //sith_penalty( ch );
 
             schance = ris_save( victim, level, RIS_POISON );
             if( schance == 1000 )
@@ -4558,10 +4583,10 @@ ch_ret spell_affectchar( int sn, int level, CHAR_DATA * ch, void *vo )
             case APPLY_HIT:
                if( ch != victim && victim->hit < victim->max_hit && af.modifier > 0 )
                {
-                  send_to_char( "The nobel Jedi use their powers to help others!\r\n", ch );
-                  ch->alignment = ch->alignment + 20;
-                  ch->alignment = URANGE( -1000, ch->alignment, 1000 );
-                  jedi_bonus( ch );
+                  //send_to_char( "The nobel Jedi use their powers to help others!\r\n", ch );
+                  //ch->alignment = ch->alignment + 20;
+                  //ch->alignment = URANGE( -1000, ch->alignment, 1000 );
+                  //jedi_bonus( ch );
                }
                if( af.modifier > 0 && victim->hit >= victim->max_hit )
                {
@@ -4577,10 +4602,10 @@ ch_ret spell_affectchar( int sn, int level, CHAR_DATA * ch, void *vo )
                }
                if( ch != victim )
                {
-                  send_to_char( "The nobel Jedi use their powers to help others!\r\n", ch );
-                  ch->alignment = ch->alignment + 25;
-                  ch->alignment = URANGE( -1000, ch->alignment, 1000 );
-                  jedi_bonus( ch );
+                  //send_to_char( "The nobel Jedi use their powers to help others!\r\n", ch );
+                  //ch->alignment = ch->alignment + 25;
+                  //ch->alignment = URANGE( -1000, ch->alignment, 1000 );
+                  //jedi_bonus( ch );
                }
                victim->mana = URANGE( 0, victim->mana + af.modifier, victim->max_mana );
                update_pos( victim );

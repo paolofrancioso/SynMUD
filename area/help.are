@@ -325,7 +325,7 @@ See BESTOWAREA
  
 ~
 
-36 AC ARMOR~
+1 AC ARMOR~
 AC (Armor Class) represents the change to avoid an incoming hit.
 The lower it is, the best it is.
 AC is calculated as:
@@ -419,7 +419,7 @@ If a player types 'swim' in the room, they will move to room 3001.
    to UNIX-C (over a period of about 3 years) (c)1984.
 ~
 
-0 AFFECTED 'AFFECTED BY'~
+1 AFFECTED 'AFFECTED BY'~
 Syntax:  affected       (abbrevation:  af)
 Syntax:  affected by    (abbreviation: af by)
  
@@ -655,7 +655,7 @@ The area must be folded to make these changes permanent.
 See FOLDAREA, ASTAT, ECONOMY
 ~
 
-0 ASSASSIN~
+1 ASSASSIN~
 Assassins despised by most, feared by all. You specialize in the art of
 quickly and silently killing people. While you might not fare well in a
 straight up bar room brawl, with the advantage of surprise, you can easily
@@ -2031,7 +2031,7 @@ Fields: save - saves the control panel settings
         guild_advisor - name of the Advisor to Guilds
 ~
 
-36 CYBERWARE~
+0 CYBERWARE~
 Cyberware is a permanent modification of your character
 that will add some bonus (or in rare cases also malus)
 to your character. It can be implanted in your body only
@@ -2253,10 +2253,12 @@ had to be coded in.  (At least to make it nice).  This dice formula code
 supports full BEDMAS expressions ( ) ^^ / * + -, plus extra mud related
 operators and variables:
 
-D dice         L level          H hit points      M force
+D dice         L level          H hit points      M shield
 V movement     S strength       I intelligence    W wisdom
 X dexterity    C consitution    A charisma        U luck
-Y age
+Y age          Z Assassin LVL   E Commando LVL    F Defender LVL
+G Hunter LVL   K Infilr. LVL    P Persuader LVL   O Medic LVL
+B Hacker LVL   
  
 See SMAUGSPELLS and SSET.
 ~
@@ -2424,7 +2426,7 @@ Examples:
  
 ~
 
-31 'DUAL WIELD'~
+1 'DUAL WIELD'~
 This skill allows you to wield two weapons simultaneously.
 This is an automatic skill.
 A +2 penalty is applied to the secondary weapon TACH0.
@@ -4177,7 +4179,7 @@ building them. just oi mail for the board in it.
 -Trillen
 ~
 
-36 IMPLANT~
+1 IMPLANT~
 Usage: implant <cyberware>
 
 If you are at a biotech surgeon, you can purchase a cyberware implant.
@@ -4671,7 +4673,7 @@ This allows you to make a comlink using a toolkit(reuseable), a battery, some ci
 and a crystal.
 ~
 
-36 MAKECONTAINER "MAKE CONTAINER"~
+1 MAKECONTAINER "MAKE CONTAINER"~
 Syntax :  Makecontainer (location) (name)
  
 Used to make containers that may be worn all over the body.
@@ -4680,16 +4682,6 @@ The available locations are:  head, legs, arms, hands, hold, holster1,
 holster2, back, and waist.
 
 Note : Different fabics are worn on different layers.
-~
-
-1 MAKECONTAINER "MAKE CONTAINER"~
-.
-Syntax :  Makecontainer (location) (name)
-
-Used to make containers that mat be worn all over the body.
- 
-Note : Different fabics are worn on different layers.
- 
 ~
 
 31 MAKECOUNCIL MAKEGOVERNMENT MAKEGUILD~
@@ -7726,7 +7718,7 @@ Syntax : systemtalk <message>
 Sends message to all ships in current starsystem.
 ~
 
-36 TACH0~
+1 TACH0~
 TACH0 (To Hit Armor Class 0) represents the chance to hit a character.
 The lower it is, the best it is.
 TACH0 is calculated as:
@@ -8242,7 +8234,7 @@ This power reduces the strength of the victim by two points.
 36 WEAPONTYPE~
 ~
 
-31 WEAPONTYPES~
+1 WEAPONTYPES~
 For items of type "weapon", the value3 field specifies the weapon type:
 
 Value3 | Type     | Weapons
