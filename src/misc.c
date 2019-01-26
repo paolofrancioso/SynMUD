@@ -499,7 +499,7 @@ void do_ammo( CHAR_DATA * ch, const char *argument )
       act( AT_PLAIN, "$n replaces the ammunition cell in $p.", ch, wield, NULL, TO_ROOM );
 
    }
-   else if( wield->value[3] == WEAPON_MINIGUN || wield->value[3] == WEAPON_SNIPER_RIFLE )
+   else if( wield->value[3] == WEAPON_MINIGUN || wield->value[3] == WEAPON_SNIPER_RIFLE || wield->value[3] == WEAPON_LAUNCHER )
    {
 
       if( obj && obj->item_type != ITEM_AMMO )
@@ -3295,7 +3295,13 @@ void do_suicide( CHAR_DATA * ch, const char *argument )
                  TO_CHAR );
             act( AT_BLOOD, "$n blows his head off with a minigun shot!", ch, NULL, NULL, TO_ROOM );
             break;
-						
+
+		 case WEAPON_LAUNCHER:
+			 act(AT_BLOOD, "You aim with your launchers at your feets... You explode in a burst of bones and blood.", ch, NULL, NULL,
+				 TO_CHAR);
+			 act(AT_BLOOD, "$n explodes in a burst of bones and blood.", ch, NULL, NULL, TO_ROOM);
+			 break;
+
          case WEAPON_SNIPER_RIFLE:
             act( AT_BLOOD, "You pull back the lever, hold the sniper rifle to your face and... death.", ch, NULL, NULL,
                  TO_CHAR );

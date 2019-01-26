@@ -1360,10 +1360,19 @@ void do_ostat( CHAR_DATA * ch, const char *argument )
    }
 
    for( paf = obj->first_affect; paf; paf = paf->next )
-      ch_printf( ch, "&w&GAffects &W%s&G by &W%d&G. (extra)\r\n", affect_loc_name( paf->location ), paf->modifier );
-
+   {
+	   if( paf->location == APPLY_WEAPONSPELL && paf->modifier >= 0 )
+		   ch_printf(ch, "&w&GAffects &W%s&G by &W%s&G. (extra)\r\n", affect_loc_name(paf->location), skill_table[paf->modifier]->name);
+	   else
+		   ch_printf(ch, "&w&GAffects &W%s&G by &W%d&G. (extra)\r\n", affect_loc_name(paf->location), paf->modifier);
+   }
    for( paf = obj->pIndexData->first_affect; paf; paf = paf->next )
-      ch_printf( ch, "&w&GAffects &W%s&G by &W%d&G.\r\n", affect_loc_name( paf->location ), paf->modifier );
+   { 
+	   if( paf->location == APPLY_WEAPONSPELL && paf->modifier >= 0 )
+		   ch_printf(ch, "&w&GAffects &W%s&G by &W%s&G.\r\n", affect_loc_name(paf->location), skill_table[paf->modifier]->name);
+	   else
+		   ch_printf(ch, "&w&GAffects &W%s&G by &W%d&G.\r\n", affect_loc_name(paf->location), paf->modifier);
+   }  
 
    if( ( obj->item_type == ITEM_CONTAINER ) && ( obj->first_content ) )
    {
@@ -6879,9 +6888,11 @@ void ostat_plus( CHAR_DATA * ch, OBJ_DATA * obj )
             ch_printf( ch, "&WVibro-Axe&W\r\n" );						
          else if( obj->value[3] == WEAPON_MINIGUN )
             ch_printf( ch, "&WMinigun&W\r\n" );
-				 else if( obj->value[3] == WEAPON_SNIPER_RIFLE )
+		 else if (obj->value[3] == WEAPON_LAUNCHER)
+			 ch_printf(ch, "&WLauncher&W\r\n");
+		 else if( obj->value[3] == WEAPON_SNIPER_RIFLE )
             ch_printf( ch, "&WSniper Rifle&W\r\n" );		
-				 else if( obj->value[3] == WEAPON_GRAVITON_GUN )
+		 else if( obj->value[3] == WEAPON_GRAVITON_GUN )
             ch_printf( ch, "&WGraviton Gun&W\r\n" );		
          else if( obj->value[3] == WEAPON_PULSE_LASER )
             ch_printf( ch, "&WPulse Laser&W\r\n" );

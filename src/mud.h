@@ -1851,28 +1851,29 @@ typedef enum
 #define ITEM_LIGHTNING_BLADE  	BV06
 
 /* Blaster settings - only saves on characters */
-#define BLASTER_NORMAL          0
+#define BLASTER_NORMAL      0
 #define BLASTER_HALF		2
-#define BLASTER_FULL            5
-#define BLASTER_LOW		1
+#define BLASTER_FULL        5
+#define BLASTER_LOW			1
 #define	BLASTER_STUN		3
-#define BLASTER_HIGH            4
+#define BLASTER_HIGH        4
 
 /* Weapon Types */
 
-#define WEAPON_NONE     				0
-#define WEAPON_VIBRO_AXE				1
-#define WEAPON_VIBRO_BLADE			2
-#define WEAPON_DEFL_SHIELD			3
-#define WEAPON_WHIP							4
-#define WEAPON_CLAW							5
-#define WEAPON_ELECTRON_MACE		6
-#define WEAPON_BLUDGEON					8
+#define WEAPON_NONE     		0
+#define WEAPON_VIBRO_AXE		1
+#define WEAPON_VIBRO_BLADE		2
+#define WEAPON_DEFL_SHIELD		3
+#define WEAPON_WHIP				4
+#define WEAPON_CLAW				5
+#define WEAPON_ELECTRON_MACE	6
+#define WEAPON_BLUDGEON			8
 #define WEAPON_MINIGUN	        9
 #define WEAPON_FLAME_THROWER    10
-#define WEAPON_PULSE_LASER			11
+#define WEAPON_PULSE_LASER		11
 #define WEAPON_GRAVITON_GUN     12
 #define WEAPON_SNIPER_RIFLE     13
+#define WEAPON_LAUNCHER			14
 
 
 /* Lever/dial/switch/button/pullchain flags */
@@ -3211,7 +3212,6 @@ extern short gsn_showbeacons;
 extern short gsn_checkbeacons;
 extern short gsn_nullifybeacons;
 extern short gsn_makebinders;
-extern short gsn_launchers;
 extern short gsn_makemissile;
 extern short gsn_makegoggles;
 extern short gsn_truesight;
@@ -3257,6 +3257,7 @@ extern short gsn_flexible_arms;
 extern short gsn_talonous_arms;
 extern short gsn_bludgeons;
 extern short gsn_sniper_rifles;
+extern short gsn_launchers;
 
 extern short gsn_grip;
 
@@ -3692,7 +3693,7 @@ extern const struct cha_app_type cha_app[26];
 extern const struct lck_app_type lck_app[26];
 extern struct race_type race_table[MAX_RACE];
 extern const struct liq_type liq_table[LIQ_MAX];
-extern const char *const attack_table[14];
+extern const char *const attack_table[15];
 extern const char *const ability_name[MAX_ABILITY];
 extern const char *const height_name[4];
 extern const char *const build_name[6];
@@ -3715,7 +3716,7 @@ extern const char *const cmd_flags[];
 extern const char *const act_flags[];
 extern const char *const planet_flags[];
 extern const char *const mprog_flags[];
-extern const char *const weapon_table[14];
+extern const char *const weapon_table[15];
 extern const char *const spice_table[];
 extern const char *const plr_flags[];
 extern const char *const pc_flags[];
@@ -4968,6 +4969,7 @@ void RelCreate( relation_type, void *, void * );
 void RelDestroy( relation_type, void *, void * );
 
 /* fight.c */
+ch_ret launchers_aoe(CHAR_DATA * ch, int dam);
 int max_fight( CHAR_DATA * ch );
 void violence_update( void );
 ch_ret multi_hit( CHAR_DATA * ch, CHAR_DATA * victim, int dt );

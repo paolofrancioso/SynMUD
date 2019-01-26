@@ -371,11 +371,11 @@ const struct liq_type liq_table[LIQ_MAX] = {
    {"milkshake", "creamy", {0, 8, 5}}  /* 18 */
 };
 
-const char *const attack_table[14] = {
+const char *const attack_table[15] = {
    "hit",
    "slice", "stab", "shield", "whip", "claw",
    "blast", "pound", "crush", "shot", "flame",
-   "laser", "chain reaction", "shot"
+   "laser", "chain reaction", "shot", "missile"
 };
 
 

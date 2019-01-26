@@ -62,11 +62,11 @@ const char *const planet_flags[] = {
    "p22", "p23", "p24", "p25", "p26", "p27", "p28", "p29", "p30", "p31"
 };
 
-const char *const weapon_table[14] = {
+const char *const weapon_table[15] = {
    "none",
    "vibro-axe", "vibro-blade", "lightsaber", "whip", "claw",
    "electron mace", "w7", "bludgeon", "minigun", "flame thrower",
-   "pulse laser", "graviton gun", "sniper rifle"
+   "pulse laser", "graviton gun", "sniper rifle", "launcher"
 };
 
 const char *const spice_table[] = {
@@ -2741,6 +2741,7 @@ void do_oset( CHAR_DATA * ch, const char *argument )
    EXTRA_DESCR_DATA *ed;
    bool lockobj;
    const char *origarg = argument;
+   int weaponspellsn;
 
    int value, tmp;
 
@@ -3298,8 +3299,25 @@ void do_oset( CHAR_DATA * ch, const char *argument )
       }
       else
       {
-         argument = one_argument( argument, arg3 );
-         value = atoi( arg3 );
+		  if( loc == APPLY_WEAPONSPELL ) 
+		  { 
+			argument = one_argument(argument, arg3);
+			weaponspellsn = skill_lookup(arg3);
+			if( weaponspellsn < 0 )
+			{
+				ch_printf(ch, "Unknown weaponspell: %s\r\n", arg3);
+				return;
+			}
+			else
+			{
+			  value = weaponspellsn;
+			}
+		  }
+		  else
+		  {
+			 argument = one_argument(argument, arg3);
+			 value = atoi(arg3);
+		  }
       }
       CREATE( paf, AFFECT_DATA, 1 );
       paf->type = -1;
@@ -3578,7 +3596,7 @@ void do_oset( CHAR_DATA * ch, const char *argument )
                send_to_char( "\r\nChoices:\r\n", ch );
                send_to_char( "   none, lightsaber, vibro-blade, electron mace, pulse laser, minigun,\r\n",
                              ch );
-							 send_to_char( "   bludgeon, graviton gun, sniper rifle, flame thrower.\r\n",  ch );
+							 send_to_char( "   bludgeon, graviton gun, sniper rifle, flame thrower, launcher.\r\n",  ch );
                return;
             }
             tmp = 3;

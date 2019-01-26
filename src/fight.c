@@ -640,18 +640,21 @@ int weapon_prof_bonus_check( CHAR_DATA * ch, OBJ_DATA * wield, int *gsn_ptr )
          case 9:
             *gsn_ptr = gsn_miniguns;
             break;
-				 case 10:
-						*gsn_ptr = gsn_flame_throwers;
-						break;						
+		 case 10:
+			*gsn_ptr = gsn_flame_throwers;
+			break;						
          case 11:
             *gsn_ptr = gsn_pulse_lasers;
             break;
-				 case 12:
-						*gsn_ptr = gsn_gravitonguns;
-						break;
-				 case 13:
-						*gsn_ptr = gsn_sniper_rifles;
-						break;
+		 case 12:
+			*gsn_ptr = gsn_gravitonguns;
+			break;
+		 case 13:
+			*gsn_ptr = gsn_sniper_rifles;
+			break;
+		 case 14:
+		    *gsn_ptr = gsn_launchers;
+		    break;
 						
       }
       if( *gsn_ptr != -1 )
@@ -1087,7 +1090,7 @@ ch_ret one_hit( CHAR_DATA * ch, CHAR_DATA * victim, int dt )
    {
       if( wield->value[4] < 1 )
       {
-         act( AT_YELLOW, "$n points their pulse laser at you but nothing happens.", ch, NULL, victim, TO_VICT );
+         act( AT_YELLOW, "$n points his pulse laser at you but nothing happens.", ch, NULL, victim, TO_VICT );
          act( AT_YELLOW, "*CLICK* ... your pulse laser needs some charge...NOW!", ch, NULL, victim, TO_CHAR );
          if( IS_NPC( ch ) )
          {
@@ -1116,7 +1119,7 @@ ch_ret one_hit( CHAR_DATA * ch, CHAR_DATA * victim, int dt )
    {
       if( wield->value[4] < 1 )
       {
-         act( AT_YELLOW, "$n points their minigun at you but nothing happens.", ch, NULL, victim, TO_VICT );
+         act( AT_YELLOW, "$n points his minigun at you but nothing happens.", ch, NULL, victim, TO_VICT );
          act( AT_YELLOW, "*CLICK* ... your minigun needs a new ammo cartridge!", ch, NULL, victim, TO_CHAR );
          if( IS_NPC( ch ) )
          {
@@ -1127,11 +1130,26 @@ ch_ret one_hit( CHAR_DATA * ch, CHAR_DATA * victim, int dt )
       else
          wield->value[4]--;
    }
+   else if (dt == (TYPE_HIT + WEAPON_LAUNCHER) && wield && wield->item_type == ITEM_WEAPON)
+   {
+   if (wield->value[4] < 1)
+   {
+	   act(AT_YELLOW, "$n points his launcher at you but nothing happens.", ch, NULL, victim, TO_VICT);
+	   act(AT_YELLOW, "*CLICK* ... your launcher needs a new ammo!", ch, NULL, victim, TO_CHAR);
+	   if (IS_NPC(ch))
+	   {
+		   do_remove(ch, wield->name);
+	   }
+	   return rNONE;
+   }
+   else
+	   wield->value[4]--;
+   }
    else if( dt == ( TYPE_HIT + WEAPON_SNIPER_RIFLE ) && wield && wield->item_type == ITEM_WEAPON )
    {
       if( wield->value[4] < 1 )
       {
-         act( AT_YELLOW, "$n points their sniper rifle at you but nothing happens.", ch, NULL, victim, TO_VICT );
+         act( AT_YELLOW, "$n points his sniper rifle at you but nothing happens.", ch, NULL, victim, TO_VICT );
          act( AT_YELLOW, "*CLICK* ... your sniper rifle needs a new ammo cartridge!", ch, NULL, victim, TO_CHAR );
          if( IS_NPC( ch ) )
          {
@@ -1146,7 +1164,7 @@ ch_ret one_hit( CHAR_DATA * ch, CHAR_DATA * victim, int dt )
    {
       if( wield->value[4] < 1 )
       {
-         act( AT_YELLOW, "$n points their graviton gun at you but nothing happens.", ch, NULL, victim, TO_VICT );
+         act( AT_YELLOW, "$n points his graviton gun at you but nothing happens.", ch, NULL, victim, TO_VICT );
          act( AT_YELLOW, "*CLICK* ... your graviton gun needs some charge!", ch, NULL, victim, TO_CHAR );
          if( IS_NPC( ch ) )
          {
@@ -1161,7 +1179,7 @@ ch_ret one_hit( CHAR_DATA * ch, CHAR_DATA * victim, int dt )
    {
       if( wield->value[4] < 1 )
       {
-         act( AT_YELLOW, "$n points their flame thrower at you but you see only some smoke..", ch, NULL, victim, TO_VICT );
+         act( AT_YELLOW, "$n points his flame thrower at you but you see only some smoke..", ch, NULL, victim, TO_VICT );
          act( AT_YELLOW, "*CLICK* ... your flame thrower needs some fuel!", ch, NULL, victim, TO_CHAR );
          if( IS_NPC( ch ) )
          {
@@ -1330,6 +1348,62 @@ short ris_damage( CHAR_DATA * ch, short dam, int ris )
 	 
 }
 
+ch_ret launchers_aoe( CHAR_DATA * ch, int dam )
+{
+	CHAR_DATA *vch;
+	CHAR_DATA *vch_next;
+	bool ch_died;
+	ch_ret retcode;
+
+	ch_died = FALSE;
+	retcode = rNONE;
+
+	if (IS_SET(ch->in_room->room_flags, ROOM_SAFE))
+	{
+		return rSPELL_FAILED;
+	}
+
+	act(AT_MAGIC, "A missile explodes dealing damages all around!", ch, NULL, NULL, TO_CHAR);
+	act(AT_MAGIC, "$n makes a missile explode!", ch, NULL, NULL, TO_ROOM);
+
+	for (vch = first_char; vch; vch = vch_next)
+	{
+		vch_next = vch->next;
+		if (!vch->in_room)
+			continue;
+		if (vch->in_room == ch->in_room)
+		{
+			if (!IS_NPC(vch) && IS_SET(vch->act, PLR_WIZINVIS) && vch->pcdata->wizinvis >= LEVEL_IMMORTAL)
+				continue;
+
+			if (IS_AFFECTED(vch, AFF_FLOATING) || IS_AFFECTED(vch, AFF_FLYING))
+				continue;
+
+			if (ch == vch)
+				continue;
+
+			retcode = damage(ch, vch, dam, slot_lookup(900));
+			if (retcode == rCHAR_DIED || char_died(ch))
+			{
+				ch_died = TRUE;
+				continue;
+			}
+			if (char_died(vch))
+				continue;
+		}
+
+		if (!ch_died && vch->in_room->area == ch->in_room->area)
+		{
+			set_char_color(AT_MAGIC, vch);
+			send_to_char("A missile explodes dealing damages all around!\r\n", vch);
+		}
+	}
+
+	if (ch_died)
+		return rCHAR_DIED;
+	else
+		return rNONE;
+}
 
 /*
  * Inflict damage from a hit.
@@ -1343,7 +1417,12 @@ ch_ret damage( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt )
    OBJ_DATA *damobj, *wield, *victwield;
    ch_ret retcode;
    short dampmod;
-   retcode = rNONE;
+   retcode = rNONE; 
+
+
+   //Marduk - Splash damage by Launchers. The target get double!
+   if (dam && (dt == (TYPE_HIT + 14)))
+	   launchers_aoe(ch, dam);
 
    if( !ch )
    {
@@ -1361,12 +1440,13 @@ ch_ret damage( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt )
 
    npcvict = IS_NPC( victim );
 
+
    /*
     * Check damage types for RIS            -Thoric
     */
    if( dam && dt != TYPE_UNDEFINED )
    {
-      if( IS_FIRE( dt ) || dt == ( TYPE_HIT + 10 ) )
+      if( IS_FIRE( dt ) || dt == ( TYPE_HIT + 10 ) || dt == (TYPE_HIT + 14))
          dam = ris_damage( victim, dam, RIS_FIRE );
       else if( IS_COLD( dt ) )
          dam = ris_damage( victim, dam, RIS_COLD );
@@ -1519,16 +1599,17 @@ ch_ret damage( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt )
       if( dam < 0 )
          dam = 0;
       
-			//Deflecting Shield does 0 damage by default
-	    if( dt ==  ( TYPE_HIT + WEAPON_DEFL_SHIELD ) ) {
-				 dam = 0;
-	    }
-      /*
+			
+	   //Deflecting Shield does 0 damage by default
+	   if( dt ==  ( TYPE_HIT + WEAPON_DEFL_SHIELD ) ) {
+		 dam = 0;
+	   }
+       /*
        * Check for disarm, trip, parry, and dodge.
        */
 			
-			int damtype = 0;
-			int damnum = 0;
+	  int damtype = 0;
+      int damnum = 0;
 			
       if( dt >= TYPE_HIT )
       {

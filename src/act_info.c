@@ -1615,7 +1615,11 @@ void do_examine( CHAR_DATA * ch, const char *argument )
             else if( obj->value[3] == WEAPON_MINIGUN || obj->value[3] == WEAPON_SNIPER_RIFLE )
             {
                ch_printf( ch, "It has %d/%d ammos remaining.\r\n", obj->value[4], obj->value[5] );
-            }							
+            }
+			else if (obj->value[3] == WEAPON_LAUNCHER )
+			{
+				ch_printf(ch, "It has %d/%d missiles remaining.\r\n", obj->value[4], obj->value[5]);
+			}
             break;
 
          case ITEM_FOOD:

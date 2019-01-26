@@ -719,7 +719,7 @@ void fwrite_obj( CHAR_DATA *ch, OBJ_DATA *obj, FILE *fp, int iNest, short os_typ
                       || paf->location == APPLY_REMOVESPELL
                       || paf->location == APPLY_STRIPSN )
                     && IS_VALID_SN( paf->modifier ) )
-                  ? skill_table[paf->modifier]->slot : paf->modifier, paf->location, paf->bitvector );
+                    ? skill_table[paf->modifier]->slot : paf->modifier, paf->location, paf->bitvector );
       }
       else
          fprintf( fp, "AffectData   '%s' %d %d %d %d\n",
@@ -730,7 +730,7 @@ void fwrite_obj( CHAR_DATA *ch, OBJ_DATA *obj, FILE *fp, int iNest, short os_typ
                       || paf->location == APPLY_REMOVESPELL
                       || paf->location == APPLY_STRIPSN )
                     && IS_VALID_SN( paf->modifier ) )
-                  ? skill_table[paf->modifier]->slot : paf->modifier, paf->location, paf->bitvector );
+			        ? skill_table[paf->modifier]->slot : paf->modifier, paf->location, paf->bitvector);
    }
 
    for( ed = obj->first_extradesc; ed; ed = ed->next )

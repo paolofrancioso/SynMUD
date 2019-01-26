@@ -625,16 +625,17 @@ void boot_db( bool fCopyOver )
       //ASSIGN_GSN( gsn_shipdesign, "ship design" );
       ASSIGN_GSN( gsn_elmace, "electron maces" );
       ASSIGN_GSN( gsn_miniguns, "miniguns" );
-			ASSIGN_GSN( gsn_sniper_rifles, "sniper rifles" );
-			ASSIGN_GSN( gsn_gravitonguns, "graviton guns" );
-			ASSIGN_GSN( gsn_gravitonguns, "flame throwers" );
+	  ASSIGN_GSN( gsn_sniper_rifles, "sniper rifles" );
+	  ASSIGN_GSN( gsn_gravitonguns, "graviton guns" );
+	  ASSIGN_GSN( gsn_gravitonguns, "flame throwers" );
       ASSIGN_GSN( gsn_pulse_lasers, "pulse lasers" );
       ASSIGN_GSN( gsn_deflectingshields, "deflecting shields" );
       ASSIGN_GSN( gsn_vibro_blades, "vibro-blades" );
-			ASSIGN_GSN( gsn_vibro_blades, "vibro-axes" );
+	  ASSIGN_GSN( gsn_vibro_blades, "vibro-axes" );
       ASSIGN_GSN( gsn_flexible_arms, "flexible arms" );
       ASSIGN_GSN( gsn_talonous_arms, "talonous arms" );
       ASSIGN_GSN( gsn_bludgeons, "bludgeons" );
+	  ASSIGN_GSN( gsn_launchers, "launchers" );
       //ASSIGN_GSN( gsn_detrap, "detrap" );
       ASSIGN_GSN( gsn_bargain, "bargain" );
       ASSIGN_GSN( gsn_backstab, "backstab" );
@@ -2642,11 +2643,12 @@ OBJ_DATA *create_object( OBJ_INDEX_DATA * pObjIndex, int level )
             case WEAPON_DEFL_SHIELD:
             case WEAPON_FLAME_THROWER:
             case WEAPON_VIBRO_BLADE:
-						case WEAPON_VIBRO_AXE:
+			case WEAPON_VIBRO_AXE:
             case WEAPON_PULSE_LASER:
             case WEAPON_MINIGUN:
-						case WEAPON_SNIPER_RIFLE:
-						case WEAPON_GRAVITON_GUN:
+			case WEAPON_SNIPER_RIFLE:
+			case WEAPON_GRAVITON_GUN:
+			case WEAPON_LAUNCHER:
                if( obj->value[5] <= 0 )
                   obj->value[5] = number_fuzzy( 1000 );
          }

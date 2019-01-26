@@ -1334,3 +1334,8 @@ Thu Jan 24 02:00:00 2019: 0 players
 Fri Jan 25 10:30:00 2019: 1 players
 Fri Jan 25 11:00:00 2019: 1 players
 Fri Jan 25 11:30:00 2019: 1 players
+Sat Jan 26 00:00:00 2019: 1 players
+Sat Jan 26 00:30:00 2019: 1 players
+Sat Jan 26 01:30:00 2019: 1 players
+Sat Jan 26 13:00:00 2019: 0 players
+Sat Jan 26 14:30:00 2019: 1 players

@@ -8261,6 +8261,7 @@ Value3 | Type     | Weapons
   11   | energy   | PULSE LASER
   12   | drain    | GRAVITON GUN
   13   | pierce   | SNIPER RIFLE
+  14   | fire     | LAUNCHER
 
 
 See OSET.

@@ -2242,4 +2242,14 @@ Wearoff      !Binary!~
 Minlevel     1
 End
 
+#SKILL
+Name         explosion~
+Type         Spell
+Dammsg       explosion~
+Hitchar      You hit $N with the explosion!~
+Hitvict      &RYou are hit by an explosion!~
+Slot         900
+Minlevel     99
+End
+
 #END

@@ -264,6 +264,7 @@ int find_tongue( CHAR_DATA * ch, const char *name, bool know )
  */
 int slot_lookup( int slot )
 {
+
    extern bool fBootDb;
    int sn;
 
@@ -1479,7 +1480,7 @@ ch_ret obj_cast_spell( int sn, int level, CHAR_DATA * ch, CHAR_DATA * victim, OB
 {
    void *vo;
    ch_ret retcode = rNONE;
-   int levdiff = ch->top_level - level;
+   //int levdiff = ch->top_level - level;
    SKILLTYPE *skill = get_skilltype( sn );
    struct timeval time_used;
 
@@ -1501,9 +1502,10 @@ ch_ret obj_cast_spell( int sn, int level, CHAR_DATA * ch, CHAR_DATA * victim, OB
    /*
     * Basically this was added to cut down on level 5 players using level
     * 40 scrolls in battle too often ;)     -Thoric
+	* Marduk - Removed level limitations
     */
    if( ( skill->target == TAR_CHAR_OFFENSIVE || number_bits( 7 ) == 1 ) /* 1/128 chance if non-offensive */
-       && skill->type != SKILL_HERB && !chance( ch, 95 + levdiff ) )
+       && skill->type != SKILL_HERB && skill->type != SKILL_SPELL) //&& !chance(ch, 95 + levdiff)
    {
       switch ( number_bits( 2 ) )
       {
@@ -2297,12 +2299,6 @@ ch_ret spell_earthquake( int sn, int level, CHAR_DATA * ch, void *vo )
       return rSPELL_FAILED;
    }
 
-   send_to_char( "You feel the hatred grow within you!\r\n", ch );
-   ch->alignment = ch->alignment - 100;
-   ch->alignment = URANGE( -1000, ch->alignment, 1000 );
-   sith_penalty( ch );
-
-
    act( AT_MAGIC, "The earth trembles beneath your feet!", ch, NULL, NULL, TO_CHAR );
    act( AT_MAGIC, "$n makes the earth tremble and shiver.", ch, NULL, NULL, TO_ROOM );
 
@@ -2458,12 +2454,6 @@ ch_ret spell_fireball( int sn, int level, CHAR_DATA * ch, void *vo )
       70, 71, 71, 72, 72, 73, 73, 74, 75, 75
    };
    int dam;
-
-   send_to_char( "You feel the hatred grow within you!\r\n", ch );
-   ch->alignment = ch->alignment - 100;
-   ch->alignment = URANGE( -1000, ch->alignment, 1000 );
-   sith_penalty( ch );
-
 
    level = UMIN( level, sizeof( dam_each ) / sizeof( dam_each[0] ) - 1 );
    level = UMAX( 0, level );
@@ -2743,14 +2733,18 @@ ch_ret spell_identify( int sn, int level, CHAR_DATA * ch, void *vo )
             {
                ch_printf( ch, "It has %d out of %d ammos remaining.\r\n", obj->value[4], obj->value[5] );
             }
-						else if( obj->value[3] == WEAPON_GRAVITON_GUN )
+			else if( obj->value[3] == WEAPON_GRAVITON_GUN )
             {
                ch_printf( ch, "It has %d out of %d units of charge remaining.\r\n", obj->value[4], obj->value[5] );
             }
-						else if( obj->value[3] == WEAPON_FLAME_THROWER )
+			else if( obj->value[3] == WEAPON_FLAME_THROWER )
             {
                ch_printf( ch, "It has %d out of %d units of fuel remaining.\r\n", obj->value[4], obj->value[5] );
-            }						
+            }
+			else if (obj->value[3] == WEAPON_LAUNCHER)
+			{
+				ch_printf(ch, "It has %d out of %d missiles remaining.\r\n", obj->value[4], obj->value[5]);
+			}
             break;
 
          case ITEM_AMMO:
