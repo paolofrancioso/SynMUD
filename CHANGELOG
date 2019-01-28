@@ -2,6 +2,10 @@
 * Modified by Paolo (Marduk) Francioso                      *
 *************************************************************
 
+---------------------26th Jenuary 2019-----------------------
+- Added Launchers with AoE Damage and related code-rules
+- Modified weaponspells in order to display details in command ostat
+
 ---------------------25th Jenuary 2019-----------------------
 - Modified Spell->Skill parse system for dynamic dices (help DICEFORMULAS)
 - Added Dynamic Skill System (smaug_spell procedures) with Components and Variables
