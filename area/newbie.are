@@ -132,6 +132,14 @@ Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
 #MUDPROG
+Progtype  all_greet_prog~
+Arglist   100~
+Comlist   say I thought you might of been that fool Drall.
+say I'll pay you 150 credits for his head!
+~
+#ENDPROG
+
+#MUDPROG
 Progtype  give_prog~
 Arglist   Head of Drall~
 Comlist   say Hah, you snuffed that fool?
@@ -141,14 +149,6 @@ give 150 credits $n
 mpat 101 drop head
 mpat 101 mppurge
 mpadvance $n 3 250
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  all_greet_prog~
-Arglist   100~
-Comlist   say I thought you might of been that fool Drall.
-say I'll pay you 150 credits for his head!
 ~
 #ENDPROG
 
@@ -240,6 +240,14 @@ Speaks     basic~
 Speaking   basic~
 ShopData   9 5 0 0 0 120 15 0 23
 #MUDPROG
+Progtype  all_greet_prog~
+Arglist   100~
+Comlist   say Hello $n.
+say I buy and sell weapons. Can I offer you any assistance? 
+~
+#ENDPROG
+
+#MUDPROG
 Progtype  give_prog~
 Arglist   dl-2 blaster pistol~
 Comlist   smile $n
@@ -249,14 +257,6 @@ give 50 credits $n
 mpadvance $n 4 50
 mpat 101 drop blaster
 mpat 101 mppurge
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  all_greet_prog~
-Arglist   100~
-Comlist   say Hello $n.
-say I buy and sell weapons. Can I offer you any assistance? 
 ~
 #ENDPROG
 
@@ -320,66 +320,21 @@ Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
 #MUDPROG
-Progtype  speech_prog~
-Arglist   superconductor~
-Comlist   mpoload 147
-give superconductor $n
+Progtype  all_greet_prog~
+Arglist   100~
+Comlist   sa I am a green level slicer... 
+sa I can show you some of the lower level slicing skills. 
+sa I can also lend you some parts to build slicer equipment. 
+sa These parts include: Toolkit, Duraplast, Battery, Crystal, Circuit,
+sa Lens, Durasteel, and Superconductor. 
 ~
 #ENDPROG
 
 #MUDPROG
 Progtype  speech_prog~
-Arglist   durasteel~
-Comlist   mpoload 146
-give durasteel $n
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  speech_prog~
-Arglist   lens~
-Comlist   mpoload 143
-give lens $n
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  speech_prog~
-Arglist   circuit~
-Comlist   mpoload 140
-give circuit $n
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  speech_prog~
-Arglist   crystal~
-Comlist   mpoload 138
-give crystal $n
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  speech_prog~
-Arglist   battery~
-Comlist   mpoload 139
-give battery $n
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  speech_prog~
-Arglist   duraplast~
-Comlist   mpoload 148
-give duraplast $n
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  speech_prog~
-Arglist   toolkit~
-Comlist   mpoload 141
-give toolkit $n
+Arglist   commsystem~
+Comlist   sa You will need a toolkit, some duraplast, a battery, a crystal, and 
+sa a circuit to build a commsystem.
 ~
 #ENDPROG
 
@@ -393,20 +348,65 @@ sa a circuit and a lens to build a datapad.
 
 #MUDPROG
 Progtype  speech_prog~
-Arglist   commsystem~
-Comlist   sa You will need a toolkit, some duraplast, a battery, a crystal, and 
-sa a circuit to build a commsystem.
+Arglist   toolkit~
+Comlist   mpoload 141
+give toolkit $n
 ~
 #ENDPROG
 
 #MUDPROG
-Progtype  all_greet_prog~
-Arglist   100~
-Comlist   sa I am a green level slicer... 
-sa I can show you some of the lower level slicing skills. 
-sa I can also lend you some parts to build slicer equipment. 
-sa These parts include: Toolkit, Duraplast, Battery, Crystal, Circuit,
-sa Lens, Durasteel, and Superconductor. 
+Progtype  speech_prog~
+Arglist   duraplast~
+Comlist   mpoload 148
+give duraplast $n
+~
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   battery~
+Comlist   mpoload 139
+give battery $n
+~
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   crystal~
+Comlist   mpoload 138
+give crystal $n
+~
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   circuit~
+Comlist   mpoload 140
+give circuit $n
+~
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   lens~
+Comlist   mpoload 143
+give lens $n
+~
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   durasteel~
+Comlist   mpoload 146
+give durasteel $n
+~
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   superconductor~
+Comlist   mpoload 147
+give superconductor $n
 ~
 #ENDPROG
 
@@ -466,12 +466,11 @@ Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
 #MUDPROG
-Progtype  speech_prog~
-Arglist   water drink canteen liquid~
-Comlist   sa I will happily give you a canteen.
-mpoload 134
-give canteen $n
-sa Please enjoy.
+Progtype  all_greet_prog~
+Arglist   100~
+Comlist   mpecho A protocol droid says, "Good afternoon, $n.  My name is C-7DC.  I
+mpecho am the turbolift operator.  If you need any beverages or a bite to eat
+mpecho on this trip, just ask."
 ~
 #ENDPROG
 
@@ -486,11 +485,12 @@ sa Please enjoy.
 #ENDPROG
 
 #MUDPROG
-Progtype  all_greet_prog~
-Arglist   100~
-Comlist   mpecho A protocol droid says, "Good afternoon, $n.  My name is C-7DC.  I
-mpecho am the turbolift operator.  If you need any beverages or a bite to eat
-mpecho on this trip, just ask."
+Progtype  speech_prog~
+Arglist   water drink canteen liquid~
+Comlist   sa I will happily give you a canteen.
+mpoload 134
+give canteen $n
+sa Please enjoy.
 ~
 #ENDPROG
 
@@ -517,54 +517,20 @@ Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
 #MUDPROG
-Progtype  speech_prog~
-Arglist   comlink~
-Comlist   say You will need a crystal, a circuit, a battery, and a toolkit.
+Progtype  all_greet_prog~
+Arglist   100~
+Comlist   say If you need to borrow an item simply say it's name. 
+say The items are: Needle, Fabric, Crystal, Circuit, Battery, and Toolkit.
+say I can also teach you how to make a container or a comlink.
+say You may also wish to visit my friend far west of here.
 ~
 #ENDPROG
 
 #MUDPROG
 Progtype  speech_prog~
-Arglist   container~
-Comlist   say You will need some fabric, and a needle.
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  speech_prog~
-Arglist   toolkit~
-Comlist   mpoload 141
-give toolkit $n
-mpat 102 drop all
-mpat 102 mppurge
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  speech_prog~
-Arglist   circuit~
-Comlist   mpoload 140
-give circuit $n
-mpat 102 drop all
-mpat 102 mppurge
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  speech_prog~
-Arglist   battery~
-Comlist   mpoload 139
-give battery $n
-mpat 102 drop all
-mpat 102 mppurge
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  speech_prog~
-Arglist   crystal~
-Comlist   mpoload 138
-give crystal $n
+Arglist   needle~
+Comlist   mpoload 136
+give needle $n
 mpat 102 drop all
 mpat 102 mppurge
 ~
@@ -582,21 +548,55 @@ mpat 102 mppurge
 
 #MUDPROG
 Progtype  speech_prog~
-Arglist   needle~
-Comlist   mpoload 136
-give needle $n
+Arglist   crystal~
+Comlist   mpoload 138
+give crystal $n
 mpat 102 drop all
 mpat 102 mppurge
 ~
 #ENDPROG
 
 #MUDPROG
-Progtype  all_greet_prog~
-Arglist   100~
-Comlist   say If you need to borrow an item simply say it's name. 
-say The items are: Needle, Fabric, Crystal, Circuit, Battery, and Toolkit.
-say I can also teach you how to make a container or a comlink.
-say You may also wish to visit my friend far west of here.
+Progtype  speech_prog~
+Arglist   battery~
+Comlist   mpoload 139
+give battery $n
+mpat 102 drop all
+mpat 102 mppurge
+~
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   circuit~
+Comlist   mpoload 140
+give circuit $n
+mpat 102 drop all
+mpat 102 mppurge
+~
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   toolkit~
+Comlist   mpoload 141
+give toolkit $n
+mpat 102 drop all
+mpat 102 mppurge
+~
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   container~
+Comlist   say You will need some fabric, and a needle.
+~
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   comlink~
+Comlist   say You will need a crystal, a circuit, a battery, and a toolkit.
 ~
 #ENDPROG
 
@@ -623,60 +623,26 @@ Saves      0 0 0 0 0
 Speaks     basic~
 Speaking   basic~
 #MUDPROG
-Progtype  greet_prog~
-Arglist   100~
-Comlist   say If you need to borrow an item simply say it's name. 
-say The items are: Circuit, Battery, Toolkit, Oven, Lens, Chemical,
-say or Durasteel
-say You may also wish to visit my friend far east of here. 
+Progtype  speech_prog~
+Arglist   vibroblade~
+Comlist   say To make a vibroblade you will need an Oven, a toolkit, and
+say durasteel.
 ~
 #ENDPROG
 
 #MUDPROG
 Progtype  speech_prog~
-Arglist   durasteel~
-Comlist   mpoload 146
-give durasteel $n
-mpat 102 drop all
-mpat 102 mppurge
+Arglist   flashlight~
+Comlist   say To make a flashlight you will need a battery, circuit, toolkit,
+say chemical, and lens. 
 ~
 #ENDPROG
 
 #MUDPROG
 Progtype  speech_prog~
-Arglist   chemical~
-Comlist   mpoload 145
-give chemicals $n
-mpat 102 drop all
-mpat 102 mppurge
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  speech_prog~
-Arglist   toolkit~
-Comlist   mpoload 141
-give toolkit $n
-mpat 102 drop all
-mpat 102 mppurge
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  speech_prog~
-Arglist   battery~
-Comlist   mpoload 139
-give battery $n
-mpat 102 drop all
-mpat 102 mppurge
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  speech_prog~
-Arglist   circuit~
-Comlist   mpoload 140
-give circuit $n
+Arglist   oven~
+Comlist   mpoload 142
+give oven $n
 mpat 102 drop all
 mpat 102 mppurge
 ~
@@ -694,9 +660,9 @@ mpat 102 mppurge
 
 #MUDPROG
 Progtype  speech_prog~
-Arglist   oven~
-Comlist   mpoload 142
-give oven $n
+Arglist   circuit~
+Comlist   mpoload 140
+give circuit $n
 mpat 102 drop all
 mpat 102 mppurge
 ~
@@ -704,17 +670,51 @@ mpat 102 mppurge
 
 #MUDPROG
 Progtype  speech_prog~
-Arglist   flashlight~
-Comlist   say To make a flashlight you will need a battery, circuit, toolkit,
-say chemical, and lens. 
+Arglist   battery~
+Comlist   mpoload 139
+give battery $n
+mpat 102 drop all
+mpat 102 mppurge
 ~
 #ENDPROG
 
 #MUDPROG
 Progtype  speech_prog~
-Arglist   vibroblade~
-Comlist   say To make a vibroblade you will need an Oven, a toolkit, and
-say durasteel.
+Arglist   toolkit~
+Comlist   mpoload 141
+give toolkit $n
+mpat 102 drop all
+mpat 102 mppurge
+~
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   chemical~
+Comlist   mpoload 145
+give chemicals $n
+mpat 102 drop all
+mpat 102 mppurge
+~
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   durasteel~
+Comlist   mpoload 146
+give durasteel $n
+mpat 102 drop all
+mpat 102 mppurge
+~
+#ENDPROG
+
+#MUDPROG
+Progtype  greet_prog~
+Arglist   100~
+Comlist   say If you need to borrow an item simply say it's name. 
+say The items are: Circuit, Battery, Toolkit, Oven, Lens, Chemical,
+say or Durasteel
+say You may also wish to visit my friend far east of here. 
 ~
 #ENDPROG
 
@@ -1403,6 +1403,17 @@ Stats    1 50 5 0 0
 #ENDOBJECT
 
 #OBJECT
+Vnum     156
+Keywords Utopia Chip~
+Type     cyber_brain~
+Short    An Utopia Chip~
+Long     An Utopia Chip lies here.~
+WFlags   cyber_brain~
+Values   0 0 0 0 0 0
+Stats    1 0 0 0 0
+#ENDOBJECT
+
+#OBJECT
 Vnum     190
 Keywords hi_obj~
 Type     trash~
@@ -1633,92 +1644,14 @@ ExDesc       &G&G[&W 1&G] &WBunk Level&w
 
 #MUDPROG
 Progtype  speech_prog~
-Arglist   say 9~
+Arglist   say 1~
 Comlist   mpecho The turbolift shakes slightly as it begins moving. 
 mpecho The turbolift slowly comes to a halt and the doors slide open.
-mpecho &cAn electronic voice says: 'Level 9. Please step off.'
+mpecho &cAn electronic voice says: 'Level 1. Please step off.'
 mpechoat $n You step out of the turbolift.
 mpechoaround $n $n steps out of the turbolift.
-mptransfer $n 171
-mpat 171 mer $n $n get off of the turbolift.
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  speech_prog~
-Arglist   say 8~
-Comlist   mpecho The turbolift shakes slightly as it begins moving. 
-mpecho The turbolift slowly comes to a halt and the doors slide open.
-mpecho &cAn electronic voice says: 'Level 8. Please step off.'
-mpechoat $n You step out of the turbolift.
-mpechoaround $n $n steps out of the turbolift.
-mptransfer $n 172
-mpat 172 mer $n $n steps off the turbolift.
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  speech_prog~
-Arglist   say 7~
-Comlist   mpecho The turbolift shakes slightly as it begins moving. 
-mpecho The turbolift slowly comes to a halt and the doors slide open.
-mpecho &cAn electronic voice says: 'Level 7. Please step off.'
-mpechoat $n You step out of the turbolift.
-mpechoaround $n $n steps out of the turbolift.
-mptransfer $n 180
-mpat 180 mer $n $n gets out of the turbolift.
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  speech_prog~
-Arglist   say 6~
-Comlist   mpecho The turbolift shakes slightly as it begins moving. 
-mpecho The turbolift slowly comes to a halt and the doors slide open.
-mpecho &cAn electronic voice says: 'Level 6. Please step off.'
-mpechoat $n You step out of the turbolift.
-mpechoaround $n $n steps out of the turbolift.
-mptransfer $n 163
-mpat 163 mer $n $n steps off the turbolift.
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  speech_prog~
-Arglist   say 5~
-Comlist   mpecho The turbolift shakes slightly as it begins moving. 
-mpecho The turbolift slowly comes to a halt and the doors slide open.
-mpecho &cAn electronic voice says: 'Level 5. Please step off.'
-mpechoat $n You step out of the turbolift.
-mpechoaround $n $n steps out of the turbolift.
-mptransfer $n 159
-mpat 159 mer $n $n gets off of the turbolift.
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  speech_prog~
-Arglist   say 4~
-Comlist   mpecho The turbolift shakes slightly as it begins moving. 
-mpecho The turbolift slowly comes to a halt and the doors slide open.
-mpecho &cAn electronic voice says: 'Level 4. Please step off.'
-mpechoat $n You step out of the turbolift.
-mpechoaround $n $n steps out of the turbolift.
-mptransfer $n 148
-mpat 148 mer $n $n steps off of the turbolift.
-~
-#ENDPROG
-
-#MUDPROG
-Progtype  speech_prog~
-Arglist   say 3~
-Comlist   mpecho The turbolift shakes slightly as it begins moving. 
-mpecho The turbolift slowly comes to a halt and the doors slide open.
-mpecho &cAn electronic voice says: 'Level 3. Please step off.'
-mpechoat $n You step out of the turbolift.
-mpechoaround $n $n steps out of the turbolift.
-mptransfer $n 133
-mpat 133 mer $n $n steps out of the turbolift.
+mptransfer $n 120
+mpat 120 mer $n $n gets off the turbolift.
 ~
 #ENDPROG
 
@@ -1737,14 +1670,92 @@ mpat 125 mer $n $n gets off the turbolift.
 
 #MUDPROG
 Progtype  speech_prog~
-Arglist   say 1~
+Arglist   say 3~
 Comlist   mpecho The turbolift shakes slightly as it begins moving. 
 mpecho The turbolift slowly comes to a halt and the doors slide open.
-mpecho &cAn electronic voice says: 'Level 1. Please step off.'
+mpecho &cAn electronic voice says: 'Level 3. Please step off.'
 mpechoat $n You step out of the turbolift.
 mpechoaround $n $n steps out of the turbolift.
-mptransfer $n 120
-mpat 120 mer $n $n gets off the turbolift.
+mptransfer $n 133
+mpat 133 mer $n $n steps out of the turbolift.
+~
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   say 4~
+Comlist   mpecho The turbolift shakes slightly as it begins moving. 
+mpecho The turbolift slowly comes to a halt and the doors slide open.
+mpecho &cAn electronic voice says: 'Level 4. Please step off.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the turbolift.
+mptransfer $n 148
+mpat 148 mer $n $n steps off of the turbolift.
+~
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   say 5~
+Comlist   mpecho The turbolift shakes slightly as it begins moving. 
+mpecho The turbolift slowly comes to a halt and the doors slide open.
+mpecho &cAn electronic voice says: 'Level 5. Please step off.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the turbolift.
+mptransfer $n 159
+mpat 159 mer $n $n gets off of the turbolift.
+~
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   say 6~
+Comlist   mpecho The turbolift shakes slightly as it begins moving. 
+mpecho The turbolift slowly comes to a halt and the doors slide open.
+mpecho &cAn electronic voice says: 'Level 6. Please step off.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the turbolift.
+mptransfer $n 163
+mpat 163 mer $n $n steps off the turbolift.
+~
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   say 7~
+Comlist   mpecho The turbolift shakes slightly as it begins moving. 
+mpecho The turbolift slowly comes to a halt and the doors slide open.
+mpecho &cAn electronic voice says: 'Level 7. Please step off.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the turbolift.
+mptransfer $n 180
+mpat 180 mer $n $n gets out of the turbolift.
+~
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   say 8~
+Comlist   mpecho The turbolift shakes slightly as it begins moving. 
+mpecho The turbolift slowly comes to a halt and the doors slide open.
+mpecho &cAn electronic voice says: 'Level 8. Please step off.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the turbolift.
+mptransfer $n 172
+mpat 172 mer $n $n steps off the turbolift.
+~
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   say 9~
+Comlist   mpecho The turbolift shakes slightly as it begins moving. 
+mpecho The turbolift slowly comes to a halt and the doors slide open.
+mpecho &cAn electronic voice says: 'Level 9. Please step off.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the turbolift.
+mptransfer $n 171
+mpat 171 mer $n $n get off of the turbolift.
 ~
 #ENDPROG
 

@@ -376,11 +376,11 @@ void do_implant( CHAR_DATA * ch, const char *argument ) {
          obj_next = obj2->next_content;
          if( obj2->wear_loc != WEAR_NONE && 
 			       ( obj2->item_type == ITEM_CYBER_EYE 
-             || obj2->item_type == ITEM_CYBER_BRAIN 
-			       || obj2->item_type == ITEM_CYBER_ARMS
-             || obj2->item_type == ITEM_CYBER_LEGS 
-			       || obj2->item_type == ITEM_CYBER_BODY
-			       || obj2->item_type == ITEM_CYBER_EPIDERMIS ) 
+                     || obj2->item_type == ITEM_CYBER_BRAIN 
+			         || obj2->item_type == ITEM_CYBER_ARMS
+                     || obj2->item_type == ITEM_CYBER_LEGS 
+			         || obj2->item_type == ITEM_CYBER_BODY
+			         || obj2->item_type == ITEM_CYBER_EPIDERMIS ) 
 						 && obj2->item_type == obj->item_type )	{			 
               remove_obj( ch, obj2->wear_loc, TRUE );
 						 }
@@ -388,7 +388,7 @@ void do_implant( CHAR_DATA * ch, const char *argument ) {
 	 
 	 ch->gold -=  cost;
 	 
-   do_cyber(ch, arg1);
+     do_cyber(ch, arg1);
 	 act( AT_TELL, "$n tells you 'Ok, let's start...", mob, NULL, ch, TO_VICT );
 	 send_to_char( "The surgeon brings a mask close to your face. \r\n", ch );
 	 send_to_char( "Your eyes close slowly.  \r\n", ch );

@@ -27,4 +27,13 @@
 *.out
 *.app
 
+#Ignore Folders
+player/
+log/
+html/
+corpses/
+boards/
+backup/
+hotboot/
+
 \.vs/

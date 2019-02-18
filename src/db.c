@@ -2523,7 +2523,13 @@ OBJ_DATA *create_object( OBJ_INDEX_DATA * pObjIndex, int level )
          bug( "Read_object: vnum %d bad type.", pObjIndex->vnum );
          bug( "------------------------>     ", obj->item_type );
          break;
-
+	  
+      case ITEM_CYBER_EYE:
+	  case ITEM_CYBER_BRAIN:
+	  case ITEM_CYBER_ARMS:
+	  case ITEM_CYBER_LEGS:
+	  case ITEM_CYBER_BODY:
+	  case ITEM_CYBER_EPIDERMIS:
       case ITEM_GOVERNMENT:
       case ITEM_SPACECRAFT:
       case ITEM_RAWSPICE:

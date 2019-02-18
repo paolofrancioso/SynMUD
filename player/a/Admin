@@ -10,11 +10,11 @@ Languages    -1 1
 Toplevel     36
 Pheight      0
 Build        0
-Played       153959
+Played       155975
 Ship            ~
 ShipNum         0
-Room         115
-HpManaMove   1000 1000 962 1000 996 1000
+Room         100
+HpManaMove   1000 1000 1000 1000 1000 1000
 Gold         2085574427
 Bank         10
 Salary       0
@@ -41,7 +41,7 @@ Armor        10
 Rppoints   0
 Mentalstate  0
 Password     9c3a88f26d3623fcf0a4aa881518170c70f5e1d62e0d9f9fa7e9b3f07fa299b7~
-Lastplayed   1550340126
+Lastplayed   1550534149
 Title         Admin the Silent One~
 AuthedBy     Admin~
 Addiction    0 0 0 0 0 0 0 0 0 0
@@ -243,6 +243,12 @@ End
 #OBJECT
 Vnum         83
 Level        36
+End
+
+#OBJECT
+Vnum         156
+WearLoc      27
+Level        1
 End
 
 #END

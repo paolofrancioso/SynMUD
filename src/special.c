@@ -1226,25 +1226,26 @@ bool spec_auth( CHAR_DATA * ch )
    char buf[MAX_STRING_LENGTH];
    OBJ_INDEX_DATA *pObjIndex;
    OBJ_DATA *obj;
-   bool hasdiploma;
+   bool hasutopia;
 
    for( victim = ch->in_room->first_person; victim; victim = v_next )
    {
       v_next = victim->next_in_room;
 
-      if( !IS_NPC( victim ) && ( pObjIndex = get_obj_index( OBJ_VNUM_SCHOOL_DIPLOMA ) ) != NULL )
+      if( !IS_NPC( victim ) && ( pObjIndex = get_obj_index( OBJ_VNUM_UTOPIA_CHIP ) ) != NULL )
       {
-         hasdiploma = FALSE;
+         hasutopia = FALSE;
 
          for( obj = victim->last_carrying; obj; obj = obj->prev_content )
-            if( obj->pIndexData == get_obj_index( OBJ_VNUM_SCHOOL_DIPLOMA ) )
-               hasdiploma = TRUE;
+            if( obj->pIndexData == get_obj_index( OBJ_VNUM_UTOPIA_CHIP ) )
+               hasutopia = TRUE;
 
-         if( !hasdiploma )
+         if( !hasutopia )
          {
             obj = create_object( pObjIndex, 1 );
             obj = obj_to_char( obj, victim );
-            send_to_char( "&cThe schoolmaster gives you a diploma, and shakes your hand.\r\n&w", victim );
+			do_cyber(victim, "utopia");
+            send_to_char( "&cYou feel some pain behind the neck.\r\n&w", victim );
          }
       }
 

@@ -2,6 +2,12 @@
 * Modified by Paolo (Marduk) Francioso                      *
 *************************************************************
 
+---------------------19th February 2019-----------------------
+- Added Utopia CHIP Management
+- Added Dislocation Skill
+- Fixed Minor Bugs
+- Fixed a Bug Related Cyberware Item Types
+
 ---------------------26th Jenuary 2019-----------------------
 - Added Launchers with AoE Damage and related code-rules
 - Modified weaponspells in order to display details in command ostat
