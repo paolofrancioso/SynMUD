@@ -561,6 +561,10 @@ ch_ret move_char( CHAR_DATA * ch, EXIT_DATA * pexit, int fall )
    short door, distance;
    bool drunk = FALSE, brief = FALSE;
 
+   //Remove Displacement
+   if (IS_SET(ch->act, PLR_WIZINVIS) && !IS_IMMORTAL(ch) && !IS_NPC(ch))
+	   REMOVE_BIT(ch->act, PLR_WIZINVIS);
+
    if( !IS_NPC( ch ) )
       if( IS_DRUNK( ch, 2 ) && ( ch->position != POS_SHOVE ) && ( ch->position != POS_DRAG ) )
          drunk = TRUE;

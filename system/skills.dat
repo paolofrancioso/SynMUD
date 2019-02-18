@@ -850,6 +850,23 @@ Minlevel     21
 End
 
 #SKILL
+Name         dislocation~
+Type         Skill
+Flags        0
+Target       3
+Minpos       5
+Rounds       8
+Guild        4
+Code         do_dislocation
+Dammsg       ~
+Wearoff      You are no longer dislocated.~
+Hitvict      You attempt to dislocate yourself.~
+Misschar     You attempt to dislocate yourself, but you fail.~
+Teachers     453 7509~
+Minlevel     30
+End
+
+#SKILL
 Name         dodge~
 Type         Skill
 Flags        0

@@ -2952,7 +2952,38 @@ void do_concealment( CHAR_DATA * ch, const char *argument )
    return;
 }
 
+void do_dislocation(CHAR_DATA * ch, const char *argument)
+{
+	if (IS_NPC(ch) && IS_AFFECTED(ch, AFF_CHARM))
+	{
+		send_to_char("You can't concentrate enough for that.\r\n", ch);
+		return;
+	}
 
+	if (ch->mount)
+	{
+		send_to_char("You can't do that while mounted.\r\n", ch);
+		return;
+	}
+
+	send_to_char("You attempt to dislocate yourself.\r\n", ch);
+
+	if (IS_SET(ch->act, PLR_WIZINVIS))
+		REMOVE_BIT(ch->act, PLR_WIZINVIS);
+
+	if (IS_NPC(ch) || number_percent() < ch->pcdata->learned[gsn_dislocation])
+	{
+
+		if (ch->pcdata->wizinvis < 2)
+			ch->pcdata->wizinvis = ch->top_level;
+		SET_BIT(ch->act, PLR_WIZINVIS);
+		learn_from_success(ch, gsn_dislocation);
+	}
+	else
+		learn_from_failure(ch, gsn_dislocation);
+	return;
+
+}
 
 /*
  * Contributed by Alander.

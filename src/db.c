@@ -210,6 +210,7 @@ short gsn_dualstab;
 short gsn_circle;
 short gsn_dodge;
 short gsn_concealment;
+short gsn_dislocation;
 short gsn_hide;
 short gsn_peek;
 short gsn_pick_lock;
@@ -646,6 +647,7 @@ void boot_db( bool fCopyOver )
       ASSIGN_GSN( gsn_circle, "circle" );
       ASSIGN_GSN( gsn_dodge, "dodge" );
       ASSIGN_GSN( gsn_concealment, "concealment" );
+	  ASSIGN_GSN( gsn_dislocation, "dislocation" );
       ASSIGN_GSN( gsn_hide, "hide" );
       ASSIGN_GSN( gsn_peek, "peek" );
       ASSIGN_GSN( gsn_pick_lock, "pick lock" );
@@ -4379,7 +4381,7 @@ void make_wizlist(  )
    towizfile( " &C        _________________________________________________________ ", 0 );
    towizfile( " &C       / ________________________________________________________ \\ ", 0 );
    towizfile( " &C       / /                                                        \\ \\ ", 0 );
-   towizfile( " &C        | |                &YSyndacate Wars Immortals:&C                 | | ", 0 );
+   towizfile( " &C        | |                &YSyndicate Wars Immortals:&C                 | | ", 0 );
    ilevel = MAX_LEVEL + 1;
    for( wiz = first_wiz; wiz; wiz = wiz->next )
    {

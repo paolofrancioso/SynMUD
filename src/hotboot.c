@@ -1027,7 +1027,7 @@ void do_hotboot( CHAR_DATA * ch, const char *argument )
    log_string( "Saving player files and connection states...." );
    if( ch && ch->desc )
       write_to_descriptor( ch->desc, "\033[0m", 0 );
-   sprintf( buf, "\r\nYou feel a great disturbance in the Force.\r\n" );
+   sprintf( buf, "\r\nYou feel a great disturbance in the reality.\r\n" );
    /*
     * For each playing descriptor, save its state 
     */
@@ -1183,7 +1183,7 @@ void hotboot_recover( void )
       }
       else  /* ok! */
       {
-         write_to_descriptor( d, "Suddenly, you remember nothing as the Force continues into the Galaxy.\r\n", 0 );
+         write_to_descriptor( d, "Suddenly, you remember nothing as the reality shakes.\r\n", 0 );
          d->character->in_room = get_room_index( room );
          if( !d->character->in_room )
             d->character->in_room = get_room_index( ROOM_VNUM_TEMPLE );
@@ -1194,8 +1194,8 @@ void hotboot_recover( void )
          LINK( d->character, first_char, last_char, next, prev );
 
          char_to_room( d->character, d->character->in_room );
-         act( AT_MAGIC, "You appear in a swirl of the Force!", d->character, NULL, NULL, TO_CHAR );
-         act( AT_MAGIC, "$n appears in a swrrl of the Force!", d->character, NULL, NULL, TO_ROOM );
+         act( AT_MAGIC, "You appear in a swirl of colors!", d->character, NULL, NULL, TO_CHAR );
+         act( AT_MAGIC, "$n appears in a swirl of colors!", d->character, NULL, NULL, TO_ROOM );
          d->connected = CON_PLAYING;
          if( ++num_descriptors > sysdata.maxplayers )
             sysdata.maxplayers = num_descriptors;

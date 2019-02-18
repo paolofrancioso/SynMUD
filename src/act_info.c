@@ -510,8 +510,10 @@ void show_char_to_char_0( CHAR_DATA * victim, CHAR_DATA * ch )
    if( ( !IS_NPC( victim ) && IS_SET( victim->act, PLR_WIZINVIS ) )
        || ( IS_NPC( victim ) && IS_SET( victim->act, ACT_MOBINVIS ) ) )
    {
-      if( !IS_NPC( victim ) )
+      if( !IS_NPC( victim ) && IS_IMMORTAL(ch) )
          sprintf( buf1, "(Invis %d) ", victim->pcdata->wizinvis );
+	  else if (!IS_NPC(victim) && !IS_IMMORTAL(ch))
+		 strcat(buf, "(Dislocated) ");
       else
          sprintf( buf1, "(Mobinvis %d) ", victim->mobinvis );
       strcat( buf, buf1 );
@@ -724,7 +726,7 @@ void show_char_to_char_1( CHAR_DATA * victim, CHAR_DATA * ch )
 	         && obj->wear_loc != WEAR_CYBER_EYE
 		     && obj->wear_loc != WEAR_CYBER_BRAIN && obj->wear_loc != WEAR_CYBER_ARMS
              && obj->wear_loc != WEAR_CYBER_LEGS && obj->wear_loc != WEAR_CYBER_BODY
-			 && obj->wear_loc !=WEAR_CYBER_EPIDERMIS)
+			 && obj->wear_loc != WEAR_CYBER_EPIDERMIS)
       {
          if( !found )
          {
@@ -2669,10 +2671,10 @@ void do_who( CHAR_DATA * ch, const char *argument )
       if( !ch )
          fprintf( whoout, "%s",
                   htmlcolor
-                  ( "&z(  &cPlayers&z  )&c-&C^^&c-_-&C^^&c-_-&C^^&c-_-&C^^&z(======+   &cSyndacate Wars   &z+======)&C^^&c-_-&C^^&c-_-&C^^&c-_-&C^^&c-&w\n\n" ) );
+                  ( "&z(  &cPlayers&z  )&c-&C^^&c-_-&C^^&c-_-&C^^&c-_-&C^^&z(======+   &cSyndicate Wars   &z+======)&C^^&c-_-&C^^&c-_-&C^^&c-_-&C^^&c-&w\n\n" ) );
       else
          send_to_pager
-            ( "\r\n&z(  &cPlayers&z  )&c-&C^^&c-_-&C^^&c-_-&C^^&c-_-&C^^&z(======+   &cSyndacate Wars   &z+======)&C^^&c-_-&C^^&c-_-&C^^&c-_-&C^^&c-&w\r\n\r\n",
+            ( "\r\n&z(  &cPlayers&z  )&c-&C^^&c-_-&C^^&c-_-&C^^&c-_-&C^^&z(======+   &cSyndicate Wars   &z+======)&C^^&c-_-&C^^&c-_-&C^^&c-_-&C^^&c-&w\r\n\r\n",
               ch );
    }
 
@@ -2692,10 +2694,10 @@ void do_who( CHAR_DATA * ch, const char *argument )
       if( !ch )
          fprintf( whoout, "%s",
                   htmlcolor
-                  ( "&z( &cImmortals&z )&c-&C^^&c-_-&C^^&c-_-&C^^&c-_-&C^^&z(======+   &cSyndacate Wars   &z+======)&C^^&c-_-&C^^&c-_-&C^^&c-_-&C^^&c-&w\n\n" ) );
+                  ( "&z( &cImmortals&z )&c-&C^^&c-_-&C^^&c-_-&C^^&c-_-&C^^&z(======+   &cSyndicate Wars   &z+======)&C^^&c-_-&C^^&c-_-&C^^&c-_-&C^^&c-&w\n\n" ) );
       else
          send_to_pager
-            ( "\r\n&z( &cImmortals&z )&c-&C^^&c-_-&C^^&c-_-&C^^&c-_-&C^^&z(======+   &cSyndacate Wars   &z+======)&C^^&c-_-&C^^&c-_-&C^^&c-_-&C^^&c-&w\r\n\r\n",
+            ( "\r\n&z( &cImmortals&z )&c-&C^^&c-_-&C^^&c-_-&C^^&c-_-&C^^&z(======+   &cSyndicate Wars   &z+======)&C^^&c-_-&C^^&c-_-&C^^&c-_-&C^^&c-&w\r\n\r\n",
               ch );
    }
 

@@ -2141,7 +2141,7 @@ void nanny_get_build( DESCRIPTOR_DATA * d, const char *argument )
          race_table[ch->race].race_name );
          log_string_plus( log_buf, LOG_COMM, sysdata.log_level );
          to_channel( log_buf, CHANNEL_MONITOR, "Monitor", LEVEL_IMMORTAL );
-         send_to_desc_color( "\r\n&cWelcome to &CSyndacate Wars&c. Press enter to continue.&w\r\n\r\n", d );
+         send_to_desc_color( "\r\n&cWelcome to &CSyndicate Wars&c. Press enter to continue.&w\r\n\r\n", d );
          {
             int ability;
    
@@ -2192,7 +2192,7 @@ void nanny_get_droid( DESCRIPTOR_DATA * d, const char *argument )
             race_table[ch->race].race_name );
             log_string_plus( log_buf, LOG_COMM, sysdata.log_level );
             to_channel( log_buf, CHANNEL_MONITOR, "Monitor", LEVEL_IMMORTAL );
-            send_to_desc_color( "\r\n&cWelcome to &CSyndacate Wars&c. Press enter to continue.&w\r\n\r\n", d );
+            send_to_desc_color( "\r\n&cWelcome to &CSyndicate Wars&c. Press enter to continue.&w\r\n\r\n", d );
             {
                int ability;
 

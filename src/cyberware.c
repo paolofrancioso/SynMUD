@@ -21,12 +21,12 @@ void show_cyber( CHAR_DATA * ch ) {
    set_char_color( AT_OBJECT, ch );
    
    //Template Block
-   iWear = WEAR_CYBER_EYE;
+   iWear = WEAR_CYBER_BRAIN;
    send_to_char( where_name[iWear], ch );
    
    found = FALSE;
    for( obj = ch->first_carrying; obj; obj = obj->next_content )
-	  if( obj->wear_loc == iWear && obj->wear_loc == WEAR_CYBER_EYE )
+	  if( obj->wear_loc == iWear && obj->wear_loc == WEAR_CYBER_BRAIN )
 	  {
 	    send_to_char( format_obj_to_char( obj, ch, TRUE ), ch );
 		found = TRUE;
@@ -38,12 +38,12 @@ void show_cyber( CHAR_DATA * ch ) {
    send_to_char( "\r\n", ch );
    //End of Template Block
    
-   iWear = WEAR_CYBER_BRAIN;
+   iWear = WEAR_CYBER_EYE;
    send_to_char( where_name[iWear], ch );
    
    found = FALSE;
    for( obj = ch->first_carrying; obj; obj = obj->next_content )
-	  if( obj->wear_loc == iWear && obj->wear_loc == WEAR_CYBER_BRAIN )
+	  if( obj->wear_loc == iWear && obj->wear_loc == WEAR_CYBER_EYE )
 	  {
 	    send_to_char( format_obj_to_char( obj, ch, TRUE ), ch );
 		found = TRUE;

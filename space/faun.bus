@@ -75,7 +75,7 @@ Gunseat      921
 Navseat      921
 Engineroom   921
 Entrance     915
-Shipstate    1
+Shipstate    0
 Missilestate 0
 Energy       10000
 Manuever     11

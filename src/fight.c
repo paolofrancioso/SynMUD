@@ -835,7 +835,7 @@ ch_ret one_hit( CHAR_DATA * ch, CHAR_DATA * victim, int dt )
 
    }
 
-   //Calculate to-hit-armor-class-0 versus armor (20 -3 for each Commando Level)
+   //Calculate to-hit-armor-class-0 versus armor (Commando Levels reduce the THAC0)
    thac0_00 = 20;
    thac0_32 = 10;
    thac0 = interpolate( ch->skill_level[COMMANDO_ABILITY], thac0_00, thac0_32 ) - GET_HITROLL( ch );
@@ -894,10 +894,10 @@ ch_ret one_hit( CHAR_DATA * ch, CHAR_DATA * victim, int dt )
    if( !IS_AWAKE( victim ) )
       dam *= 2;
    if( dt == gsn_backstab || dt == gsn_dualstab )
-      dam *= ( 2 + URANGE( 2, ch->skill_level[HUNTER_ABILITY] - ( victim->skill_level[COMMANDO_ABILITY] / 4 ), 30 ) / 8 );
+      dam *= ( 2 + URANGE( 2, ch->skill_level[HUNTER_ABILITY] + ( victim->skill_level[COMMANDO_ABILITY] / 4 ), 30 ) / 8 );
 
    if( dt == gsn_circle )
-      dam *= ( 2 + URANGE( 2, ch->skill_level[HUNTER_ABILITY] - ( victim->skill_level[COMMANDO_ABILITY] / 4 ), 30 ) / 16 );
+      dam *= ( 2 + URANGE( 2, ch->skill_level[HUNTER_ABILITY] + ( victim->skill_level[COMMANDO_ABILITY] / 4 ), 30 ) / 16 );
 
    plusris = 0;
 
@@ -1581,6 +1581,10 @@ ch_ret damage( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt )
          REMOVE_BIT( ch->affected_by, AFF_INVISIBLE );
          act( AT_MAGIC, "$n fades into existence.", ch, NULL, NULL, TO_ROOM );
       }
+
+	  //Remove Displacement
+	  if (IS_SET(ch->act, PLR_WIZINVIS) && !IS_IMMORTAL(ch) && !IS_NPC(ch))
+		  REMOVE_BIT(ch->act, PLR_WIZINVIS);
 
       /*
        * Take away Hide 

@@ -1501,7 +1501,7 @@ struct smaug_affect
 #define AFF_BERSERK		  BV30
 #define AFF_AQUA_BREATH		  BV31
 
-/* 31 aff's (1 left.. :P) */
+/* 32 aff's - This is the max right now :'(    ) */
 /* make that none - ugh - time for another field? :P */
 /*
  * Resistant Immune Susceptible flags
@@ -3179,6 +3179,7 @@ extern short gsn_circle;
 extern short gsn_dodge;
 extern short gsn_hide;
 extern short gsn_concealment;
+extern short gsn_dislocation;
 extern short gsn_peek;
 extern short gsn_pick_lock;
 extern short gsn_scan;
@@ -4086,6 +4087,7 @@ DECLARE_DO_FUN( do_senate );
 DECLARE_DO_FUN( do_addsenator );
 DECLARE_DO_FUN( do_remsenator );
 DECLARE_DO_FUN( do_concealment );
+DECLARE_DO_FUN( do_dislocation );
 DECLARE_DO_FUN( do_credits );
 DECLARE_DO_FUN( do_cset );
 DECLARE_DO_FUN( do_deities );

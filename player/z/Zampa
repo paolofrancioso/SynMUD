@@ -1,20 +1,20 @@
 #PLAYER
 Version      4
-Name         Marduk~
-Comfreq      344.143~
+Name         Zampa~
+Comfreq      322.707~
 Sex          1
 Race         0
-MainAbility  9
-SecondAbility  0
+MainAbility  3
+SecondAbility  8
 Languages    1 1
 Toplevel     1
 Pheight      0
-Build        1
-Played       1841
+Build        2
+Played       209
 Ship            ~
 ShipNum         0
 Room         115
-HpManaMove   6 280 0 0 200 200
+HpManaMove   1 260 0 0 183 200
 Gold         0
 Bank         0
 Salary       0
@@ -27,7 +27,7 @@ Ability        5 1 0 0
 Ability        6 1 0 0
 Ability        7 1 0 0
 Ability        8 1 0 0
-Ability        9 1 190 0
+Ability        9 1 0 0
 Act          570426952
 Position     8
 SavingThrows 0 0 0 0 0
@@ -39,22 +39,22 @@ Damroll      0
 Armor        10
 Rppoints   0
 Mentalstate  0
-Password     e28ffd855f1fd84969ec447a24a060d6325d7c479e4281635e452cfb268e0f13~
-Lastplayed   1550340135
-Title         Marduk the Italian~
+Password     cd98295f7982c0afa449a76c7474d874b161f88569ef16f42b5af2f2a98a5862~
+Lastplayed   1548769699
+Title         Zampa the Italian~
 AuthedBy     Grotans~
 Addiction    0 0 0 0 0 0 0 0 0 0
 Druglevel    0 0 0 0 0 0 0 0 0 0
 Flags        0
 MKills       0
 MDeaths      0
-AttrPerm     7 11 13 13 13 13 13
+AttrPerm     14 10 13 11 11 5 6
 AttrMod      0 0 0 0 0 0 0
 ResiMod      0 0 0 0 0 0 0 0 0 0
 Regens      0 0 0
-Condition    0 39 39 10
+Condition    0 47 47 10
 Site         local-host
-Skill        58 'heal'
+Skill        22 'kick'
 Tongue       100 'basic'
 Tongue       100 'italian'
 MaxColors    115
